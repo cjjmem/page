@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> Laravel开发笔记</title>
+  <meta name="description" content="安装dinggo">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/jekyll/update/2017/04/20/laravel-develop.html">
+  <link rel="alternate" type="application/rss+xml" title="小浪Blog" href="/feed.xml">
+  
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/">小浪Blog</a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+            <a class="page-link" href="/about/">关于我</a>
+            
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/resume/">我的简历</a>
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline"> Laravel开发笔记</h1>
+    <p class="post-meta">
+      <time datetime="2017-04-20T18:11:03+08:00" itemprop="datePublished">
+        
+        Apr 20, 2017
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h1 id="安装dinggo">安装dinggo</h1>
+
+<h2 id="修改composerjson">修改composer.json</h2>
+<div class="highlighter-rouge"><pre class="highlight"><code>"require": {
+    "dingo/api": "1.0.*@dev"
+}
+</code></pre>
+</div>
+<p>或者</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>composer require dingo/api:1.0.x@dev
+</code></pre>
+</div>
+
+<h2 id="添加appphp-配置文件">添加app.php 配置文件</h2>
+<div class="highlighter-rouge"><pre class="highlight"><code> 'providers' =&gt; [
+    Dingo\Api\Provider\LaravelServiceProvider::class
+ ]
+
+</code></pre>
+</div>
+
+<h2 id="执行命令生成apiphp">执行命令生成api.php</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>php artisan vendor:publish --provider="Dingo\Api\Provider\LaravelServiceProvider"
+</code></pre>
+</div>
+
+<h2 id="配置env文件">配置.env文件</h2>
+<div class="highlighter-rouge"><pre class="highlight"><code>API_STANDARDS_TREE=vnd
+API_PREFIX=api
+API_VERSION=v1
+API_DEBUG=true
+</code></pre>
+</div>
+
+<p>访问域名，会看到返回信息。</p>
+<h2 id="配置路由">配置路由</h2>
+<div class="highlighter-rouge"><pre class="highlight"><code>$api = app('Dingo\Api\Routing\Router');
+$api-&gt;version('v1', function ($api) {
+    $api-&gt;post('/register','App\Http\Controllers\MyController@register');
+});
+</code></pre>
+</div>
+
+<h2 id="用postman测试domainapiregister">用postman测试:domain/api/register</h2>
+
+<h1 id="安装-jwt">安装 jwt</h1>
+<div class="highlighter-rouge"><pre class="highlight"><code>composer require tymon/jwt-auth 0.5.*
+</code></pre>
+</div>
+
+<h2 id="添加appphp-配置">添加app.php 配置</h2>
+<div class="highlighter-rouge"><pre class="highlight"><code>'providers' =&gt; [
+   Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class
+]
+
+'aliases' =&gt; [
+  'JWTAuth' =&gt; Tymon\JWTAuth\Facades\JWTAuth::class,
+  'JWTFactory' =&gt; Tymon\JWTAuth\Facades\JWTFactory::class
+]
+</code></pre>
+</div>
+
+<h2 id="执行命令生成jwtphp-配置文件">执行命令生成jwt.php 配置文件</h2>
+<div class="highlighter-rouge"><pre class="highlight"><code>php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\JWTAuthServiceProvider"
+</code></pre>
+</div>
+
+<h2 id="最后生成密钥">最后生成密钥</h2>
+<div class="highlighter-rouge"><pre class="highlight"><code>php artisan jwt:generate
+</code></pre>
+</div>
+
+<h2 id="使用说明">使用说明</h2>
+<p>Controller 层面</p>
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>//登录获取token
+public function login(Request $request) {
+    $credentials = $request-&gt;only('name', 'password');
+    try {
+        if (! $token = JWTAuth::attempt($credentials)) {
+            $response = array(
+                'error' =&gt; '用户名或密码错误',
+                'status' =&gt; 401
+            );
+            return response()-&gt;json($response);
+        }
+    } catch (JWTException $e) {
+        $response = array(
+            'error' =&gt; '创建token时出错',
+            'status' =&gt; 500
+        );
+        return response()-&gt;json($response);
+    }
+    return response()-&gt;json(compact('token'));
+}
+
+// 通过token 获取用户信息
+public function getUserInfo(Request $request){
+    try{
+        if (! $user = JWTAuth::parseToken()-&gt;authenticate()) {
+            return response()-&gt;json(['user_not_found'], 404);
+        }
+    } catch (Exception $e){
+        return response()-&gt;json(['token_absent'], $e-&gt;getStatusCode());
+    }
+
+    return response()-&gt;json(compact('user'));
+}
+
+</code></pre>
+</div>
+
+<p>中间件 层面</p>
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>$api = app('Dingo\Api\Routing\Router');
+$api-&gt;version('v1', function ($api) {
+    $api-&gt;post('/login','App\Http\Controllers\AgentController@login');
+    $api-&gt;post('/register','App\Http\Controllers\AgentController@register');
+
+    // 中间件
+    $api-&gt;group(['middleware' =&gt; 'jwt.auth'], function($api) {
+        $api-&gt;get('/getUserInfo','App\Http\Controllers\AgentController@getUserInfo');
+    });
+
+});
+
+</code></pre>
+</div>
+
+<p>路由 层面</p>
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>protected $routeMiddleware = [
+  'jwt.auth' =&gt; \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
+  'jwt.refresh' =&gt; \Tymon\JWTAuth\Middleware\RefreshToken::class,
+]
+</code></pre>
+</div>
+
+<h1 id="安装swagger">安装swagger</h1>
+<div class="highlighter-rouge"><pre class="highlight"><code>composer require zircote/swagger-php
+composer global require zircote/swagger-php
+</code></pre>
+</div>
+
+<h2 id="添加界面">添加界面</h2>
+<p>从<a href="https://github.com/swagger-api/swagger-ui">swagger-ui</a> dist目录 复制到laravel项目目录中的 public/swagger-ui</p>
+
+<p>访问
+http://localost:8000/swagger-ui/</p>
+
+<h2 id="示例">示例</h2>
+<p>Controller 层面</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+
+class SwaggerController extends Controller
+{
+
+ /**
+  * @SWG\Swagger(
+  *   @SWG\Info(
+  *     title="呼叫中心API文档",
+  *     version="1.0.0"
+  *   )
+  * )
+  */
+ public function getJSON()
+ {
+     $swagger = \Swagger\scan(app_path('Http/Controllers/'));
+     return response()-&gt;json($swagger, 200);
+ }# HTTP路由实例教程（三）—— CSRF攻击原理及其防护
+
+  某些路由需要避过laravel Middleware 的中间件VerifyCsrfToken
+
+  ```php
+  namespace App\Http\Middleware;
+
+  use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
+
+  class VerifyCsrfToken extends BaseVerifier
+  {
+      /**
+       * The URIs that should be excluded from CSRF verification.
+       *
+       * @var array
+       */
+      protected $except = [
+          'callback',
+          'ivr'
+      ];
+      //路由 http://127.0.0.1/callback
+  }
+</code></pre>
+</div>
+
+<p># 文件上传案列</p>
+
+<p>confing/filesystems.php 配置层</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  &lt;?php
+
+  return [
+      'default' =&gt; 'local',
+      'cloud' =&gt; 's3',
+      'disks' =&gt; [
+          'local' =&gt; [
+              'driver' =&gt; 'local',
+              'root' =&gt; storage_path('app'),
+          ],
+          'public' =&gt; [
+              'driver' =&gt; 'local',
+              'root' =&gt; storage_path('app/public'),
+              'visibility' =&gt; 'public',
+          ],
+          // 添加配置
+          'uploads' =&gt; [
+              'driver' =&gt; 'local',
+              // 文件将上传到storage/app/uploads目录
+              'root' =&gt; storage_path('app/uploads'),
+              // 文件将上传到public/uploads目录 如果需要浏览器直接访问 请设置成这个
+              //'root' =&gt; public_path('uploads'),
+          ],
+      ],
+  ];
+</code></pre>
+</div>
+
+<p>view 视图层</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  &lt;form method="post" enctype="multipart/form-data" &gt;
+      &lt;input type="file" name="picture"&gt;
+      &lt;button type="submit"&gt; 提交 &lt;/button&gt;
+  &lt;/form&gt;
+</code></pre>
+</div>
+
+<p>Controllers 层</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+  public function file(Request $request){
+      if ($request-&gt;isMethod('post')) {
+          $file = Input::file('file');
+  //            $file-&gt;getPathname(),
+  //            $file-&gt;getClientOriginalName(),
+  //            $file-&gt;getClientMimeType(),
+  //            $file-&gt;getClientSize(),
+  //            $file-&gt;getError(),
+          if($file-&gt;isValid()){
+              //获取文件格式
+              $entension = $file -&gt; getClientOriginalExtension();
+              // 设置文件名
+              $filename = date('Y-m-d-H-i-s') . '-' . uniqid() . '.' . $entension;
+              // 使用我们新建的uploads本地存储空间（目录）
+              $realPath = $file-&gt;getRealPath();   //临时文件的绝对路径
+              $bool = Storage::disk('uploads')-&gt;put($filename, file_get_contents($realPath));
+              if($bool)
+              //上传成功
+      }
+
+  }
+
+
+
+</code></pre>
+</div>
+
+<p># 页面错误信息显示</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>  示例1
+
+      return redirect()-&gt;back()-&gt;withInput()-&gt;withErrors('密码有误！');
+
+      @if (count($errors) &gt; 0)
+          &lt;div class="tools-alert tools-alert-red"&gt;
+              &lt;strong&gt;错误&lt;/strong&gt;你填写数据有问题！请重新填写
+                  @foreach ($errors-&gt;all() as $error)
+                      &lt;p class="text-danger"&gt;&lt;/p&gt;
+                  @endforeach
+          &lt;/div&gt;
+      @endif
+
+
+
+  示例2
+
+      return redirect()-&gt;back()-&gt;with('status', 'Update Success! 成功！ :)');
+
+      @if (session('status'))
+          &lt;div class="tools-alert tools-alert-green"&gt;
+              
+          &lt;/div&gt;
+      @endif
+
+
+</code></pre>
+</div>
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">小浪Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              小浪Blog
+            
+            </li>
+            
+            <li><a href="mailto:474647150@qq.com">474647150@qq.com</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/cjjmem"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">cjjmem</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>其實很簡單</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>小浪Blog</title>
-  <meta name="description" content="其實很簡單">
+  <title> Laravel-Excel功能</title>
+  <meta name="description" content="安装Laravel-Excel composer require maatwebsite/excel ~2.1.0">
 
   <link rel="stylesheet" href="/assets/main.css">
-  <link rel="canonical" href="http://localhost:4000/">
+  <link rel="canonical" href="http://localhost:4000/jekyll/update/2017/04/20/laravel-excel.html">
   <link rel="alternate" type="application/rss+xml" title="小浪Blog" href="/feed.xml">
   
   
@@ -69,111 +69,100 @@
 
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <h1 class="page-heading">Posts</h1>
-  
-  <p>年轻的时候，我们总是会将自己的创作冲动误解为创作才能。—钱钟书</p>
-
-
-
-  <ul class="post-list">
-    
-      <li>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline"> Laravel-Excel功能</h1>
+    <p class="post-meta">
+      <time datetime="2017-04-20T18:11:03+08:00" itemprop="datePublished">
         
-        <span class="post-meta">Apr 20, 2017</span>
+        Apr 20, 2017
+      </time>
+      </p>
+  </header>
 
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/front-webpack-svg.html">结合 webpack 2 使用 SVG Sprite</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/front-vue-permissions.html"> 前端权限之-Vue篇</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/phpdoc-install.html"> PHPDOC自动生成文档</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/linux-nginx-php.html">Composer的安装与使用</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/laravel-swagger-dinggo-jwt.html"> Laravel搭建swagger+dinggo+jwt</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/laravel-excel.html"> Laravel-Excel功能</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/laravel-develop.html"> Laravel开发笔记</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/composer.html"> Centos下Yum安装PHP5.5,5.6,7.0</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/welcome-to-jekyll.html">如何使用Jekyll搭建博客!</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/c-develop.html"> c#开发笔记</a>
-        </h2>
-      </li>
-    
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
-
+  <div class="post-content" itemprop="articleBody">
+    <h1 id="安装laravel-excel">安装Laravel-Excel</h1>
+<div class="highlighter-rouge"><pre class="highlight"><code>composer require maatwebsite/excel ~2.1.0
+</code></pre>
 </div>
+
+<h2 id="添加appphp-配置文件">添加app.php 配置文件</h2>
+<div class="highlighter-rouge"><pre class="highlight"><code> 'providers' =&gt; [
+    Maatwebsite\Excel\ExcelServiceProvider::class
+ ]
+
+ 'aliases' =&gt; [
+   'Excel' =&gt; Maatwebsite\Excel\Facades\Excel::class,
+ ]
+
+</code></pre>
+</div>
+
+<h2 id="执行命令生成excelphp">执行命令生成excel.php</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>php artisan vendor:publish
+</code></pre>
+</div>
+
+<h2 id="导出参数设置">导出参数设置</h2>
+<div class="highlighter-rouge"><pre class="highlight"><code>'import'     =&gt; [
+
+       /*
+       |--------------------------------------------------------------------------
+       | Has heading
+       |--------------------------------------------------------------------------
+       |
+       | The sheet has a heading (first) row which we can use as attribute names
+       |
+       | Options: true|false|slugged|slugged_with_count|ascii|numeric|hashed|trans|original
+       |
+       */
+
+       'heading'                 =&gt; 'true',
+   ]
+</code></pre>
+</div>
+
+<h2 id="示例">示例</h2>
+<div class="highlighter-rouge"><pre class="highlight"><code>use Excel;
+
+// 导出
+public function export()
+{
+  $cellData = [
+      ['学号','姓名','成绩'],
+      ['10001','AAAAA','99'],
+      ['10002','BBBBB','92'],
+      ['10003','CCCCC','95'],
+      ['10004','DDDDD','89'],
+      ['10005','EEEEE','96'],
+  ];
+  Excel::create('student',function($excel) use ($cellData){
+      $excel-&gt;sheet('score', function($sheet) use ($cellData){
+          $sheet-&gt;rows($cellData);
+      });
+  })-&gt;export('xlsx');
+}
+
+// 导入
+pubilc function import(){
+  $filePath = 'storage/exports/test.xlsx';
+  Excel::load($filePath, function($reader) {
+      $data  = $reader-&gt;all();
+      dd($data);
+  });
+}
+</code></pre>
+</div>
+
+<p><a href="https://github.com/tymondesigns/jwt-auth/blob/develop/README.md">Laravel-Excel git</a>
+<a href="https://github.com/zircote/swagger-php">Laravel-Excel 参考</a></p>
+
+  </div>
+
+  
+</article>
 
       </div>
     </main>

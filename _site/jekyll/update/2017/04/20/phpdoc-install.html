@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>小浪Blog</title>
-  <meta name="description" content="其實很簡單">
+  <title> PHPDOC自动生成文档</title>
+  <meta name="description" content="phpdoc">
 
   <link rel="stylesheet" href="/assets/main.css">
-  <link rel="canonical" href="http://localhost:4000/">
+  <link rel="canonical" href="http://localhost:4000/jekyll/update/2017/04/20/phpdoc-install.html">
   <link rel="alternate" type="application/rss+xml" title="小浪Blog" href="/feed.xml">
   
   
@@ -69,111 +69,79 @@
 
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <h1 class="page-heading">Posts</h1>
-  
-  <p>年轻的时候，我们总是会将自己的创作冲动误解为创作才能。—钱钟书</p>
-
-
-
-  <ul class="post-list">
-    
-      <li>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline"> PHPDOC自动生成文档</h1>
+    <p class="post-meta">
+      <time datetime="2017-04-20T18:11:03+08:00" itemprop="datePublished">
         
-        <span class="post-meta">Apr 20, 2017</span>
+        Apr 20, 2017
+      </time>
+      </p>
+  </header>
 
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/front-webpack-svg.html">结合 webpack 2 使用 SVG Sprite</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
+  <div class="post-content" itemprop="articleBody">
+    <h1 id="phpdoc">phpdoc</h1>
 
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/front-vue-permissions.html"> 前端权限之-Vue篇</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
+<p>phpdoc site <a href="https://www.phpdoc.org/">phpdoc</a></p>
 
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/phpdoc-install.html"> PHPDOC自动生成文档</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
+<h2 id="全局-install">全局 install</h2>
 
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/linux-nginx-php.html">Composer的安装与使用</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/laravel-swagger-dinggo-jwt.html"> Laravel搭建swagger+dinggo+jwt</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/laravel-excel.html"> Laravel-Excel功能</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/laravel-develop.html"> Laravel开发笔记</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/composer.html"> Centos下Yum安装PHP5.5,5.6,7.0</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/welcome-to-jekyll.html">如何使用Jekyll搭建博客!</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/c-develop.html"> c#开发笔记</a>
-        </h2>
-      </li>
-    
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
-
+<div class="highlighter-rouge"><pre class="highlight"><code>composer gobal require phpdocumentor/phpdocumentor
+</code></pre>
 </div>
+
+<h2 id="开发-install">开发 install</h2>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"require-dev"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"phpdoucmentor/phpdoucmentor"</span><span class="p">:</span><span class="s2">"2.*"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h3 id="生成文档">生成文档</h3>
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>phpdoc -d "绝对路径"
+
+phpdoc -d "D:\phpdoc\1" -t "D:\phpdoc\1"  -o "HTML:frames:phpedit"
+</code></pre>
+</div>
+
+<h2 id="使用说明">使用说明</h2>
+
+<h3 id="api">@api</h3>
+<p>examples</p>
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>/**
+ * This method will not change until a major release.
+ *
+ * @api
+ *
+ * @return void
+ */
+ function showVersion()
+ {
+
+ }
+</code></pre>
+</div>
+
+<h3 id="author">@author</h3>
+<p>examples</p>
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>/**
+ * @author My Name
+ * @author My Name <span class="nt">&lt;my</span><span class="err">.</span><span class="na">name</span><span class="err">@</span><span class="na">example</span><span class="err">.</span><span class="na">com</span><span class="nt">&gt;</span>
+ */
+</code></pre>
+</div>
+
+<p>…</p>
+
+  </div>
+
+  
+</article>
 
       </div>
     </main>

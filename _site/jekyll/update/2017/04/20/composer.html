@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>小浪Blog</title>
-  <meta name="description" content="其實很簡單">
+  <title> Centos下Yum安装PHP5.5,5.6,7.0</title>
+  <meta name="description" content="Centos下Yum安装PHP5.5,5.6,7.0">
 
   <link rel="stylesheet" href="/assets/main.css">
-  <link rel="canonical" href="http://localhost:4000/">
+  <link rel="canonical" href="http://localhost:4000/jekyll/update/2017/04/20/composer.html">
   <link rel="alternate" type="application/rss+xml" title="小浪Blog" href="/feed.xml">
   
   
@@ -69,111 +69,79 @@
 
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <h1 class="page-heading">Posts</h1>
-  
-  <p>年轻的时候，我们总是会将自己的创作冲动误解为创作才能。—钱钟书</p>
-
-
-
-  <ul class="post-list">
-    
-      <li>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline"> Centos下Yum安装PHP5.5,5.6,7.0</h1>
+    <p class="post-meta">
+      <time datetime="2017-04-20T18:11:03+08:00" itemprop="datePublished">
         
-        <span class="post-meta">Apr 20, 2017</span>
+        Apr 20, 2017
+      </time>
+      </p>
+  </header>
 
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/front-webpack-svg.html">结合 webpack 2 使用 SVG Sprite</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
+  <div class="post-content" itemprop="articleBody">
+    <h1 id="centos下yum安装php555670">Centos下Yum安装PHP5.5,5.6,7.0</h1>
 
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/front-vue-permissions.html"> 前端权限之-Vue篇</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/phpdoc-install.html"> PHPDOC自动生成文档</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/linux-nginx-php.html">Composer的安装与使用</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/laravel-swagger-dinggo-jwt.html"> Laravel搭建swagger+dinggo+jwt</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/laravel-excel.html"> Laravel-Excel功能</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/laravel-develop.html"> Laravel开发笔记</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/composer.html"> Centos下Yum安装PHP5.5,5.6,7.0</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/welcome-to-jekyll.html">如何使用Jekyll搭建博客!</a>
-        </h2>
-      </li>
-    
-      <li>
-        
-        <span class="post-meta">Apr 20, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/04/20/c-develop.html"> c#开发笔记</a>
-        </h2>
-      </li>
-    
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
-
+<h2 id="1检查当前安装的php包">1.检查当前安装的PHP包</h2>
+<div class="highlighter-rouge"><pre class="highlight"><code> yum list installed | grep php
+</code></pre>
 </div>
+<p>如果有安装的PHP包，先删除他们</p>
+
+<pre><code class="language-xshell">yum remove php.x86_64 php-cli.x86_64 php-common.x86_64 php-gd.x86_64 php-ldap.x86_64 php-mbstring.x86_64 php-mcrypt.x86_64 php-mysql.x86_64 php-pdo.x86_64
+
+yum remove php.x86_64 php-cli.x86_64 php-common.x86_64 php-gd.x86_64 php-ldap.x86_64 php-mbstring.x86_64 php-mcrypt.x86_64 php-mysql.x86_64 php-pdo.x86_64
+</code></pre>
+
+<h2 id="2修改centos-5x源">2.修改Centos 5.X源</h2>
+<div class="highlighter-rouge"><pre class="highlight"><code>rpm -Uvh http://mirror.webtatic.com/yum/el5/latest.rpm
+CentOs 6.x
+rpm -Uvh http://mirror.webtatic.com/yum/el6/latest.rpm
+CentOs 7.X
+rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm
+rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+</code></pre>
+</div>
+
+<p>如果想删除上面安装的包，重新安装</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>rpm -qa | grep webstatic
+rpm -e  上面搜索到的包即可
+</code></pre>
+</div>
+<h2 id="3运行yum-install">3.运行yum install</h2>
+
+<pre><code class="language-xshell">yum install php55w.x86_64 php55w-cli.x86_64 php55w-common.x86_64 php55w-gd.x86_64 php55w-ldap.x86_64 php55w-mbstring.x86_64 php55w-mcrypt.x86_64 php55w-mysql.x86_64 php55w-pdo.x86_64 php55w-xml.x86_64
+
+yum install php56w.x86_64 php56w-cli.x86_64 php56w-common.x86_64 php56w-gd.x86_64 php56w-ldap.x86_64 php56w-mbstring.x86_64 php56w-mcrypt.x86_64 php56w-mysql.x86_64 php56w-pdo.x86_64 php56w-xml.x86_64
+
+</code></pre>
+
+<pre><code class="language-xshell">yum install php70w.x86_64 php70w-cli.x86_64 php70w-common.x86_64 php70w-gd.x86_64 php70w-ldap.x86_64 php70w-mbstring.x86_64 php70w-mcrypt.x86_64 php70w-mysql.x86_64 php70w-pdo.x86_64 php70w-xml.x86_64
+</code></pre>
+
+<h2 id="4安装php-fpm">4.安装PHP FPM</h2>
+<pre><code class="language-xshell">yum install php55w-fpm
+yum install php56w-fpm
+yum install php70w-fpm
+</code></pre>
+
+<h2 id="5配置nginx-重启php-fpm">5.配置nginx 重启php-fpm</h2>
+<pre><code class="language-xshell">/etc/init.d/php-fpm start
+</code></pre>
+
+<p>查看php-fpm错误日志</p>
+<pre><code class="language-xshell">cd /var/log/php-fpm/
+
+tail -f 日志名
+
+</code></pre>
+
+  </div>
+
+  
+</article>
 
       </div>
     </main>
