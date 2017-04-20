@@ -4,12 +4,11 @@ title: 关于我
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+陈俊佳，男，93年，广东佛山。
 
-You can find the source code for the Jekyll new theme at:
-{% include icon-github.html username="陈俊佳" %} /
-[minima](https://github.com/jekyll/minima)
+邮箱：475647150@qq.com
 
-You can find the source code for Jekyll at
-{% include icon-github.html username="jekyll" %} /
-[jekyll](https://github.com/jekyll/jekyll)
+手机：13611460986
+
+职位：前端工程师/PHP工程师（全栈）
+
