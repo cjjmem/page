@@ -72,6 +72,19 @@ jekyll build
 {% endhighlight %}
 
 
+#### 启动服务出现问题
+
+##### 1.如果没有安装bundle
+gem install bundle
+##### 2.jekyll-blog目录创建Gemfile文件，内容参考链接
+##### 3.运行bundle，安装Gemfile里的插件
+bundle install
+##### 4.打开服务/构建
+bundle exec jekyll serve / bundle exec jekyll build
+##### or
+jekyll serve / jekyll build
+
+
 # 参考资料
 
 [ruby](https://www.ruby-lang.org/en/documentation/installation/) https://www.ruby-lang.org/en/documentation/installation/
@@ -81,3 +94,5 @@ jekyll build
 [jekyll-gh](https://github.com/jekyll/jekyll) https://github.com/jekyll/jekyll
 
 [jekyll-talk](https://talk.jekyllrb.com/) https://talk.jekyllrb.com/
+
+
