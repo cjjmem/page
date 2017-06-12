@@ -14,9 +14,10 @@ categories: jekyll update
     3.第三方组件的调试工具
 
 
-## Laravel中的事件监听
+## 方法一:Laravel中的事件监听
 
 1. 在 App\Providers\EventServiceProvider:class 中的$listen中新增如下
+
 ```php
 protected $listen = [
     'App\Events\Event' => [
@@ -30,11 +31,12 @@ protected $listen = [
 ```
 
 2. 通过执行命令自动生成App\Listeners\SqlListener文件
+
 ```
 php artisan event:generate
 ```
 
-**or**  手动添加App\Listeners\目录中 SqlListener.php 文件
+手动添加App\Listeners\目录中 SqlListener.php 文件
 
 ```php
 namespace App\Listeners;
@@ -76,6 +78,7 @@ public function handle(QueryExecuted $event)
 ```
 
 4.调试是否成功
+
 ```php
 <?php
 
@@ -100,8 +103,8 @@ class IndexController extends Controller
 [2017-05-25 03:06:31] local.INFO: select * from `users`
 ```
 
-### Laravel中的服务提供者
+### 方法二:Laravel中的服务提供者
 
 
-### 第三方组件的调试工具
+### 方法三:第三方组件的调试工具
 

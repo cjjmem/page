@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Composer的安装与使用</title>
-  <meta name="description" content="Composer">
+  <title>vue1.x vue2.0中如何使用nprogress组件</title>
+  <meta name="description" content="nprogress 前端页面加载进度条神奇">
 
   <link rel="stylesheet" href="/assets/main.css">
-  <link rel="canonical" href="http://localhost:4000/jekyll/update/2017/04/20/linux-nginx-php.html">
+  <link rel="canonical" href="http://localhost:4000/jekyll/update/2017/05/27/vue-nprogress.html">
   <link rel="alternate" type="application/rss+xml" title="小浪Blog" href="/feed.xml">
   
   
@@ -72,54 +72,95 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">Composer的安装与使用</h1>
+    <h1 class="post-title" itemprop="name headline">vue1.x vue2.0中如何使用nprogress组件</h1>
     <p class="post-meta">
-      <time datetime="2017-04-20T18:11:03+08:00" itemprop="datePublished">
+      <time datetime="2017-05-27T18:00:03+08:00" itemprop="datePublished">
         
-        Apr 20, 2017
+        May 27, 2017
       </time>
       </p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <h1 id="composer">Composer</h1>
+    <h1 id="nprogress-前端页面加载进度条神奇">nprogress 前端页面加载进度条神奇</h1>
 
-<h1 id="简介">简介</h1>
-<p>PHP包管理</p>
+<p><a href="http://ricostacruz.com/nprogress/">nprogress演示</a></p>
 
-<h1 id="安装">安装</h1>
+<h2 id="vue1x中使用nprogress">vue1.x中使用nprogress</h2>
 
-<p>windows 下安装 <a href="https://getcomposer.org/download/">composer</a> 下载Composer-Setup.exe</p>
-
-<p>Linux 下安装</p>
-
-<p>局部安装 使用命令(php composer.phar)</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>// 下载链接
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-// 检验
-php -r "if (hash_file('SHA384', 'composer-setup.php') === '55d6ead61b29c7bdee5cccfb50076874187bd9f21f65d8991d46ec5cc90518f447387fb9f76ebae1fbbacf329e583e30') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-// 执行下载包
-php composer-setup.php
-// 删除包
-php -r "unlink('composer-setup.php');"
+<p>安装</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>npm install nprogress --save
 </code></pre>
 </div>
 
-<p>全局安装</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>// 下载composer.phar包
-curl -sS https://getcomposer.org/installer | php
-// 移动文件到全局
-mv composer.phar /usr/local/bin/composer
+<p>main.js</p>
+
+<pre><code class="language-es6">import Vue from 'vue'
+import VueRouter from 'vue-router'
+import NProgress from 'nprogress'
+
+Vue.use(VueRouter)
+
+const router = new VueRouter({
+  transitionOnLoad: true,
+  saveScrollPosition: true
+})
+
+router.beforeEach(({ next }) =&gt; {
+  NProgress.start()
+  next()
+})
+
+router.afterEach(() =&gt; {
+  NProgress.done()
+})
+
+</code></pre>
+
+<p>在Sass文件中引入样式表</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>@import '~nprogress/nprogress.css';
 </code></pre>
 </div>
 
-<h1 id="使用">使用</h1>
+<h2 id="vue2中使用nprogress">vue2中使用nprogress</h2>
 
-<h2 id="引入第三方库">引入第三方库</h2>
+<p>main.js</p>
 
-<h2 id="自动加载">自动加载</h2>
+<div class="highlighter-rouge"><pre class="highlight"><code>import Vue from 'vue'
+import 'nprogress/nprogress.css'
 
-<h2 id="包开发">包开发</h2>
+import NProgress from 'nprogress'
+import App from './App.vue'
+
+const = new Router({
+  routes: [
+    {
+      path:'/',
+      components: App,
+      name:'app'
+    },
+  ]
+})
+
+NProgress.configure({ showSpinner: false }); //进度条配置
+
+router.beforeEach((to, from, next) =&gt; {
+  NProgress.start();
+  next()
+})
+router.afterEach(transition =&gt; {
+  NProgress.done();
+});
+
+new Vue({
+  el: '#app',
+  router,
+  render: h =&gt; h(App)
+})
+
+</code></pre>
+</div>
+
 
   </div>
 
