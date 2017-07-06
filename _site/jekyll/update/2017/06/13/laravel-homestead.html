@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title> Centos下Yum安装PHP5.5,5.6,7.0</title>
-  <meta name="description" content="Centos下Yum安装PHP5.5,5.6,7.0">
+  <title>windows下搭建Laravel Homestead</title>
+  <meta name="description" content="Laravel Homestead">
 
   <link rel="stylesheet" href="/assets/main.css">
-  <link rel="canonical" href="https://cjjmem.github.io/page/jekyll/update/2017/04/20/composer.html">
+  <link rel="canonical" href="https://cjjmem.github.io/page/jekyll/update/2017/06/13/laravel-homestead.html">
   <link rel="alternate" type="application/rss+xml" title="小浪Blog" href="/feed.xml">
   
   
@@ -72,71 +72,36 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline"> Centos下Yum安装PHP5.5,5.6,7.0</h1>
+    <h1 class="post-title" itemprop="name headline">windows下搭建Laravel Homestead</h1>
     <p class="post-meta">
-      <time datetime="2017-04-20T18:11:03+08:00" itemprop="datePublished">
+      <time datetime="2017-06-13T20:29:03+08:00" itemprop="datePublished">
         
-        Apr 20, 2017
+        Jun 13, 2017
       </time>
       </p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <h1 id="centos下yum安装php555670">Centos下Yum安装PHP5.5,5.6,7.0</h1>
+    <h1 id="laravel-homestead">Laravel Homestead</h1>
 
-<h2 id="1检查当前安装的php包">1.检查当前安装的PHP包</h2>
-<div class="highlighter-rouge"><pre class="highlight"><code> yum list installed | grep php
-</code></pre>
-</div>
-<p>如果有安装的PHP包，先删除他们</p>
+<p>Laravel Homestead是一个官方的、预封装的Vagrant“箱子”，Homestead能运行在所有的Windows、Mac或Linux系统上，它包含了Nginx、PHP 5.6、MySQL、Postgres、Redis、Memcached和你开发神奇的Laravel应用程序需要的所有其它软件。让初学者不用为环境问题而烦恼，減少浪费时间在架设 Laravel。
+由于网络、操作系统等不同安装过程可能出现各种各样的问题，这里主要不是介绍如何解决这些问题。本经验通过Windows 7下成功的安装过程向大家介绍如何安装Homestead2.0。</p>
 
-<pre><code class="language-xshell">yum remove php.x86_64 php-cli.x86_64 php-common.x86_64 php-gd.x86_64 php-ldap.x86_64 php-mbstring.x86_64 php-mcrypt.x86_64 php-mysql.x86_64 php-pdo.x86_64
+<p><strong>安裝软件:</strong></p>
 
-yum remove php.x86_64 php-cli.x86_64 php-common.x86_64 php-gd.x86_64 php-ldap.x86_64 php-mbstring.x86_64 php-mcrypt.x86_64 php-mysql.x86_64 php-pdo.x86_64
-</code></pre>
+<ul>
+  <li><strong>VirtualBox</strong>  Oracle 公司的虚拟机软件, 能运行在当前大部分流行的系统上 下载地址 https://www.virtualbox.org/wiki/Downloads</li>
+  <li><strong>Vagrant</strong> 供一种命令行接口, 允许自动化安装虚拟机, 并且因为是脚本编写成的 provision 文本文件, 给共享虚拟机配置提供了可能, Homestead 正是构建在 Vagrant 之上; 下载地址：https://www.vagrantup.com/</li>
+  <li><strong>Laravel Homestead</strong> 是官方预封装的一个 Vagrant Box，它是一台虚拟机的原型, 用来快速生产一个配置完整的服务器虚拟机, 运行在 VirtualBox 上.</li>
+</ul>
 
-<h2 id="2修改centos-5x源">2.修改Centos 5.X源</h2>
-<div class="highlighter-rouge"><pre class="highlight"><code>rpm -Uvh http://mirror.webtatic.com/yum/el5/latest.rpm
-CentOs 6.x
-rpm -Uvh http://mirror.webtatic.com/yum/el6/latest.rpm
-CentOs 7.X
-rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm
-rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
-</code></pre>
-</div>
+<h1 id="vagrant-box-add-laravelhomestead">vagrant box add laravel/homestead</h1>
 
-<p>如果想删除上面安装的包，重新安装</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>rpm -qa | grep webstatic
-rpm -e  上面搜索到的包即可
-</code></pre>
-</div>
-<h2 id="3运行yum-install">3.运行yum install</h2>
+<p>如果网络正常就慢慢等待下载然后添加，这里由于网络的原因我试了很多次都失败了，最后直接复制下载链接
+ https://atlas.hashicorp.com/laravel/boxes/homestead/versions/2.1.0/providers/virtualbox.box下载保存到F:\virtualbox.box，然后通过</p>
 
-<pre><code class="language-xshell">yum install php55w.x86_64 php55w-cli.x86_64 php55w-common.x86_64 php55w-gd.x86_64 php55w-ldap.x86_64 php55w-mbstring.x86_64 php55w-mcrypt.x86_64 php55w-mysql.x86_64 php55w-pdo.x86_64 php55w-xml.x86_64
+<p>vagrant box add laravel/homestead F:\virtualbox.box</p>
 
-yum install php56w.x86_64 php56w-cli.x86_64 php56w-common.x86_64 php56w-gd.x86_64 php56w-ldap.x86_64 php56w-mbstring.x86_64 php56w-mcrypt.x86_64 php56w-mysql.x86_64 php56w-pdo.x86_64 php56w-xml.x86_64
-
-</code></pre>
-
-<pre><code class="language-xshell">yum install php70w.x86_64 php70w-cli.x86_64 php70w-common.x86_64 php70w-gd.x86_64 php70w-ldap.x86_64 php70w-mbstring.x86_64 php70w-mcrypt.x86_64 php70w-mysql.x86_64 php70w-pdo.x86_64 php70w-xml.x86_64
-</code></pre>
-
-<h2 id="4安装php-fpm">4.安装PHP FPM</h2>
-<pre><code class="language-xshell">yum install php55w-fpm
-yum install php56w-fpm
-yum install php70w-fpm
-</code></pre>
-
-<h2 id="5配置nginx-重启php-fpm">5.配置nginx 重启php-fpm</h2>
-<pre><code class="language-xshell">/etc/init.d/php-fpm start
-</code></pre>
-
-<p>查看php-fpm错误日志</p>
-<pre><code class="language-xshell">cd /var/log/php-fpm/
-
-tail -f 日志名
-
-</code></pre>
 
   </div>
 
