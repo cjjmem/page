@@ -1,4 +1,88 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://cjjmem.github.io/page/feed.xml" rel="self" type="application/atom+xml" /><link href="https://cjjmem.github.io/page/" rel="alternate" type="text/html" /><updated>2017-07-06T17:57:25+08:00</updated><id>https://cjjmem.github.io/page/</id><title type="html">小浪Blog</title><subtitle>其實很簡單</subtitle><entry><title type="html">学习redis</title><link href="https://cjjmem.github.io/page/jekyll/update/2017/07/06/redis.html" rel="alternate" type="text/html" title="学习redis" /><published>2017-07-06T17:56:00+08:00</published><updated>2017-07-06T17:56:00+08:00</updated><id>https://cjjmem.github.io/page/jekyll/update/2017/07/06/redis</id><content type="html" xml:base="https://cjjmem.github.io/page/jekyll/update/2017/07/06/redis.html">&lt;h1 id=&quot;redis&quot;&gt;Redis&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-08-31T20:08:50+08:00</updated><id>http://localhost:4000/</id><title type="html">小浪Blog</title><subtitle>其實很簡單</subtitle><entry><title type="html">小小压力测试</title><link href="http://localhost:4000/jekyll/update/2017/08/31/apache-benchmark.html" rel="alternate" type="text/html" title="小小压力测试" /><published>2017-08-31T19:56:00+08:00</published><updated>2017-08-31T19:56:00+08:00</updated><id>http://localhost:4000/jekyll/update/2017/08/31/apache-benchmark</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/08/31/apache-benchmark.html">&lt;h1 id=&quot;apache-benchmark&quot;&gt;Apache benchmark&lt;/h1&gt;
+&lt;p&gt;简称ab ，是非常有名又小巧的压力测试工具。非常简单好用。&lt;/p&gt;
+
+&lt;h2 id=&quot;安装&quot;&gt;安装&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;CentOS7
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; sudo yum install httpd-tools
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;windows&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;下载安装apache web server 安装或解压之后，在bin\目录下有个ab执行文件。&lt;/li&gt;
+      &lt;li&gt;打开运行–cmd 打开命令提示符，定位到bin\目录下。&lt;/li&gt;
+      &lt;li&gt;下载链接 http://www.apache.org/&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;基本用户&quot;&gt;基本用户&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ab  -c  [并发用户数]  -n  [发送请求数]   [被测试页面的URL]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;假期设置一个用户一个请求，对百度首页加压： http://www.baidu.com/&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ab -c 1 -n 1 http://www.baidu.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;2.同时10个连线，连续点击1000，并且使用Keep-Alive方式连线&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ab -n 1000 -c 10 -k http://www.baidu.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;3.将测试中的某些数据输出到output.csv文件中&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ab -e output.csv -n 1000 -c 10 http://www.baidu.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;4.设定测试时间。并发访问数为3，持续访问时间为5分钟（300秒）&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ab -c 3 -t 300  http://www.baidu.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;参数说明&quot;&gt;参数说明&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;输入简体字,点下面繁体字按钮进行在线转Server Software:    Web主机的作业系统与版本(若Web主机设定关闭此资讯则无)；在此例中就是压力测试的对象nginx
+Server Hostname:  Web主机的IP位址(Hostname)
+Server Port:           Web主机的连接埠(Port)
+Document Path:     测试网址的路径部分
+Document Length: 测试网页回应的网页大小
+Concurrency Level: 同时进行压力测试的人数
+Time taken for tests: 本次压力测试所花费的总秒数                                                  ；此次压力测试花费的世间
+Complete requests: 完成的要求数(Requests)
+Failed requests:      失败的要求数(Requests)
+Write errors:           写入失败的数量
+Total transferred:   本次压力测试的总数据传输量(包括 HTTP Header 的资料也计算在内)
+HTML transferred:  本次压力测试的总数据传输量(仅计算回传的 HTML 的资料)
+Requests per second: 平均每秒可回应多少要求                                                     ；是否可以认为是QPS
+Time per request:  平均每个要求所花费的时间(单位: 豪秒)                                    ；每次并发请求时间（所有并发）
+Time per request:  平均每个要求所花费的时间，跨所有同时连线数的平均值(单位: 豪秒)    ；每一次请求时间（并发平均）
+Transfer rate:         从 ab 到 Web Server 之间的网路传输速度
+最后的 Connection Times (ms) 指的是压力测试时的连线处理时间：
+
+横轴栏位的部分：
+
+min:       最小值
+mean:    平均值(正、负标准差)
+median: 平均值(中间值)
+max:      最大值
+纵轴栏位的部分：
+
+Connect:     从 ab 发出 TCP 要求到 Web 主机所花费的建立时间。
+Processing:  从 TCP 连线建立后，直到 HTTP 回应(Response)的资料全部都收到所花的时间。
+Waiting:       从发送 HTTP 要求完后，到 HTTP 回应(Response)第一个 Byte 所等待的时间。
+Total:           等于 Connect + Processing 的时间（因为 Waiting 包含在 Processing 时间内了）换
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;http://httpd.apache.org/docs/2.0/programs/ab.html&quot;&gt;官方文档&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Apache benchmark 简称ab ，是非常有名又小巧的压力测试工具。非常简单好用。</summary></entry><entry><title type="html">学习redis</title><link href="http://localhost:4000/jekyll/update/2017/07/06/redis.html" rel="alternate" type="text/html" title="学习redis" /><published>2017-07-06T17:56:00+08:00</published><updated>2017-07-06T17:56:00+08:00</updated><id>http://localhost:4000/jekyll/update/2017/07/06/redis</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/07/06/redis.html">&lt;h1 id=&quot;redis&quot;&gt;Redis&lt;/h1&gt;
 
 &lt;p&gt;redis是一个开源的、使用C语言编写的、支持网络交互的、可基于内存也可持久化的Key-Value数据库。&lt;/p&gt;
 
@@ -476,7 +560,7 @@ class UserController extends Controller {
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name></name></author><summary type="html">Redis</summary></entry><entry><title type="html">windows下搭建Laravel Homestead</title><link href="https://cjjmem.github.io/page/jekyll/update/2017/06/13/laravel-homestead.html" rel="alternate" type="text/html" title="windows下搭建Laravel Homestead" /><published>2017-06-13T20:29:03+08:00</published><updated>2017-06-13T20:29:03+08:00</updated><id>https://cjjmem.github.io/page/jekyll/update/2017/06/13/laravel-homestead</id><content type="html" xml:base="https://cjjmem.github.io/page/jekyll/update/2017/06/13/laravel-homestead.html">&lt;h1 id=&quot;laravel-homestead&quot;&gt;Laravel Homestead&lt;/h1&gt;
+&lt;/div&gt;</content><author><name></name></author><summary type="html">Redis</summary></entry><entry><title type="html">windows下搭建Laravel Homestead</title><link href="http://localhost:4000/jekyll/update/2017/06/13/laravel-homestead.html" rel="alternate" type="text/html" title="windows下搭建Laravel Homestead" /><published>2017-06-13T20:29:03+08:00</published><updated>2017-06-13T20:29:03+08:00</updated><id>http://localhost:4000/jekyll/update/2017/06/13/laravel-homestead</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/06/13/laravel-homestead.html">&lt;h1 id=&quot;laravel-homestead&quot;&gt;Laravel Homestead&lt;/h1&gt;
 
 &lt;p&gt;Laravel Homestead是一个官方的、预封装的Vagrant“箱子”，Homestead能运行在所有的Windows、Mac或Linux系统上，它包含了Nginx、PHP 5.6、MySQL、Postgres、Redis、Memcached和你开发神奇的Laravel应用程序需要的所有其它软件。让初学者不用为环境问题而烦恼，減少浪费时间在架设 Laravel。
 由于网络、操作系统等不同安装过程可能出现各种各样的问题，这里主要不是介绍如何解决这些问题。本经验通过Windows 7下成功的安装过程向大家介绍如何安装Homestead2.0。&lt;/p&gt;
@@ -494,7 +578,7 @@ class UserController extends Controller {
 &lt;p&gt;如果网络正常就慢慢等待下载然后添加，这里由于网络的原因我试了很多次都失败了，最后直接复制下载链接
  https://atlas.hashicorp.com/laravel/boxes/homestead/versions/2.1.0/providers/virtualbox.box下载保存到F:\virtualbox.box，然后通过&lt;/p&gt;
 
-&lt;p&gt;vagrant box add laravel/homestead F:\virtualbox.box&lt;/p&gt;</content><author><name></name></author><summary type="html">Laravel Homestead</summary></entry><entry><title type="html">如何在windows下搭建git服务器</title><link href="https://cjjmem.github.io/page/jekyll/update/2017/06/11/gitlab-for-windows.html" rel="alternate" type="text/html" title="如何在windows下搭建git服务器" /><published>2017-06-11T18:00:03+08:00</published><updated>2017-06-11T18:00:03+08:00</updated><id>https://cjjmem.github.io/page/jekyll/update/2017/06/11/gitlab-for-windows</id><content type="html" xml:base="https://cjjmem.github.io/page/jekyll/update/2017/06/11/gitlab-for-windows.html">&lt;h1 id=&quot;gitblit&quot;&gt;gitblit&lt;/h1&gt;
+&lt;p&gt;vagrant box add laravel/homestead F:\virtualbox.box&lt;/p&gt;</content><author><name></name></author><summary type="html">Laravel Homestead</summary></entry><entry><title type="html">如何在windows下搭建git服务器</title><link href="http://localhost:4000/jekyll/update/2017/06/11/gitlab-for-windows.html" rel="alternate" type="text/html" title="如何在windows下搭建git服务器" /><published>2017-06-11T18:00:03+08:00</published><updated>2017-06-11T18:00:03+08:00</updated><id>http://localhost:4000/jekyll/update/2017/06/11/gitlab-for-windows</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/06/11/gitlab-for-windows.html">&lt;h1 id=&quot;gitblit&quot;&gt;gitblit&lt;/h1&gt;
 
 &lt;p&gt;Gitblit 是一个纯 Java 库用来管理、查看和处理 Git 资料库。相当于 Git 的 Java 管理工具。&lt;/p&gt;
 
@@ -535,7 +619,7 @@ gitblit中有个管理员账号，用户名与密码都为admin，登录后进�
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/xtayfjpk/article/details/45669335&quot;&gt;博客&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://about.gitlab.com/gitlab-com/&quot;&gt;gitlab&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">gitblit</summary></entry><entry><title type="html">vue1.x vue2.0中如何使用nprogress组件</title><link href="https://cjjmem.github.io/page/jekyll/update/2017/05/27/vue-nprogress.html" rel="alternate" type="text/html" title="vue1.x vue2.0中如何使用nprogress组件" /><published>2017-05-27T18:00:03+08:00</published><updated>2017-05-27T18:00:03+08:00</updated><id>https://cjjmem.github.io/page/jekyll/update/2017/05/27/vue-nprogress</id><content type="html" xml:base="https://cjjmem.github.io/page/jekyll/update/2017/05/27/vue-nprogress.html">&lt;h1 id=&quot;nprogress-前端页面加载进度条神奇&quot;&gt;nprogress 前端页面加载进度条神奇&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">gitblit</summary></entry><entry><title type="html">vue1.x vue2.0中如何使用nprogress组件</title><link href="http://localhost:4000/jekyll/update/2017/05/27/vue-nprogress.html" rel="alternate" type="text/html" title="vue1.x vue2.0中如何使用nprogress组件" /><published>2017-05-27T18:00:03+08:00</published><updated>2017-05-27T18:00:03+08:00</updated><id>http://localhost:4000/jekyll/update/2017/05/27/vue-nprogress</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/05/27/vue-nprogress.html">&lt;h1 id=&quot;nprogress-前端页面加载进度条神奇&quot;&gt;nprogress 前端页面加载进度条神奇&lt;/h1&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://ricostacruz.com/nprogress/&quot;&gt;nprogress演示&lt;/a&gt;&lt;/p&gt;
 
@@ -612,7 +696,7 @@ new Vue({
 })
 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name></name></author><summary type="html">nprogress 前端页面加载进度条神奇</summary></entry><entry><title type="html">laravel记录Sql日志的方法</title><link href="https://cjjmem.github.io/page/jekyll/update/2017/05/25/laravel-event-listener.html" rel="alternate" type="text/html" title="laravel记录Sql日志的方法" /><published>2017-05-25T12:39:03+08:00</published><updated>2017-05-25T12:39:03+08:00</updated><id>https://cjjmem.github.io/page/jekyll/update/2017/05/25/laravel-event-listener</id><content type="html" xml:base="https://cjjmem.github.io/page/jekyll/update/2017/05/25/laravel-event-listener.html">&lt;h1 id=&quot;laravel记录sql日志的方法&quot;&gt;laravel记录Sql日志的方法&lt;/h1&gt;
+&lt;/div&gt;</content><author><name></name></author><summary type="html">nprogress 前端页面加载进度条神奇</summary></entry><entry><title type="html">laravel记录Sql日志的方法</title><link href="http://localhost:4000/jekyll/update/2017/05/25/laravel-event-listener.html" rel="alternate" type="text/html" title="laravel记录Sql日志的方法" /><published>2017-05-25T12:39:03+08:00</published><updated>2017-05-25T12:39:03+08:00</updated><id>http://localhost:4000/jekyll/update/2017/05/25/laravel-event-listener</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/05/25/laravel-event-listener.html">&lt;h1 id=&quot;laravel记录sql日志的方法&quot;&gt;laravel记录Sql日志的方法&lt;/h1&gt;
 
 &lt;p&gt;在项目开发过程中或者是性能优化中，经常会有要查看执行sql的情况，然而Laravel日志默认不记录执行sql。然而并不担心，强大Laravel的提供者帮助我们解决这个问题。下面是我总结的几种方式：&lt;/p&gt;
 
@@ -716,7 +800,7 @@ public function handle(QueryExecuted $event)
 
 &lt;h3 id=&quot;方法二laravel中的服务提供者&quot;&gt;方法二:Laravel中的服务提供者&lt;/h3&gt;
 
-&lt;h3 id=&quot;方法三第三方组件的调试工具&quot;&gt;方法三:第三方组件的调试工具&lt;/h3&gt;</content><author><name></name></author><summary type="html">laravel记录Sql日志的方法</summary></entry><entry><title type="html">Browsersync实时代码监控工具</title><link href="https://cjjmem.github.io/page/jekyll/update/2017/05/19/browsersync.html" rel="alternate" type="text/html" title="Browsersync实时代码监控工具" /><published>2017-05-19T18:09:03+08:00</published><updated>2017-05-19T18:09:03+08:00</updated><id>https://cjjmem.github.io/page/jekyll/update/2017/05/19/browsersync</id><content type="html" xml:base="https://cjjmem.github.io/page/jekyll/update/2017/05/19/browsersync.html">&lt;h1 id=&quot;browsersync&quot;&gt;BrowserSync&lt;/h1&gt;
+&lt;h3 id=&quot;方法三第三方组件的调试工具&quot;&gt;方法三:第三方组件的调试工具&lt;/h3&gt;</content><author><name></name></author><summary type="html">laravel记录Sql日志的方法</summary></entry><entry><title type="html">Browsersync实时代码监控工具</title><link href="http://localhost:4000/jekyll/update/2017/05/19/browsersync.html" rel="alternate" type="text/html" title="Browsersync实时代码监控工具" /><published>2017-05-19T18:09:03+08:00</published><updated>2017-05-19T18:09:03+08:00</updated><id>http://localhost:4000/jekyll/update/2017/05/19/browsersync</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/05/19/browsersync.html">&lt;h1 id=&quot;browsersync&quot;&gt;BrowserSync&lt;/h1&gt;
 
 &lt;p&gt;Browsersync能让浏览器实时、快速响应您的文件更改（html、js、css、sass、less等）并自动刷新页面&lt;/p&gt;
 
@@ -1166,7 +1250,7 @@ marquee(document.querySelector('.marquee'));&lt;/script&gt;
   &lt;li&gt;&lt;a href=&quot;http://www.browsersync.cn&quot;&gt;BrowserSync官网&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;http://www.browsersync.cn/docs/api/&quot;&gt;BrowserSync API说明文档&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;&quot;&gt;轮播项目实战&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">BrowserSync</summary></entry><entry><title type="html">结合 webpack 2 使用 SVG Sprite</title><link href="https://cjjmem.github.io/page/jekyll/update/2017/04/20/front-webpack-svg.html" rel="alternate" type="text/html" title="结合 webpack 2 使用 SVG Sprite" /><published>2017-04-20T19:12:03+08:00</published><updated>2017-04-20T19:12:03+08:00</updated><id>https://cjjmem.github.io/page/jekyll/update/2017/04/20/front-webpack-svg</id><content type="html" xml:base="https://cjjmem.github.io/page/jekyll/update/2017/04/20/front-webpack-svg.html">&lt;h1 id=&quot;结合-webpack-2-使用-svg-sprite&quot;&gt;结合 webpack 2 使用 SVG Sprite&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">BrowserSync</summary></entry><entry><title type="html">结合 webpack 2 使用 SVG Sprite</title><link href="http://localhost:4000/jekyll/update/2017/04/20/front-webpack-svg.html" rel="alternate" type="text/html" title="结合 webpack 2 使用 SVG Sprite" /><published>2017-04-20T19:12:03+08:00</published><updated>2017-04-20T19:12:03+08:00</updated><id>http://localhost:4000/jekyll/update/2017/04/20/front-webpack-svg</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/04/20/front-webpack-svg.html">&lt;h1 id=&quot;结合-webpack-2-使用-svg-sprite&quot;&gt;结合 webpack 2 使用 SVG Sprite&lt;/h1&gt;
 
 &lt;h1 id=&quot;优点--缺点&quot;&gt;优点 &amp;amp; 缺点&lt;/h1&gt;
 
@@ -1327,7 +1411,7 @@ webpack.config.js&lt;/p&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name></name></author><summary type="html">结合 webpack 2 使用 SVG Sprite</summary></entry><entry><title type="html">前端权限之-Vue篇</title><link href="https://cjjmem.github.io/page/jekyll/update/2017/04/20/front-vue-permissions.html" rel="alternate" type="text/html" title=" 前端权限之-Vue篇" /><published>2017-04-20T19:11:03+08:00</published><updated>2017-04-20T19:11:03+08:00</updated><id>https://cjjmem.github.io/page/jekyll/update/2017/04/20/front-vue-permissions</id><content type="html" xml:base="https://cjjmem.github.io/page/jekyll/update/2017/04/20/front-vue-permissions.html">&lt;h1 id=&quot;vue前端权限控制&quot;&gt;vue前端权限控制&lt;/h1&gt;
+&lt;/div&gt;</content><author><name></name></author><summary type="html">结合 webpack 2 使用 SVG Sprite</summary></entry><entry><title type="html">前端权限之-Vue篇</title><link href="http://localhost:4000/jekyll/update/2017/04/20/front-vue-permissions.html" rel="alternate" type="text/html" title=" 前端权限之-Vue篇" /><published>2017-04-20T19:11:03+08:00</published><updated>2017-04-20T19:11:03+08:00</updated><id>http://localhost:4000/jekyll/update/2017/04/20/front-vue-permissions</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/04/20/front-vue-permissions.html">&lt;h1 id=&quot;vue前端权限控制&quot;&gt;vue前端权限控制&lt;/h1&gt;
 
 &lt;p&gt;html&lt;/p&gt;
 &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;app&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;container&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
@@ -1400,7 +1484,7 @@ webpack.config.js&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;[参考http://codepen.io/anon/pen/aJpLZN]&lt;/p&gt;</content><author><name></name></author><summary type="html">vue前端权限控制</summary></entry><entry><title type="html">PHPDOC自动生成文档</title><link href="https://cjjmem.github.io/page/jekyll/update/2017/04/20/phpdoc-install.html" rel="alternate" type="text/html" title=" PHPDOC自动生成文档" /><published>2017-04-20T18:11:03+08:00</published><updated>2017-04-20T18:11:03+08:00</updated><id>https://cjjmem.github.io/page/jekyll/update/2017/04/20/phpdoc-install</id><content type="html" xml:base="https://cjjmem.github.io/page/jekyll/update/2017/04/20/phpdoc-install.html">&lt;h1 id=&quot;phpdoc&quot;&gt;phpdoc&lt;/h1&gt;
+&lt;p&gt;[参考http://codepen.io/anon/pen/aJpLZN]&lt;/p&gt;</content><author><name></name></author><summary type="html">vue前端权限控制</summary></entry><entry><title type="html">PHPDOC自动生成文档</title><link href="http://localhost:4000/jekyll/update/2017/04/20/phpdoc-install.html" rel="alternate" type="text/html" title=" PHPDOC自动生成文档" /><published>2017-04-20T18:11:03+08:00</published><updated>2017-04-20T18:11:03+08:00</updated><id>http://localhost:4000/jekyll/update/2017/04/20/phpdoc-install</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/04/20/phpdoc-install.html">&lt;h1 id=&quot;phpdoc&quot;&gt;phpdoc&lt;/h1&gt;
 
 &lt;p&gt;phpdoc site &lt;a href=&quot;https://www.phpdoc.org/&quot;&gt;phpdoc&lt;/a&gt;&lt;/p&gt;
 
@@ -1454,41 +1538,4 @@ phpdoc -d &quot;D:\phpdoc\1&quot; -t &quot;D:\phpdoc\1&quot;  -o &quot;HTML:fram
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;…&lt;/p&gt;</content><author><name></name></author><summary type="html">phpdoc</summary></entry><entry><title type="html">Composer的安装与使用</title><link href="https://cjjmem.github.io/page/jekyll/update/2017/04/20/linux-nginx-php.html" rel="alternate" type="text/html" title="Composer的安装与使用" /><published>2017-04-20T18:11:03+08:00</published><updated>2017-04-20T18:11:03+08:00</updated><id>https://cjjmem.github.io/page/jekyll/update/2017/04/20/linux-nginx-php</id><content type="html" xml:base="https://cjjmem.github.io/page/jekyll/update/2017/04/20/linux-nginx-php.html">&lt;h1 id=&quot;composer&quot;&gt;Composer&lt;/h1&gt;
-
-&lt;h1 id=&quot;简介&quot;&gt;简介&lt;/h1&gt;
-&lt;p&gt;PHP包管理&lt;/p&gt;
-
-&lt;h1 id=&quot;安装&quot;&gt;安装&lt;/h1&gt;
-
-&lt;p&gt;windows 下安装 &lt;a href=&quot;https://getcomposer.org/download/&quot;&gt;composer&lt;/a&gt; 下载Composer-Setup.exe&lt;/p&gt;
-
-&lt;p&gt;Linux 下安装&lt;/p&gt;
-
-&lt;p&gt;局部安装 使用命令(php composer.phar)&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 下载链接
-php -r &quot;copy('https://getcomposer.org/installer', 'composer-setup.php');&quot;
-// 检验
-php -r &quot;if (hash_file('SHA384', 'composer-setup.php') === '55d6ead61b29c7bdee5cccfb50076874187bd9f21f65d8991d46ec5cc90518f447387fb9f76ebae1fbbacf329e583e30') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;&quot;
-// 执行下载包
-php composer-setup.php
-// 删除包
-php -r &quot;unlink('composer-setup.php');&quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;全局安装&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 下载composer.phar包
-curl -sS https://getcomposer.org/installer | php
-// 移动文件到全局
-mv composer.phar /usr/local/bin/composer
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;使用&quot;&gt;使用&lt;/h1&gt;
-
-&lt;h2 id=&quot;引入第三方库&quot;&gt;引入第三方库&lt;/h2&gt;
-
-&lt;h2 id=&quot;自动加载&quot;&gt;自动加载&lt;/h2&gt;
-
-&lt;h2 id=&quot;包开发&quot;&gt;包开发&lt;/h2&gt;</content><author><name></name></author><summary type="html">Composer</summary></entry></feed>
+&lt;p&gt;…&lt;/p&gt;</content><author><name></name></author><summary type="html">phpdoc</summary></entry></feed>
