@@ -1,4 +1,520 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://cjjmem.github.io/page/feed.xml" rel="self" type="application/atom+xml" /><link href="https://cjjmem.github.io/page/" rel="alternate" type="text/html" /><updated>2017-09-15T09:11:31+08:00</updated><id>https://cjjmem.github.io/page/</id><title type="html">小浪Blog</title><subtitle>其實很簡單</subtitle><entry><title type="html">小小压力测试</title><link href="https://cjjmem.github.io/page/jekyll/update/2017/08/31/apache-benchmark.html" rel="alternate" type="text/html" title="小小压力测试" /><published>2017-08-31T19:56:00+08:00</published><updated>2017-08-31T19:56:00+08:00</updated><id>https://cjjmem.github.io/page/jekyll/update/2017/08/31/apache-benchmark</id><content type="html" xml:base="https://cjjmem.github.io/page/jekyll/update/2017/08/31/apache-benchmark.html">&lt;h1 id=&quot;apache-benchmark&quot;&gt;Apache benchmark&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://cjjmem.github.io/page/page/feed.xml" rel="self" type="application/atom+xml" /><link href="https://cjjmem.github.io/page/page/" rel="alternate" type="text/html" /><updated>2017-09-18T11:28:13+08:00</updated><id>https://cjjmem.github.io/page/page/</id><title type="html">小浪Blog</title><subtitle>其實很簡單</subtitle><entry><title type="html">shopnc开发手册</title><link href="https://cjjmem.github.io/page/page/jekyll/update/2017/09/15/shopnc-developer.html" rel="alternate" type="text/html" title="shopnc开发手册" /><published>2017-09-15T19:56:00+08:00</published><updated>2017-09-15T19:56:00+08:00</updated><id>https://cjjmem.github.io/page/page/jekyll/update/2017/09/15/shopnc-developer</id><content type="html" xml:base="https://cjjmem.github.io/page/page/jekyll/update/2017/09/15/shopnc-developer.html">&lt;h1 id=&quot;shopnc-b2b2c&quot;&gt;shopNC B2B2C&lt;/h1&gt;
+
+&lt;h2 id=&quot;环境配置&quot;&gt;环境&amp;amp;配置&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;php5.3以上 （官方建议使用php5.4）&lt;/li&gt;
+  &lt;li&gt;Nginx/ Appache&lt;/li&gt;
+  &lt;li&gt;Mysql&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;PHP配置文件php.ini&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;extension=php_curl.dll
+extension=php_openssl.dll
+date.timezone =PRC
+session.auto_start = 1
+asp_tags = Off // Allow ASP-style &amp;lt;% %&amp;gt; tags
+short_open_tag = On
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;部署安装&quot;&gt;部署&amp;amp;安装&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;导入数据库脚本&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;设置配置文件 [打开\data\config\config.ini.php ]
+    &lt;div class=&quot;language-config highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;[&lt;span class=&quot;s1&quot;&gt;'db'&lt;/span&gt;][&lt;span class=&quot;s1&quot;&gt;'1'&lt;/span&gt;][&lt;span class=&quot;s1&quot;&gt;'dbhost'&lt;/span&gt;]       = &lt;span class=&quot;s1&quot;&gt;'127.0.0.1'&lt;/span&gt;; // 使用&lt;span class=&quot;n&quot;&gt;phpstudy&lt;/span&gt;情况下建议使用&lt;span class=&quot;m&quot;&gt;127&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;.&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;。
+$&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;[&lt;span class=&quot;s1&quot;&gt;'db'&lt;/span&gt;][&lt;span class=&quot;s1&quot;&gt;'1'&lt;/span&gt;][&lt;span class=&quot;s1&quot;&gt;'dbport'&lt;/span&gt;]       = &lt;span class=&quot;s1&quot;&gt;'3306'&lt;/span&gt;;
+$&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;[&lt;span class=&quot;s1&quot;&gt;'db'&lt;/span&gt;][&lt;span class=&quot;s1&quot;&gt;'1'&lt;/span&gt;][&lt;span class=&quot;s1&quot;&gt;'dbuser'&lt;/span&gt;]       = &lt;span class=&quot;s1&quot;&gt;'root'&lt;/span&gt;;
+$&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;[&lt;span class=&quot;s1&quot;&gt;'db'&lt;/span&gt;][&lt;span class=&quot;s1&quot;&gt;'1'&lt;/span&gt;][&lt;span class=&quot;s1&quot;&gt;'dbpwd'&lt;/span&gt;]        = &lt;span class=&quot;s1&quot;&gt;'root'&lt;/span&gt;;
+$&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;[&lt;span class=&quot;s1&quot;&gt;'db'&lt;/span&gt;][&lt;span class=&quot;s1&quot;&gt;'1'&lt;/span&gt;][&lt;span class=&quot;s1&quot;&gt;'dbname'&lt;/span&gt;]       = &lt;span class=&quot;s1&quot;&gt;'shopnc_db'&lt;/span&gt;;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;linux请查看权限&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-config highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;cache&lt;/span&gt;
+/&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;
+/&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;
+/&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;session&lt;/span&gt;
+/&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;resource&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;phpqrcode&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;
+/&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;upload&lt;/span&gt;
+/&lt;span class=&quot;n&quot;&gt;sql_back&lt;/span&gt;
+/&lt;span class=&quot;n&quot;&gt;install&lt;/span&gt;
+
+
+// 设置权限
+&lt;span class=&quot;n&quot;&gt;chmod&lt;/span&gt; -&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;777&lt;/span&gt; /&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;cache&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;登陆管理员后台，清空网站所有缓存
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;地址：http://本地域名/admin
+账号：admin
+密码：123456
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;商城目录结构&quot;&gt;商城目录结构&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ssh&quot;&gt;├─index.php……………………………………………………………………入口文件
+├─global.php……………………………………………………………………全局变量文件
+├─admin……………………………………………………………………后台管理目录
+│  ├─config
+│  ├─control……………………………………………………………………控制器目录
+│  ├─include
+│  ├─language……………………………………………………………………语言包目录
+│  │  ├─zh
+│  │  └─zh_cn
+│  ├─resource……………………………………………………………………js，css font
+│  │  └─js
+│  └─templates……………………………………………………………………模板目录
+│      ├─default
+│      │  ├─css
+│      │  ├─images
+│      │  └─layout
+│      └─images
+├─chat……………………………………………………………………IM目录
+├─circle……………………………………………………………………圈子目录
+├─cms……………………………………………………………………CMS目录
+├─core…………………………………………………………………… 框架目录
+│  ├─framework……………………………………………………………………系统框架
+│  │  ├─cache……………………………………………………………………缓存驱动
+│  │  ├─core……………………………………………………………………核心文件
+│  │  ├─db……………………………………………………………………数据层驱动
+│  │  ├─function……………………………………………………………………系统方法
+│  │  └─libraries……………………………………………………………………类库
+│  └─language……………………………………………………………………框架语言包目录
+├─crontab……………………………………………………………………计划任务
+│  ├─config
+│  └─control
+├─data……………………………………………………………………公共资源目录
+│  ├─api……………………………………………………………………第三方API目录
+│  ├─cache……………………………………………………………………缓存文件目录
+│  ├─config……………………………………………………………………配置文件目录
+│  ├─crontab……………………………………………………………………定时触发文件目录
+│  │  └─include
+│  ├─log……………………………………………………………………系统运行日志目录
+│  ├─session……………………………………………………………………SESSION文件存放目录
+│  ├─smilies
+│  ├─uc_client……………………………………………………………………ucenter目录
+│  ├─upload……………………………………………………………………上传图片目录
+├─delivery……………………………………………………………………物流自提点
+├─im……………………………………………………………………会员聊天
+├─microshop……………………………………………………………………microshop 微商城目录
+├─mobile……………………………………………………………………mobile 手机客户端API
+├─queue……………………………………………………………………手机端和app接口目录
+├─shop……………………………………………………………………pc端
+├─wap……………………………………………………………………wap商城
+└─
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;路由分析&quot;&gt;路由分析&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;http://本地域名/shop/index.php?act=brand&amp;amp;op=list&amp;amp;brand=89&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;可拆分&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;命名&lt;/th&gt;
+      &lt;th&gt;作用&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;shop&lt;/td&gt;
+      &lt;td&gt;模块&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;index.php&lt;/td&gt;
+      &lt;td&gt;统一入口文件&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;act&lt;/td&gt;
+      &lt;td&gt;控制器Controller&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;op&lt;/td&gt;
+      &lt;td&gt;方法Function&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&amp;amp;=&lt;/td&gt;
+      &lt;td&gt;url参数&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;mvc-结构&quot;&gt;MVC 结构&lt;/h2&gt;
+
+&lt;p&gt;shopnc 常见的mvc结构。每个模块对应自己的Controller层，template View层。Model为全局共享&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;数据模型(Model)  /data/model
+视图(View)  /shop/templates
+控制器(Controller) /shop/control
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;model-层&quot;&gt;Model 层&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;实例化商品模型
+    &lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  $goods = Model('goods');
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;系统首先会查找data/model/goods.model.php文件及内部的memberModel类是否存在，如果存在会查找core\framework\libraries\model.php&lt;/p&gt;
+
+&lt;h3 id=&quot;controller-层&quot;&gt;Controller 层&lt;/h3&gt;
+
+&lt;p&gt;在shopnc里，基本每个controller 都会继承上级对应基础功能的Controller，方便使用相对应的方法以及数据传递。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;BaseMemberControl
+```php
+class BaseMemberControl extends Control {
+  protected $member_info = array();   // 会员信息
+  public function __construct(){&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  if(!C('site_status')) halt(C('closed_reason'));
+
+  Language::read('common,member_layout');
+
+  if ($_GET['column'] &amp;amp;&amp;amp; strtoupper(CHARSET) == 'GBK'){
+      $_GET = Language::getGBK($_GET);
+  }
+  //会员验证
+  $this-&amp;gt;checkLogin();
+  //输出头部的公用信息
+  $this-&amp;gt;showLayout();
+  Tpl::setDir('member');
+  Tpl::setLayout('member_layout');
+
+  //获得会员信息
+  $this-&amp;gt;member_info = $this-&amp;gt;getMemberAndGradeInfo(true);
+  $this-&amp;gt;member_info['voucher_count'] = Model('voucher')-&amp;gt;getCurrentAvailableVoucherCount($_SESSION['member_id']);
+  $this-&amp;gt;member_info['redpacket_count'] = Model('redpacket')-&amp;gt;getCurrentAvailableRedpacketCount($_SESSION['member_id']);
+  Tpl::output('member_info', $this-&amp;gt;member_info);
+
+  // 常用操作及导航
+  $menu_list = $this-&amp;gt;_getNavLink();
+
+  //系统公告
+  $this-&amp;gt;system_notice();
+
+  // 交易数量提示
+  $this-&amp;gt;order_tip();
+
+  // 页面高亮
+  Tpl::output('act', $_GET['act']);   }
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;}&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+* memberControl
+```php
+class memberControl extends BaseMemberControl{
+
+    /**
+     * 我的商城
+     */
+    public function homeOp() {
+        Tpl::showpage('member_home');
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;系统函数系统类第三方工具类&quot;&gt;系统函数&amp;amp;系统类&amp;amp;第三方工具类&lt;/h2&gt;
+
+&lt;p&gt;框架的核心部分&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;├─core…………………………………………………………………… 框架目录
+│  ├─framework……………………………………………………………………系统框架
+│  │  ├─cache……………………………………………………………………缓存驱动
+│  │  ├─core……………………………………………………………………核心文件
+│  │  ├─db……………………………………………………………………数据层驱动
+│  │  ├─function……………………………………………………………………系统方法
+│  │  └─libraries……………………………………………………………………类库
+│  └─language……………………………………………………………………框架语言包目录
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+ // 时间插件
+import('function.datehelper');
+$year_arr = getSystemYearArr();
+
+// Excel 工具类
+import('libraries.excel');
+$excel = new Excel();
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;加载语言包&quot;&gt;加载语言包&lt;/h2&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 引入语言包文件
+Language::read('member_home_member');
+
+// 获取所有语言参数
+$lang   = Language::getLangContent();
+
+// 保存
+$save_succ = $lang['nc_common_save_succ'];
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;模板template&quot;&gt;模板Template&lt;/h2&gt;
+
+&lt;h3 id=&quot;php-pc端模板&quot;&gt;PHP PC端模板&lt;/h3&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;defined&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'InShopNC'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Access Invalid!'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;&amp;lt;!--上面是进行合法验证，在商城系统下的模板文件都需要进行该验证。--&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'home/cur_local'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;&amp;lt;!--上面是在品牌展示页面显示当前位置，实际输出内容为：当前位置：首页 &amp;gt; 所有品牌 --&amp;gt;&lt;/span&gt;
+
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;h2&amp;gt;&amp;lt;b&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$lang&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'brand_index_brand_list'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/b&amp;gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;&amp;lt;!--上面是输出标题，实际内容为：品牌列表--&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;&amp;lt;!--$lang 数组内容为Language::read() 得到的语言包信息，--&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;&amp;lt;!--使用Tpl::output抛出到模板的内容，保存到了$output数组中，保存下标名称为output方法的第一个参数值,--&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;is_array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'brand_list'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])){&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;foreach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'brand_list'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;&amp;lt;!--循环输出品牌内容--&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wrap&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
+                &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+                    &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ncUrl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'act'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'brand'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'op'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'list'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'brand'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$brand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'brand_id'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]));&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+                        &lt;span class=&quot;c&quot;&gt;&amp;lt;!--生成跳转URL（伪静态或动态）--&amp;gt;&lt;/span&gt;
+                        &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ATTACH_BRAND&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$brand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'brand_pic'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;alt=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$brand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'brand_name'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+                    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+                &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;手机端javascirpt模板&quot;&gt;手机端JAVASCIRPT模板&lt;/h3&gt;
+
+&lt;h4 id=&quot;javascript-模板引擎基本原理&quot;&gt;javascript 模板引擎基本原理&lt;/h4&gt;
+
+&lt;p&gt;虽然每个引擎从模板语法、语法解析、变量赋值、字符串拼接的实现方式各有所不同，但关键的渲染原理仍然是动态执行 javascript 字符串。&lt;/p&gt;
+
+&lt;h4 id=&quot;功能概述&quot;&gt;功能概述&lt;/h4&gt;
+
+&lt;p&gt;提供一套模板语法，用户可以写一个模板区块，每次根据传入的数据，生成对应数据产生的HTML片段，渲染不同的效果。&lt;/p&gt;
+
+&lt;h4 id=&quot;特性&quot;&gt;特性&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;模版编译，渲染&lt;/li&gt;
+  &lt;li&gt;支持所有主流浏览器及Node（UMD）&lt;/li&gt;
+  &lt;li&gt;JavaScript原生语法&lt;/li&gt;
+  &lt;li&gt;丰富的自定义配置&lt;/li&gt;
+  &lt;li&gt;支持数据过滤&lt;/li&gt;
+  &lt;li&gt;异常捕获功能&lt;/li&gt;
+  &lt;li&gt;功能专一，简单好用&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/yanhaijing/template.js&quot;&gt;git&lt;/a&gt;
+&lt;a href=&quot;https://github.com/yanhaijing/template.js/tree/master/demo&quot;&gt;demo&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;UTF-8&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;include demo&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;template.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;content&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;customTag&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;h1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/h1&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ul&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;li&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;条目内容&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&amp;gt;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/li&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/ul&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;openTag&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&amp;lt;%'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;closeTag&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'%&amp;gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;listdata&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;header&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'your study list'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;tag&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'算法导论'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'php'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'c#'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'jquery'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'vue.js'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'python'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;resulthtml&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'customTag'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;listdata&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tagcontent'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;innerHTML&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;resulthtml&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;系统常量&quot;&gt;系统常量&lt;/h2&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[ProjectName]=&amp;gt; 项目名称
+[BUILDCORE]=&amp;gt; 是否压缩框架（true/false）
+[BasePath]=&amp;gt; 系统所在基准目录（如 /var/www/shopnc）
+[DS] =&amp;gt; 目录分隔符 /
+[InShopNC]=&amp;gt; 合法调用判断标志
+[StartTime]=&amp;gt; 系统开始运行时间（如1350096132.6587）
+[TIMESTAMP]=&amp;gt; 系统当前时间（如1350096132）
+[RUNCOREPATH]=&amp;gt;压缩后的框架所在目录 (如 /var/www/shopnc/cache/~shopnc.php)
+[SiteUrl]=&amp;gt; 商城URL地址（http://www.shopnc.net）
+[CHARSET]=&amp;gt; 系统编码（UTF-8/GBK）
+[DBDRIVER]=&amp;gt; 数据库访问驱动（mysqli、mysql、pdo_mysql、oci8）
+[SESSION_EXPIRE]=&amp;gt; 缓存周期，单位（秒）
+[LANG_TYPE]=&amp;gt; 语言包，默认简体中文zh_cn
+[COOKIE_PRE]=&amp;gt; cookie前缀，系统自动生成
+[CORE_PATH]=&amp;gt; 框架所在目录(如 /var/www/shopnc /framework)
+[TPL_NAME]=&amp;gt; 模板风格，默认default
+[BASE_TPL_PATH]=&amp;gt; 模板文件目录(如 /var/www/shopnc /templates/default)
+[RESOURCE_PATH]=&amp;gt; 外部资源目录地址（如 http://www.shopnc.net/resource）
+[DBPRE] =&amp;gt;数据库表前缀 默认shopnc_
+[ATTACH_PATH]=&amp;gt; 附件目录，默认upload
+[ATTACH_COMMON]=&amp;gt; 通用附件目录 默认upload/common
+[ATTACH_AVATAR]=&amp;gt; 头像目录 默认 upload/avatar
+[ATTACH_STORE]=&amp;gt; 店铺信息目录 默认 upload/store
+[ATTACH_GOODS]=&amp;gt; 店铺产品目录 默认 upload/store/goods
+[ATTACH_AUTH]=&amp;gt; 店铺证件目录 默认 upload/auth
+[ATTACH_MOBILE]=&amp;gt; 手机客户端内容目录 默认upload/mobile
+[ATTACH_LINK]=&amp;gt; 友情链接logo目录 默认upload/link
+[ATTACH_ARTICLE]=&amp;gt; 文章附件目录 默认 upload/article
+[ATTACH_BRAND]=&amp;gt; 品牌附件目录 默认 upload/brand
+[ATTACH_ADV]=&amp;gt; 广告图片目录 默认 upload/adv
+[ATTACH_ACTIVITY]=&amp;gt; 促销活动目录 默认 upload/activity
+[ATTACH_COUPON]=&amp;gt; 优惠券目录 默认 upload/coupon
+[ATTACH_WATERMARK]=&amp;gt; 水印图片目录 默认 upload/watermark
+[ATTACH_POINTPROD]=&amp;gt; 积分商品图片目录 默认 upload/pointprod
+[ATTACH_SPEC]=&amp;gt; 自定义规格图片目录 默认 upload/spec
+[ATTACH_GROUPBUY]=&amp;gt; 团购图片目录 默认 upload/groupbuy
+[ATTACH_SLIDE]=&amp;gt; 店铺二维码目录 默认 upload/store/slide
+[ATTACH_VOUCHER]=&amp;gt; 代金券模板目录 默认upload/voucher
+[TEMPLATES_PATH]=&amp;gt; 模板URL访问地址（如http://www.shopnc.net/templates/default）
+[MD5_KEY]=&amp;gt; MD5_KEY值 系统自动生成
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;定时任务&quot;&gt;定时任务&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;crontab -e
+# Linux下定时任务设置示例
+# php安装路径 /usr/local/php
+# 商城安装路径 /wwwroot/shopnc
+
+# 执行频率：10分钟，[更新商品促销状态、首页商品信息、邮件通知等]
+*/10 * * * * /usr/local/php/bin/php /wwwroot/shopnc/crontab/index.php minutes
+# 执行频率：1小时，[更新全文索引]
+0 */1 * * * /usr/local/php/bin/php /wwwroot/shopnc/crontab/index.php hour
+# 执行频率：1天，[订单超期自动处理、售后超时处理、代金券虚拟码等过期提醒、更新统计等]
+0 3 * * * /usr/local/php/bin/php /wwwroot/shopnc/crontab/index.php date
+# 执行频率：1个月，[生成结算]
+0 4 1 * * /usr/local/php/bin/php /wwwroot/shopnc/crontab/index.php month
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;内置orm&quot;&gt;内置ORM&lt;/h2&gt;
+
+&lt;h2 id=&quot;日志&quot;&gt;日志&lt;/h2&gt;
+
+&lt;p&gt;系统内置一个简单日志类。用来添加日志方便记录信息。&lt;/p&gt;
+
+&lt;p&gt;使用方法：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+$message = 'test';
+$level = 'err'; // err or sql
+
+Log::record($message,$level);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;生成文件:&lt;/p&gt;
+
+&lt;p&gt;data/log/20170918.log&lt;/p&gt;
+
+&lt;h2 id=&quot;二次开发规范&quot;&gt;二次开发规范&lt;/h2&gt;
+
+&lt;h3 id=&quot;关于代码层面&quot;&gt;关于代码层面&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;代码标记建议使用标准形式（&lt;?php…… ?&gt;），不建议使用简写形式（&lt;? …… ?&gt;），如果服务器未开启对短标记的支持（short_open_tag = Off），将会有暴露源码的危险。&lt;/li&gt;
+  &lt;li&gt;模板中输出变量使用“echo” 输出,以分号结尾，不建议使用“=”输出。
+```php
+$color = “red”;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Roses are &lt;?=$color?&gt;&lt;/p&gt;
+&lt;p&gt;// 不建议使用&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;3. 对于函数级、类类及文件头注释使用C样式的注释“/* */”，对于代码行（段）的注释可使用标准C++注释”//”。
+
+4. 建议使用缩进保持代码的层级关系，每个缩进的单位约定是一个TAB(4个空白字符宽度)，开发工具建议使用Zend Studio、UltraEdit、EditPlus等编辑器。
+
+5. 关于PHP变量的命名规则，建议以英文拼写为蓝本，遵循简洁和可读性原则。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;$store_info = [];&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+6. 全局常量的定义要统一使用大写，单词之间使用下划线连接。
+
+7. 开发时，代码的error_reporting报错级别建议设置为E_ALL &amp;amp; ~E_NOTICE。
+
+8. Include，require包含文件时建议使用绝对路径，框架底层引入文件可使用Include，require（不带once效率高一些），在业务逻辑层引入文件时可使用Include_once，require_once。
+```php
+// 本框架使用
+import('function.datehelper');
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;关于数据库&quot;&gt;关于数据库&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;表和字段命名同样应以英文拼写为蓝本，遵循简洁和可读性原则，长度适中，建议长度在30个字符内，否则跨库迁移可能会存在麻烦。&lt;/li&gt;
+  &lt;li&gt;字段类型设置应遵循足够用不浪费的原则。&lt;/li&gt;
+  &lt;li&gt;SQL语句中，除了表名、字段名称以外，全部语句和函数均应大写。&lt;/li&gt;
+  &lt;li&gt;尽可能避免直接编写SQL语句去执行，提倡使用系统数据库操作层相应入口来完成。&lt;/li&gt;
+  &lt;li&gt;索引可以加快检索速度，但不易过多，单个表建议不超过5个索引。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;关于目录的安全&quot;&gt;关于目录的安全&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;文件与目录命名均使用小写字母，php文件后缀均为“.php”，&lt;/li&gt;
+  &lt;li&gt;请在敏感目录中放置一个1字节的index.html文件，内容为一个空格，以避免当http服务器的Directory Listing打开时，服务器文件被索引和列表。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+
+&lt;p&gt;[开发规范参考网上]&lt;/p&gt;</content><author><name></name></author><summary type="html">shopNC B2B2C</summary></entry><entry><title type="html">小小压力测试</title><link href="https://cjjmem.github.io/page/page/jekyll/update/2017/08/31/apache-benchmark.html" rel="alternate" type="text/html" title="小小压力测试" /><published>2017-08-31T19:56:00+08:00</published><updated>2017-08-31T19:56:00+08:00</updated><id>https://cjjmem.github.io/page/page/jekyll/update/2017/08/31/apache-benchmark</id><content type="html" xml:base="https://cjjmem.github.io/page/page/jekyll/update/2017/08/31/apache-benchmark.html">&lt;h1 id=&quot;apache-benchmark&quot;&gt;Apache benchmark&lt;/h1&gt;
 &lt;p&gt;简称ab ，是非常有名又小巧的压力测试工具。非常简单好用。&lt;/p&gt;
 
 &lt;h2 id=&quot;安装&quot;&gt;安装&lt;/h2&gt;
@@ -82,7 +598,7 @@ Waiting:       从发送 HTTP 要求完后，到 HTTP 回应(Response)第一个 
 Total:           等于 Connect + Processing 的时间（因为 Waiting 包含在 Processing 时间内了）换
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;a href=&quot;http://httpd.apache.org/docs/2.0/programs/ab.html&quot;&gt;官方文档&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Apache benchmark 简称ab ，是非常有名又小巧的压力测试工具。非常简单好用。</summary></entry><entry><title type="html">学习redis</title><link href="https://cjjmem.github.io/page/jekyll/update/2017/07/06/redis.html" rel="alternate" type="text/html" title="学习redis" /><published>2017-07-06T17:56:00+08:00</published><updated>2017-07-06T17:56:00+08:00</updated><id>https://cjjmem.github.io/page/jekyll/update/2017/07/06/redis</id><content type="html" xml:base="https://cjjmem.github.io/page/jekyll/update/2017/07/06/redis.html">&lt;h1 id=&quot;redis&quot;&gt;Redis&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;http://httpd.apache.org/docs/2.0/programs/ab.html&quot;&gt;官方文档&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Apache benchmark 简称ab ，是非常有名又小巧的压力测试工具。非常简单好用。</summary></entry><entry><title type="html">学习redis</title><link href="https://cjjmem.github.io/page/page/jekyll/update/2017/07/06/redis.html" rel="alternate" type="text/html" title="学习redis" /><published>2017-07-06T17:56:00+08:00</published><updated>2017-07-06T17:56:00+08:00</updated><id>https://cjjmem.github.io/page/page/jekyll/update/2017/07/06/redis</id><content type="html" xml:base="https://cjjmem.github.io/page/page/jekyll/update/2017/07/06/redis.html">&lt;h1 id=&quot;redis&quot;&gt;Redis&lt;/h1&gt;
 
 &lt;p&gt;redis是一个开源的、使用C语言编写的、支持网络交互的、可基于内存也可持久化的Key-Value数据库。&lt;/p&gt;
 
@@ -560,7 +1076,7 @@ class UserController extends Controller {
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name></name></author><summary type="html">Redis</summary></entry><entry><title type="html">windows下搭建Laravel Homestead</title><link href="https://cjjmem.github.io/page/jekyll/update/2017/06/13/laravel-homestead.html" rel="alternate" type="text/html" title="windows下搭建Laravel Homestead" /><published>2017-06-13T20:29:03+08:00</published><updated>2017-06-13T20:29:03+08:00</updated><id>https://cjjmem.github.io/page/jekyll/update/2017/06/13/laravel-homestead</id><content type="html" xml:base="https://cjjmem.github.io/page/jekyll/update/2017/06/13/laravel-homestead.html">&lt;h1 id=&quot;laravel-homestead&quot;&gt;Laravel Homestead&lt;/h1&gt;
+&lt;/div&gt;</content><author><name></name></author><summary type="html">Redis</summary></entry><entry><title type="html">windows下搭建Laravel Homestead</title><link href="https://cjjmem.github.io/page/page/jekyll/update/2017/06/13/laravel-homestead.html" rel="alternate" type="text/html" title="windows下搭建Laravel Homestead" /><published>2017-06-13T20:29:03+08:00</published><updated>2017-06-13T20:29:03+08:00</updated><id>https://cjjmem.github.io/page/page/jekyll/update/2017/06/13/laravel-homestead</id><content type="html" xml:base="https://cjjmem.github.io/page/page/jekyll/update/2017/06/13/laravel-homestead.html">&lt;h1 id=&quot;laravel-homestead&quot;&gt;Laravel Homestead&lt;/h1&gt;
 
 &lt;p&gt;Laravel Homestead是一个官方的、预封装的Vagrant“箱子”，Homestead能运行在所有的Windows、Mac或Linux系统上，它包含了Nginx、PHP 5.6、MySQL、Postgres、Redis、Memcached和你开发神奇的Laravel应用程序需要的所有其它软件。让初学者不用为环境问题而烦恼，減少浪费时间在架设 Laravel。
 由于网络、操作系统等不同安装过程可能出现各种各样的问题，这里主要不是介绍如何解决这些问题。本经验通过Windows 7下成功的安装过程向大家介绍如何安装Homestead2.0。&lt;/p&gt;
@@ -578,7 +1094,7 @@ class UserController extends Controller {
 &lt;p&gt;如果网络正常就慢慢等待下载然后添加，这里由于网络的原因我试了很多次都失败了，最后直接复制下载链接
  https://atlas.hashicorp.com/laravel/boxes/homestead/versions/2.1.0/providers/virtualbox.box下载保存到F:\virtualbox.box，然后通过&lt;/p&gt;
 
-&lt;p&gt;vagrant box add laravel/homestead F:\virtualbox.box&lt;/p&gt;</content><author><name></name></author><summary type="html">Laravel Homestead</summary></entry><entry><title type="html">如何在windows下搭建git服务器</title><link href="https://cjjmem.github.io/page/jekyll/update/2017/06/11/gitlab-for-windows.html" rel="alternate" type="text/html" title="如何在windows下搭建git服务器" /><published>2017-06-11T18:00:03+08:00</published><updated>2017-06-11T18:00:03+08:00</updated><id>https://cjjmem.github.io/page/jekyll/update/2017/06/11/gitlab-for-windows</id><content type="html" xml:base="https://cjjmem.github.io/page/jekyll/update/2017/06/11/gitlab-for-windows.html">&lt;h1 id=&quot;gitblit&quot;&gt;gitblit&lt;/h1&gt;
+&lt;p&gt;vagrant box add laravel/homestead F:\virtualbox.box&lt;/p&gt;</content><author><name></name></author><summary type="html">Laravel Homestead</summary></entry><entry><title type="html">如何在windows下搭建git服务器</title><link href="https://cjjmem.github.io/page/page/jekyll/update/2017/06/11/gitlab-for-windows.html" rel="alternate" type="text/html" title="如何在windows下搭建git服务器" /><published>2017-06-11T18:00:03+08:00</published><updated>2017-06-11T18:00:03+08:00</updated><id>https://cjjmem.github.io/page/page/jekyll/update/2017/06/11/gitlab-for-windows</id><content type="html" xml:base="https://cjjmem.github.io/page/page/jekyll/update/2017/06/11/gitlab-for-windows.html">&lt;h1 id=&quot;gitblit&quot;&gt;gitblit&lt;/h1&gt;
 
 &lt;p&gt;Gitblit 是一个纯 Java 库用来管理、查看和处理 Git 资料库。相当于 Git 的 Java 管理工具。&lt;/p&gt;
 
@@ -619,7 +1135,7 @@ gitblit中有个管理员账号，用户名与密码都为admin，登录后进�
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/xtayfjpk/article/details/45669335&quot;&gt;博客&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://about.gitlab.com/gitlab-com/&quot;&gt;gitlab&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">gitblit</summary></entry><entry><title type="html">vue1.x vue2.0中如何使用nprogress组件</title><link href="https://cjjmem.github.io/page/jekyll/update/2017/05/27/vue-nprogress.html" rel="alternate" type="text/html" title="vue1.x vue2.0中如何使用nprogress组件" /><published>2017-05-27T18:00:03+08:00</published><updated>2017-05-27T18:00:03+08:00</updated><id>https://cjjmem.github.io/page/jekyll/update/2017/05/27/vue-nprogress</id><content type="html" xml:base="https://cjjmem.github.io/page/jekyll/update/2017/05/27/vue-nprogress.html">&lt;h1 id=&quot;nprogress-前端页面加载进度条神奇&quot;&gt;nprogress 前端页面加载进度条神奇&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">gitblit</summary></entry><entry><title type="html">vue1.x vue2.0中如何使用nprogress组件</title><link href="https://cjjmem.github.io/page/page/jekyll/update/2017/05/27/vue-nprogress.html" rel="alternate" type="text/html" title="vue1.x vue2.0中如何使用nprogress组件" /><published>2017-05-27T18:00:03+08:00</published><updated>2017-05-27T18:00:03+08:00</updated><id>https://cjjmem.github.io/page/page/jekyll/update/2017/05/27/vue-nprogress</id><content type="html" xml:base="https://cjjmem.github.io/page/page/jekyll/update/2017/05/27/vue-nprogress.html">&lt;h1 id=&quot;nprogress-前端页面加载进度条神奇&quot;&gt;nprogress 前端页面加载进度条神奇&lt;/h1&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://ricostacruz.com/nprogress/&quot;&gt;nprogress演示&lt;/a&gt;&lt;/p&gt;
 
@@ -696,7 +1212,7 @@ new Vue({
 })
 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name></name></author><summary type="html">nprogress 前端页面加载进度条神奇</summary></entry><entry><title type="html">laravel记录Sql日志的方法</title><link href="https://cjjmem.github.io/page/jekyll/update/2017/05/25/laravel-event-listener.html" rel="alternate" type="text/html" title="laravel记录Sql日志的方法" /><published>2017-05-25T12:39:03+08:00</published><updated>2017-05-25T12:39:03+08:00</updated><id>https://cjjmem.github.io/page/jekyll/update/2017/05/25/laravel-event-listener</id><content type="html" xml:base="https://cjjmem.github.io/page/jekyll/update/2017/05/25/laravel-event-listener.html">&lt;h1 id=&quot;laravel记录sql日志的方法&quot;&gt;laravel记录Sql日志的方法&lt;/h1&gt;
+&lt;/div&gt;</content><author><name></name></author><summary type="html">nprogress 前端页面加载进度条神奇</summary></entry><entry><title type="html">laravel记录Sql日志的方法</title><link href="https://cjjmem.github.io/page/page/jekyll/update/2017/05/25/laravel-event-listener.html" rel="alternate" type="text/html" title="laravel记录Sql日志的方法" /><published>2017-05-25T12:39:03+08:00</published><updated>2017-05-25T12:39:03+08:00</updated><id>https://cjjmem.github.io/page/page/jekyll/update/2017/05/25/laravel-event-listener</id><content type="html" xml:base="https://cjjmem.github.io/page/page/jekyll/update/2017/05/25/laravel-event-listener.html">&lt;h1 id=&quot;laravel记录sql日志的方法&quot;&gt;laravel记录Sql日志的方法&lt;/h1&gt;
 
 &lt;p&gt;在项目开发过程中或者是性能优化中，经常会有要查看执行sql的情况，然而Laravel日志默认不记录执行sql。然而并不担心，强大Laravel的提供者帮助我们解决这个问题。下面是我总结的几种方式：&lt;/p&gt;
 
@@ -800,7 +1316,7 @@ public function handle(QueryExecuted $event)
 
 &lt;h3 id=&quot;方法二laravel中的服务提供者&quot;&gt;方法二:Laravel中的服务提供者&lt;/h3&gt;
 
-&lt;h3 id=&quot;方法三第三方组件的调试工具&quot;&gt;方法三:第三方组件的调试工具&lt;/h3&gt;</content><author><name></name></author><summary type="html">laravel记录Sql日志的方法</summary></entry><entry><title type="html">Browsersync实时代码监控工具</title><link href="https://cjjmem.github.io/page/jekyll/update/2017/05/19/browsersync.html" rel="alternate" type="text/html" title="Browsersync实时代码监控工具" /><published>2017-05-19T18:09:03+08:00</published><updated>2017-05-19T18:09:03+08:00</updated><id>https://cjjmem.github.io/page/jekyll/update/2017/05/19/browsersync</id><content type="html" xml:base="https://cjjmem.github.io/page/jekyll/update/2017/05/19/browsersync.html">&lt;h1 id=&quot;browsersync&quot;&gt;BrowserSync&lt;/h1&gt;
+&lt;h3 id=&quot;方法三第三方组件的调试工具&quot;&gt;方法三:第三方组件的调试工具&lt;/h3&gt;</content><author><name></name></author><summary type="html">laravel记录Sql日志的方法</summary></entry><entry><title type="html">Browsersync实时代码监控工具</title><link href="https://cjjmem.github.io/page/page/jekyll/update/2017/05/19/browsersync.html" rel="alternate" type="text/html" title="Browsersync实时代码监控工具" /><published>2017-05-19T18:09:03+08:00</published><updated>2017-05-19T18:09:03+08:00</updated><id>https://cjjmem.github.io/page/page/jekyll/update/2017/05/19/browsersync</id><content type="html" xml:base="https://cjjmem.github.io/page/page/jekyll/update/2017/05/19/browsersync.html">&lt;h1 id=&quot;browsersync&quot;&gt;BrowserSync&lt;/h1&gt;
 
 &lt;p&gt;Browsersync能让浏览器实时、快速响应您的文件更改（html、js、css、sass、less等）并自动刷新页面&lt;/p&gt;
 
@@ -1250,7 +1766,7 @@ marquee(document.querySelector('.marquee'));&lt;/script&gt;
   &lt;li&gt;&lt;a href=&quot;http://www.browsersync.cn&quot;&gt;BrowserSync官网&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;http://www.browsersync.cn/docs/api/&quot;&gt;BrowserSync API说明文档&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;&quot;&gt;轮播项目实战&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">BrowserSync</summary></entry><entry><title type="html">结合 webpack 2 使用 SVG Sprite</title><link href="https://cjjmem.github.io/page/jekyll/update/2017/04/20/front-webpack-svg.html" rel="alternate" type="text/html" title="结合 webpack 2 使用 SVG Sprite" /><published>2017-04-20T19:12:03+08:00</published><updated>2017-04-20T19:12:03+08:00</updated><id>https://cjjmem.github.io/page/jekyll/update/2017/04/20/front-webpack-svg</id><content type="html" xml:base="https://cjjmem.github.io/page/jekyll/update/2017/04/20/front-webpack-svg.html">&lt;h1 id=&quot;结合-webpack-2-使用-svg-sprite&quot;&gt;结合 webpack 2 使用 SVG Sprite&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">BrowserSync</summary></entry><entry><title type="html">结合 webpack 2 使用 SVG Sprite</title><link href="https://cjjmem.github.io/page/page/jekyll/update/2017/04/20/front-webpack-svg.html" rel="alternate" type="text/html" title="结合 webpack 2 使用 SVG Sprite" /><published>2017-04-20T19:12:03+08:00</published><updated>2017-04-20T19:12:03+08:00</updated><id>https://cjjmem.github.io/page/page/jekyll/update/2017/04/20/front-webpack-svg</id><content type="html" xml:base="https://cjjmem.github.io/page/page/jekyll/update/2017/04/20/front-webpack-svg.html">&lt;h1 id=&quot;结合-webpack-2-使用-svg-sprite&quot;&gt;结合 webpack 2 使用 SVG Sprite&lt;/h1&gt;
 
 &lt;h1 id=&quot;优点--缺点&quot;&gt;优点 &amp;amp; 缺点&lt;/h1&gt;
 
@@ -1411,7 +1927,7 @@ webpack.config.js&lt;/p&gt;
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name></name></author><summary type="html">结合 webpack 2 使用 SVG Sprite</summary></entry><entry><title type="html">前端权限之-Vue篇</title><link href="https://cjjmem.github.io/page/jekyll/update/2017/04/20/front-vue-permissions.html" rel="alternate" type="text/html" title=" 前端权限之-Vue篇" /><published>2017-04-20T19:11:03+08:00</published><updated>2017-04-20T19:11:03+08:00</updated><id>https://cjjmem.github.io/page/jekyll/update/2017/04/20/front-vue-permissions</id><content type="html" xml:base="https://cjjmem.github.io/page/jekyll/update/2017/04/20/front-vue-permissions.html">&lt;h1 id=&quot;vue前端权限控制&quot;&gt;vue前端权限控制&lt;/h1&gt;
+&lt;/div&gt;</content><author><name></name></author><summary type="html">结合 webpack 2 使用 SVG Sprite</summary></entry><entry><title type="html">前端权限之-Vue篇</title><link href="https://cjjmem.github.io/page/page/jekyll/update/2017/04/20/front-vue-permissions.html" rel="alternate" type="text/html" title=" 前端权限之-Vue篇" /><published>2017-04-20T19:11:03+08:00</published><updated>2017-04-20T19:11:03+08:00</updated><id>https://cjjmem.github.io/page/page/jekyll/update/2017/04/20/front-vue-permissions</id><content type="html" xml:base="https://cjjmem.github.io/page/page/jekyll/update/2017/04/20/front-vue-permissions.html">&lt;h1 id=&quot;vue前端权限控制&quot;&gt;vue前端权限控制&lt;/h1&gt;
 
 &lt;p&gt;html&lt;/p&gt;
 &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;app&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;container&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
@@ -1484,58 +2000,4 @@ webpack.config.js&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;[参考http://codepen.io/anon/pen/aJpLZN]&lt;/p&gt;</content><author><name></name></author><summary type="html">vue前端权限控制</summary></entry><entry><title type="html">PHPDOC自动生成文档</title><link href="https://cjjmem.github.io/page/jekyll/update/2017/04/20/phpdoc-install.html" rel="alternate" type="text/html" title=" PHPDOC自动生成文档" /><published>2017-04-20T18:11:03+08:00</published><updated>2017-04-20T18:11:03+08:00</updated><id>https://cjjmem.github.io/page/jekyll/update/2017/04/20/phpdoc-install</id><content type="html" xml:base="https://cjjmem.github.io/page/jekyll/update/2017/04/20/phpdoc-install.html">&lt;h1 id=&quot;phpdoc&quot;&gt;phpdoc&lt;/h1&gt;
-
-&lt;p&gt;phpdoc site &lt;a href=&quot;https://www.phpdoc.org/&quot;&gt;phpdoc&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;全局-install&quot;&gt;全局 install&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;composer gobal require phpdocumentor/phpdocumentor
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;开发-install&quot;&gt;开发 install&lt;/h2&gt;
-
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;require-dev&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;phpdoucmentor/phpdoucmentor&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2.*&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;生成文档&quot;&gt;生成文档&lt;/h3&gt;
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;phpdoc -d &quot;绝对路径&quot;
-
-phpdoc -d &quot;D:\phpdoc\1&quot; -t &quot;D:\phpdoc\1&quot;  -o &quot;HTML:frames:phpedit&quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;使用说明&quot;&gt;使用说明&lt;/h2&gt;
-
-&lt;h3 id=&quot;api&quot;&gt;@api&lt;/h3&gt;
-&lt;p&gt;examples&lt;/p&gt;
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
- * This method will not change until a major release.
- *
- * @api
- *
- * @return void
- */
- function showVersion()
- {
-
- }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;author&quot;&gt;@author&lt;/h3&gt;
-&lt;p&gt;examples&lt;/p&gt;
-&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
- * @author My Name
- * @author My Name &lt;span class=&quot;nt&quot;&gt;&amp;lt;my&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;example&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
- */
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;…&lt;/p&gt;</content><author><name></name></author><summary type="html">phpdoc</summary></entry></feed>
+&lt;p&gt;[参考http://codepen.io/anon/pen/aJpLZN]&lt;/p&gt;</content><author><name></name></author><summary type="html">vue前端权限控制</summary></entry></feed>

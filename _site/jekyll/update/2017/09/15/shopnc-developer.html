@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>shopnc开发手册</title>
+  <meta name="description" content="shopNC B2B2C">
+
+  <link rel="stylesheet" href="/page/assets/main.css">
+  <link rel="canonical" href="https://cjjmem.github.io/page/page/jekyll/update/2017/09/15/shopnc-developer.html">
+  <link rel="alternate" type="application/rss+xml" title="小浪Blog" href="/page/feed.xml">
+  
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/page/">小浪Blog</a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+            <a class="page-link" href="/page/about/">关于我</a>
+            
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/page/resume/">我的简历</a>
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">shopnc开发手册</h1>
+    <p class="post-meta">
+      <time datetime="2017-09-15T19:56:00+08:00" itemprop="datePublished">
+        
+        Sep 15, 2017
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h1 id="shopnc-b2b2c">shopNC B2B2C</h1>
+
+<h2 id="环境配置">环境&amp;配置</h2>
+
+<ul>
+  <li>php5.3以上 （官方建议使用php5.4）</li>
+  <li>Nginx/ Appache</li>
+  <li>Mysql</li>
+</ul>
+
+<p>PHP配置文件php.ini</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>extension=php_curl.dll
+extension=php_openssl.dll
+date.timezone =PRC
+session.auto_start = 1
+asp_tags = Off // Allow ASP-style &lt;% %&gt; tags
+short_open_tag = On
+</code></pre>
+</div>
+
+<h2 id="部署安装">部署&amp;安装</h2>
+
+<ol>
+  <li>
+    <p>导入数据库脚本</p>
+  </li>
+  <li>设置配置文件 [打开\data\config\config.ini.php ]
+    <div class="language-config highlighter-rouge"><pre class="highlight"><code>$<span class="n">config</span>[<span class="s1">'db'</span>][<span class="s1">'1'</span>][<span class="s1">'dbhost'</span>]       = <span class="s1">'127.0.0.1'</span>; // 使用<span class="n">phpstudy</span>情况下建议使用<span class="m">127</span>.<span class="m">0</span>.<span class="m">0</span>.<span class="m">1</span>。
+$<span class="n">config</span>[<span class="s1">'db'</span>][<span class="s1">'1'</span>][<span class="s1">'dbport'</span>]       = <span class="s1">'3306'</span>;
+$<span class="n">config</span>[<span class="s1">'db'</span>][<span class="s1">'1'</span>][<span class="s1">'dbuser'</span>]       = <span class="s1">'root'</span>;
+$<span class="n">config</span>[<span class="s1">'db'</span>][<span class="s1">'1'</span>][<span class="s1">'dbpwd'</span>]        = <span class="s1">'root'</span>;
+$<span class="n">config</span>[<span class="s1">'db'</span>][<span class="s1">'1'</span>][<span class="s1">'dbname'</span>]       = <span class="s1">'shopnc_db'</span>;
+</code></pre>
+    </div>
+  </li>
+  <li>linux请查看权限</li>
+</ol>
+
+<div class="language-config highlighter-rouge"><pre class="highlight"><code>/<span class="n">data</span>/<span class="n">cache</span>
+/<span class="n">data</span>/<span class="n">config</span>
+/<span class="n">data</span>/<span class="n">log</span>
+/<span class="n">data</span>/<span class="n">session</span>
+/<span class="n">data</span>/<span class="n">resource</span>/<span class="n">phpqrcode</span>/<span class="n">temp</span>
+/<span class="n">data</span>/<span class="n">upload</span>
+/<span class="n">sql_back</span>
+/<span class="n">install</span>
+
+
+// 设置权限
+<span class="n">chmod</span> -<span class="n">R</span> <span class="m">777</span> /<span class="n">data</span>/<span class="n">cache</span>
+
+</code></pre>
+</div>
+
+<ol>
+  <li>登陆管理员后台，清空网站所有缓存
+    <div class="highlighter-rouge"><pre class="highlight"><code>地址：http://本地域名/admin
+账号：admin
+密码：123456
+</code></pre>
+    </div>
+  </li>
+</ol>
+
+<h2 id="商城目录结构">商城目录结构</h2>
+<pre><code class="language-ssh">├─index.php……………………………………………………………………入口文件
+├─global.php……………………………………………………………………全局变量文件
+├─admin……………………………………………………………………后台管理目录
+│  ├─config
+│  ├─control……………………………………………………………………控制器目录
+│  ├─include
+│  ├─language……………………………………………………………………语言包目录
+│  │  ├─zh
+│  │  └─zh_cn
+│  ├─resource……………………………………………………………………js，css font
+│  │  └─js
+│  └─templates……………………………………………………………………模板目录
+│      ├─default
+│      │  ├─css
+│      │  ├─images
+│      │  └─layout
+│      └─images
+├─chat……………………………………………………………………IM目录
+├─circle……………………………………………………………………圈子目录
+├─cms……………………………………………………………………CMS目录
+├─core…………………………………………………………………… 框架目录
+│  ├─framework……………………………………………………………………系统框架
+│  │  ├─cache……………………………………………………………………缓存驱动
+│  │  ├─core……………………………………………………………………核心文件
+│  │  ├─db……………………………………………………………………数据层驱动
+│  │  ├─function……………………………………………………………………系统方法
+│  │  └─libraries……………………………………………………………………类库
+│  └─language……………………………………………………………………框架语言包目录
+├─crontab……………………………………………………………………计划任务
+│  ├─config
+│  └─control
+├─data……………………………………………………………………公共资源目录
+│  ├─api……………………………………………………………………第三方API目录
+│  ├─cache……………………………………………………………………缓存文件目录
+│  ├─config……………………………………………………………………配置文件目录
+│  ├─crontab……………………………………………………………………定时触发文件目录
+│  │  └─include
+│  ├─log……………………………………………………………………系统运行日志目录
+│  ├─session……………………………………………………………………SESSION文件存放目录
+│  ├─smilies
+│  ├─uc_client……………………………………………………………………ucenter目录
+│  ├─upload……………………………………………………………………上传图片目录
+├─delivery……………………………………………………………………物流自提点
+├─im……………………………………………………………………会员聊天
+├─microshop……………………………………………………………………microshop 微商城目录
+├─mobile……………………………………………………………………mobile 手机客户端API
+├─queue……………………………………………………………………手机端和app接口目录
+├─shop……………………………………………………………………pc端
+├─wap……………………………………………………………………wap商城
+└─
+
+</code></pre>
+
+<h2 id="路由分析">路由分析</h2>
+
+<p><strong>http://本地域名/shop/index.php?act=brand&amp;op=list&amp;brand=89</strong></p>
+
+<p>可拆分</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>命名</th>
+      <th>作用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>shop</td>
+      <td>模块</td>
+    </tr>
+    <tr>
+      <td>index.php</td>
+      <td>统一入口文件</td>
+    </tr>
+    <tr>
+      <td>act</td>
+      <td>控制器Controller</td>
+    </tr>
+    <tr>
+      <td>op</td>
+      <td>方法Function</td>
+    </tr>
+    <tr>
+      <td>&amp;=</td>
+      <td>url参数</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="mvc-结构">MVC 结构</h2>
+
+<p>shopnc 常见的mvc结构。每个模块对应自己的Controller层，template View层。Model为全局共享</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>数据模型(Model)  /data/model
+视图(View)  /shop/templates
+控制器(Controller) /shop/control
+</code></pre>
+</div>
+
+<h3 id="model-层">Model 层</h3>
+<ul>
+  <li>实例化商品模型
+    <div class="language-php highlighter-rouge"><pre class="highlight"><code>  $goods = Model('goods');
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<p>系统首先会查找data/model/goods.model.php文件及内部的memberModel类是否存在，如果存在会查找core\framework\libraries\model.php</p>
+
+<h3 id="controller-层">Controller 层</h3>
+
+<p>在shopnc里，基本每个controller 都会继承上级对应基础功能的Controller，方便使用相对应的方法以及数据传递。</p>
+
+<ul>
+  <li>
+    <p>BaseMemberControl
+```php
+class BaseMemberControl extends Control {
+  protected $member_info = array();   // 会员信息
+  public function __construct(){</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  if(!C('site_status')) halt(C('closed_reason'));
+
+  Language::read('common,member_layout');
+
+  if ($_GET['column'] &amp;&amp; strtoupper(CHARSET) == 'GBK'){
+      $_GET = Language::getGBK($_GET);
+  }
+  //会员验证
+  $this-&gt;checkLogin();
+  //输出头部的公用信息
+  $this-&gt;showLayout();
+  Tpl::setDir('member');
+  Tpl::setLayout('member_layout');
+
+  //获得会员信息
+  $this-&gt;member_info = $this-&gt;getMemberAndGradeInfo(true);
+  $this-&gt;member_info['voucher_count'] = Model('voucher')-&gt;getCurrentAvailableVoucherCount($_SESSION['member_id']);
+  $this-&gt;member_info['redpacket_count'] = Model('redpacket')-&gt;getCurrentAvailableRedpacketCount($_SESSION['member_id']);
+  Tpl::output('member_info', $this-&gt;member_info);
+
+  // 常用操作及导航
+  $menu_list = $this-&gt;_getNavLink();
+
+  //系统公告
+  $this-&gt;system_notice();
+
+  // 交易数量提示
+  $this-&gt;order_tip();
+
+  // 页面高亮
+  Tpl::output('act', $_GET['act']);   }
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<p>}</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+* memberControl
+```php
+class memberControl extends BaseMemberControl{
+
+    /**
+     * 我的商城
+     */
+    public function homeOp() {
+        Tpl::showpage('member_home');
+    }
+}
+
+</code></pre>
+</div>
+
+<h2 id="系统函数系统类第三方工具类">系统函数&amp;系统类&amp;第三方工具类</h2>
+
+<p>框架的核心部分</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>├─core…………………………………………………………………… 框架目录
+│  ├─framework……………………………………………………………………系统框架
+│  │  ├─cache……………………………………………………………………缓存驱动
+│  │  ├─core……………………………………………………………………核心文件
+│  │  ├─db……………………………………………………………………数据层驱动
+│  │  ├─function……………………………………………………………………系统方法
+│  │  └─libraries……………………………………………………………………类库
+│  └─language……………………………………………………………………框架语言包目录
+</code></pre>
+</div>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>
+ // 时间插件
+import('function.datehelper');
+$year_arr = getSystemYearArr();
+
+// Excel 工具类
+import('libraries.excel');
+$excel = new Excel();
+
+</code></pre>
+</div>
+
+<h2 id="加载语言包">加载语言包</h2>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>// 引入语言包文件
+Language::read('member_home_member');
+
+// 获取所有语言参数
+$lang   = Language::getLangContent();
+
+// 保存
+$save_succ = $lang['nc_common_save_succ'];
+
+</code></pre>
+</div>
+
+<h2 id="模板template">模板Template</h2>
+
+<h3 id="php-pc端模板">PHP PC端模板</h3>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="nb">defined</span><span class="p">(</span><span class="s1">'InShopNC'</span><span class="p">)</span> <span class="k">or</span> <span class="k">exit</span><span class="p">(</span><span class="s1">'Access Invalid!'</span><span class="p">);</span><span class="cp">?&gt;</span>
+
+<span class="c">&lt;!--上面是进行合法验证，在商城系统下的模板文件都需要进行该验证。--&gt;</span>
+
+<span class="cp">&lt;?php</span> <span class="k">include</span> <span class="nx">template</span><span class="p">(</span><span class="s1">'home/cur_local'</span><span class="p">);</span><span class="cp">?&gt;</span>
+
+<span class="c">&lt;!--上面是在品牌展示页面显示当前位置，实际输出内容为：当前位置：首页 &gt; 所有品牌 --&gt;</span>
+
+
+<span class="nt">&lt;h2&gt;&lt;b&gt;</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$lang</span><span class="p">[</span><span class="s1">'brand_index_brand_list'</span><span class="p">];</span><span class="cp">?&gt;</span><span class="nt">&lt;/b&gt;&lt;/h2&gt;</span>
+
+<span class="c">&lt;!--上面是输出标题，实际内容为：品牌列表--&gt;</span>
+
+<span class="c">&lt;!--$lang 数组内容为Language::read() 得到的语言包信息，--&gt;</span>
+
+<span class="c">&lt;!--使用Tpl::output抛出到模板的内容，保存到了$output数组中，保存下标名称为output方法的第一个参数值,--&gt;</span>
+<span class="cp">&lt;?php</span> <span class="k">if</span><span class="p">(</span><span class="nb">is_array</span><span class="p">(</span><span class="nv">$output</span><span class="p">[</span><span class="s1">'brand_list'</span><span class="p">])){</span><span class="cp">?&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="k">foreach</span><span class="p">(</span><span class="nv">$output</span><span class="p">[</span><span class="s1">'brand_list'</span><span class="p">]</span> <span class="k">as</span> <span class="nv">$key</span><span class="o">=&gt;</span><span class="nv">$val</span><span class="p">){</span><span class="cp">?&gt;</span>
+        <span class="c">&lt;!--循环输出品牌内容--&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"wrap"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;ul&gt;</span>
+                <span class="nt">&lt;li&gt;</span>
+                    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">ncUrl</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">'act'</span><span class="o">=&gt;</span><span class="s1">'brand'</span><span class="p">,</span><span class="s1">'op'</span><span class="o">=&gt;</span><span class="s1">'list'</span><span class="p">,</span><span class="s1">'brand'</span><span class="o">=&gt;</span><span class="nv">$brand</span><span class="p">[</span><span class="s1">'brand_id'</span><span class="p">]));</span><span class="cp">?&gt;</span><span class="s">"</span> <span class="nt">&gt;</span>
+                        <span class="c">&lt;!--生成跳转URL（伪静态或动态）--&gt;</span>
+                        <span class="nt">&lt;span&gt;&lt;img</span> <span class="na">src=</span><span class="s">"</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nx">ATTACH_BRAND</span><span class="o">.</span><span class="s1">'/'</span><span class="o">.</span><span class="nv">$brand</span><span class="p">[</span><span class="s1">'brand_pic'</span><span class="p">];</span><span class="cp">?&gt;</span><span class="s">"</span> <span class="na">alt=</span><span class="s">"</span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$brand</span><span class="p">[</span><span class="s1">'brand_name'</span><span class="p">];</span><span class="cp">?&gt;</span><span class="s">"</span> <span class="nt">/&gt;&lt;/span&gt;</span>
+                    <span class="nt">&lt;/a&gt;</span>
+                <span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;/ul&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="cp">&lt;?php</span> <span class="p">}</span><span class="cp">?&gt;</span>
+<span class="cp">&lt;?php</span> <span class="p">}</span><span class="cp">?&gt;</span>
+
+
+</code></pre>
+</div>
+
+<h3 id="手机端javascirpt模板">手机端JAVASCIRPT模板</h3>
+
+<h4 id="javascript-模板引擎基本原理">javascript 模板引擎基本原理</h4>
+
+<p>虽然每个引擎从模板语法、语法解析、变量赋值、字符串拼接的实现方式各有所不同，但关键的渲染原理仍然是动态执行 javascript 字符串。</p>
+
+<h4 id="功能概述">功能概述</h4>
+
+<p>提供一套模板语法，用户可以写一个模板区块，每次根据传入的数据，生成对应数据产生的HTML片段，渲染不同的效果。</p>
+
+<h4 id="特性">特性</h4>
+
+<ul>
+  <li>模版编译，渲染</li>
+  <li>支持所有主流浏览器及Node（UMD）</li>
+  <li>JavaScript原生语法</li>
+  <li>丰富的自定义配置</li>
+  <li>支持数据过滤</li>
+  <li>异常捕获功能</li>
+  <li>功能专一，简单好用</li>
+</ul>
+
+<p><a href="https://github.com/yanhaijing/template.js">git</a>
+<a href="https://github.com/yanhaijing/template.js/tree/master/demo">demo</a></p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>include demo<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"template.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"content"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;script </span><span class="na">id=</span><span class="s">"customTag"</span> <span class="na">type=</span><span class="s">"text/html"</span><span class="nt">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;&lt;%=</span> <span class="nx">header</span><span class="o">%&gt;&lt;</span><span class="sr">/h1</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span>
+        <span class="o">&lt;%</span> <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">tag</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span> <span class="o">%&gt;</span>
+            <span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;</span><span class="err">条目内容</span><span class="o">&lt;%=</span> <span class="nx">i</span><span class="o">+</span><span class="mi">1</span> <span class="o">%&gt;</span> <span class="err">:</span> <span class="o">&lt;%=</span> <span class="nx">tag</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">%&gt;&lt;</span><span class="sr">/li</span><span class="err">&gt;
+</span>        <span class="o">&lt;%</span> <span class="p">}</span> <span class="o">%&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/ul</span><span class="err">&gt;
+</span><span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+    <span class="nx">template</span><span class="p">.</span><span class="nx">openTag</span> <span class="o">=</span> <span class="s1">'&lt;%'</span><span class="p">;</span>
+    <span class="nx">template</span><span class="p">.</span><span class="nx">closeTag</span> <span class="o">=</span> <span class="s1">'%&gt;'</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">listdata</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">header</span> <span class="p">:</span> <span class="s1">'your study list'</span><span class="p">,</span>
+        <span class="na">tag</span> <span class="p">:</span> <span class="p">[</span><span class="s1">'算法导论'</span><span class="p">,</span><span class="s1">'php'</span><span class="p">,</span><span class="s1">'c#'</span><span class="p">,</span><span class="s1">'jquery'</span><span class="p">,</span><span class="s1">'vue.js'</span><span class="p">,</span><span class="s1">'python'</span><span class="p">]</span>
+    <span class="p">};</span>
+    <span class="kd">var</span> <span class="nx">resulthtml</span> <span class="o">=</span> <span class="nx">template</span><span class="p">.</span><span class="nx">render</span> <span class="p">(</span><span class="s1">'customTag'</span><span class="p">,</span> <span class="nx">listdata</span><span class="p">);</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'tagcontent'</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">resulthtml</span><span class="p">;</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+</div>
+
+<h2 id="系统常量">系统常量</h2>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>[ProjectName]=&gt; 项目名称
+[BUILDCORE]=&gt; 是否压缩框架（true/false）
+[BasePath]=&gt; 系统所在基准目录（如 /var/www/shopnc）
+[DS] =&gt; 目录分隔符 /
+[InShopNC]=&gt; 合法调用判断标志
+[StartTime]=&gt; 系统开始运行时间（如1350096132.6587）
+[TIMESTAMP]=&gt; 系统当前时间（如1350096132）
+[RUNCOREPATH]=&gt;压缩后的框架所在目录 (如 /var/www/shopnc/cache/~shopnc.php)
+[SiteUrl]=&gt; 商城URL地址（http://www.shopnc.net）
+[CHARSET]=&gt; 系统编码（UTF-8/GBK）
+[DBDRIVER]=&gt; 数据库访问驱动（mysqli、mysql、pdo_mysql、oci8）
+[SESSION_EXPIRE]=&gt; 缓存周期，单位（秒）
+[LANG_TYPE]=&gt; 语言包，默认简体中文zh_cn
+[COOKIE_PRE]=&gt; cookie前缀，系统自动生成
+[CORE_PATH]=&gt; 框架所在目录(如 /var/www/shopnc /framework)
+[TPL_NAME]=&gt; 模板风格，默认default
+[BASE_TPL_PATH]=&gt; 模板文件目录(如 /var/www/shopnc /templates/default)
+[RESOURCE_PATH]=&gt; 外部资源目录地址（如 http://www.shopnc.net/resource）
+[DBPRE] =&gt;数据库表前缀 默认shopnc_
+[ATTACH_PATH]=&gt; 附件目录，默认upload
+[ATTACH_COMMON]=&gt; 通用附件目录 默认upload/common
+[ATTACH_AVATAR]=&gt; 头像目录 默认 upload/avatar
+[ATTACH_STORE]=&gt; 店铺信息目录 默认 upload/store
+[ATTACH_GOODS]=&gt; 店铺产品目录 默认 upload/store/goods
+[ATTACH_AUTH]=&gt; 店铺证件目录 默认 upload/auth
+[ATTACH_MOBILE]=&gt; 手机客户端内容目录 默认upload/mobile
+[ATTACH_LINK]=&gt; 友情链接logo目录 默认upload/link
+[ATTACH_ARTICLE]=&gt; 文章附件目录 默认 upload/article
+[ATTACH_BRAND]=&gt; 品牌附件目录 默认 upload/brand
+[ATTACH_ADV]=&gt; 广告图片目录 默认 upload/adv
+[ATTACH_ACTIVITY]=&gt; 促销活动目录 默认 upload/activity
+[ATTACH_COUPON]=&gt; 优惠券目录 默认 upload/coupon
+[ATTACH_WATERMARK]=&gt; 水印图片目录 默认 upload/watermark
+[ATTACH_POINTPROD]=&gt; 积分商品图片目录 默认 upload/pointprod
+[ATTACH_SPEC]=&gt; 自定义规格图片目录 默认 upload/spec
+[ATTACH_GROUPBUY]=&gt; 团购图片目录 默认 upload/groupbuy
+[ATTACH_SLIDE]=&gt; 店铺二维码目录 默认 upload/store/slide
+[ATTACH_VOUCHER]=&gt; 代金券模板目录 默认upload/voucher
+[TEMPLATES_PATH]=&gt; 模板URL访问地址（如http://www.shopnc.net/templates/default）
+[MD5_KEY]=&gt; MD5_KEY值 系统自动生成
+
+</code></pre>
+</div>
+
+<h2 id="定时任务">定时任务</h2>
+<div class="highlighter-rouge"><pre class="highlight"><code>crontab -e
+# Linux下定时任务设置示例
+# php安装路径 /usr/local/php
+# 商城安装路径 /wwwroot/shopnc
+
+# 执行频率：10分钟，[更新商品促销状态、首页商品信息、邮件通知等]
+*/10 * * * * /usr/local/php/bin/php /wwwroot/shopnc/crontab/index.php minutes
+# 执行频率：1小时，[更新全文索引]
+0 */1 * * * /usr/local/php/bin/php /wwwroot/shopnc/crontab/index.php hour
+# 执行频率：1天，[订单超期自动处理、售后超时处理、代金券虚拟码等过期提醒、更新统计等]
+0 3 * * * /usr/local/php/bin/php /wwwroot/shopnc/crontab/index.php date
+# 执行频率：1个月，[生成结算]
+0 4 1 * * /usr/local/php/bin/php /wwwroot/shopnc/crontab/index.php month
+</code></pre>
+</div>
+
+<h2 id="内置orm">内置ORM</h2>
+
+<h2 id="日志">日志</h2>
+
+<p>系统内置一个简单日志类。用来添加日志方便记录信息。</p>
+
+<p>使用方法：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+$message = 'test';
+$level = 'err'; // err or sql
+
+Log::record($message,$level);
+</code></pre>
+</div>
+
+<p>生成文件:</p>
+
+<p>data/log/20170918.log</p>
+
+<h2 id="二次开发规范">二次开发规范</h2>
+
+<h3 id="关于代码层面">关于代码层面</h3>
+
+<ol>
+  <li>代码标记建议使用标准形式（<?php…… ?>），不建议使用简写形式（<? …… ?>），如果服务器未开启对短标记的支持（short_open_tag = Off），将会有暴露源码的危险。</li>
+  <li>模板中输出变量使用“echo” 输出,以分号结尾，不建议使用“=”输出。
+```php
+$color = “red”;</li>
+</ol>
+<p>Roses are <?=$color?></p>
+<p>// 不建议使用</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>3. 对于函数级、类类及文件头注释使用C样式的注释“/* */”，对于代码行（段）的注释可使用标准C++注释”//”。
+
+4. 建议使用缩进保持代码的层级关系，每个缩进的单位约定是一个TAB(4个空白字符宽度)，开发工具建议使用Zend Studio、UltraEdit、EditPlus等编辑器。
+
+5. 关于PHP变量的命名规则，建议以英文拼写为蓝本，遵循简洁和可读性原则。
+</code></pre>
+</div>
+<p>$store_info = [];</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+6. 全局常量的定义要统一使用大写，单词之间使用下划线连接。
+
+7. 开发时，代码的error_reporting报错级别建议设置为E_ALL &amp; ~E_NOTICE。
+
+8. Include，require包含文件时建议使用绝对路径，框架底层引入文件可使用Include，require（不带once效率高一些），在业务逻辑层引入文件时可使用Include_once，require_once。
+```php
+// 本框架使用
+import('function.datehelper');
+
+</code></pre>
+</div>
+
+<h3 id="关于数据库">关于数据库</h3>
+
+<ol>
+  <li>表和字段命名同样应以英文拼写为蓝本，遵循简洁和可读性原则，长度适中，建议长度在30个字符内，否则跨库迁移可能会存在麻烦。</li>
+  <li>字段类型设置应遵循足够用不浪费的原则。</li>
+  <li>SQL语句中，除了表名、字段名称以外，全部语句和函数均应大写。</li>
+  <li>尽可能避免直接编写SQL语句去执行，提倡使用系统数据库操作层相应入口来完成。</li>
+  <li>索引可以加快检索速度，但不易过多，单个表建议不超过5个索引。</li>
+</ol>
+
+<h3 id="关于目录的安全">关于目录的安全</h3>
+
+<ol>
+  <li>文件与目录命名均使用小写字母，php文件后缀均为“.php”，</li>
+  <li>请在敏感目录中放置一个1字节的index.html文件，内容为一个空格，以避免当http服务器的Directory Listing打开时，服务器文件被索引和列表。</li>
+</ol>
+
+<p>```</p>
+
+<p>[开发规范参考网上]</p>
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">小浪Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              小浪Blog
+            
+            </li>
+            
+            <li><a href="mailto:474647150@qq.com">474647150@qq.com</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/cjjmem"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">cjjmem</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>其實很簡單</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
