@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>windows10环境下构建chromium开源浏览器</title>
+  <meta name="description" content="构建chromium">
+
+  <link rel="stylesheet" href="/page/assets/main.css">
+  <link rel="canonical" href="https://cjjmem.github.io/page/page/jekyll/update/2017/12/05/chromium-developer.html">
+  <link rel="alternate" type="application/rss+xml" title="小浪Blog" href="/page/feed.xml">
+  
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/page/">小浪Blog</a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+            <a class="page-link" href="/page/about/">关于我</a>
+            
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/page/resume/">我的简历</a>
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">windows10环境下构建chromium开源浏览器</h1>
+    <p class="post-meta">
+      <time datetime="2017-12-05T09:56:00+08:00" itemprop="datePublished">
+        
+        Dec 5, 2017
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h1 id="构建chromium">构建chromium</h1>
+
+<h2 id="编译环境">编译环境</h2>
+<ul>
+  <li>操作系统 win10 企业版 1709</li>
+  <li>编辑工具 Visual Studio 2017 社区免费版</li>
+  <li>内存16G</li>
+  <li>磁盘大小250G</li>
+</ul>
+
+<h2 id="安装">安装</h2>
+
+<ul>
+  <li>编辑工具 Visual Studio 2017
+    <ul>
+      <li><a href="https://www.visualstudio.com/zh-hans/thank-you-downloading-visual-studio/?sku=Community&amp;rel=15">下载地址</a></li>
+    </ul>
+  </li>
+  <li>WINDOWS SDK 10
+    <ul>
+      <li><a href="https://developer.microsoft.com/zh-cn/windows/downloads/windows-10-sdk">下载地址</a></li>
+    </ul>
+  </li>
+  <li>Windows Driver Kit for Windows 10  驱动程序工具包 (1709)
+    <ul>
+      <li><a href="https://developer.microsoft.com/zh-cn/windows/hardware/windows-driver-kit">下载地址</a></li>
+    </ul>
+  </li>
+  <li>depot_tools 工具
+<a href="https://storage.googleapis.com/chrome-infra/depot_tools.zip">下载地址</a></li>
+</ul>
+
+<h2 id="设置系统环境变量">设置系统环境变量</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>系统变量</th>
+      <th>值</th>
+      <th>备注</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PATH</td>
+      <td>C:\src\depot_tools</td>
+      <td>depot_tools安装目录 移动到最顶端</td>
+    </tr>
+    <tr>
+      <td>DEPOT_TOOLS_WIN_TOOLCHAIN</td>
+      <td>0</td>
+      <td>告诉depot_tools使用您本地安装的Visual Studio版本（缺省情况下，depot_tools将尝试使用Google内部版本）</td>
+    </tr>
+    <tr>
+      <td>GYP_GENERATORS</td>
+      <td>msvs-ninja,ninja</td>
+      <td>指定编译工具</td>
+    </tr>
+    <tr>
+      <td>GYP_MSVS_OVERRIDE_PATH</td>
+      <td>E:\Program Files (x86)\MV2017</td>
+      <td>Visual Studio 安装目录</td>
+    </tr>
+    <tr>
+      <td>GYP_DEFINES</td>
+      <td>Chromium buildtype=Dev component=shared_library disable_nacl=1</td>
+      <td>依赖</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="部署过程">部署过程</h2>
+
+<p>公司提供专用的VPN通道，无需解决翻墙问题。</p>
+
+<h3 id="一安装visual-studio-2017-工具">一.安装Visual Studio 2017 工具</h3>
+
+<ul>
+  <li>使用C++的桌面开发</li>
+  <li>Visalt Studio 扩展开发</li>
+  <li>[单个组件]Windows 10 SDK (10.0.15063.0) for Desktop c++ [x86 and x64]</li>
+  <li>[单个组建] MFC 和</li>
+  <li>Windows DriverKit(通过链接下载安装)<a href="https://developer.microsoft.com/zh-cn/windows/hardware/windows-driver-kit">下载地址</a></li>
+</ul>
+
+<h3 id="二通过depot_tools工具获取代码">二.通过depot_tools工具获取代码</h3>
+
+<ol>
+  <li>执行gclient命令，安装python + msysgit
+```
+gclient</li>
+</ol>
+
+<p>// 执行成功提示版本信息
+python -v
+git</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>2. 设置git配置信息
+
+</code></pre>
+</div>
+<p>git config –global user.name “My Name”
+git config –global user.email “my-name@chromium.org”
+git config –global core.autocrlf false
+git config –global core.filemode false
+git config –global branch.autosetuprebase always</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>3. 创建chromium为目录
+
+</code></pre>
+</div>
+<p>mkdir chromium &amp;&amp; cd chromium</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+4. 运行该fetch工具depot_tools检查代码及其依赖关系，下载代码（大约18G左右）
+</code></pre>
+</div>
+<p>// 建议不要使用 fetch –no-history chromium 命令
+// 获取全部代码包括git记录
+fetch chromium</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+### 三.根据需要切换分支tag版本
+
+1. 获取tags
+
+</code></pre>
+</div>
+<p>git fetch -t
+git checkout -b <local-branch-name> tags/<tag name=""></tag></local-branch-name></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+示例：
+
+</code></pre>
+</div>
+<p>https://chromium.googlesource.com/chromium/src.git/+refs
+git checkout -b <local-branch-name> tag的sha1值</local-branch-name></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+2. 同步子projects,根据src\DEPS内的配置将依赖的库checkout到需要的revision [Uri](https://chromium.googlesource.com/chromium/src.git/+log/57.0.2987.133/DEPS)
+
+</code></pre>
+</div>
+<p>gclient sync</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+在编译时遇到fatal: reference is not a tree: webrtc
+
+</code></pre>
+</div>
+<p>// 用这个版本替换了DEPS文件中的版本
+git checkout d68fcc42256f0f6483d562aa69531091560ff9f2
+gclient sync</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+### 四.使用Gn构建工具生成编译方案
+
+1. 修改编译方案
+
+</code></pre>
+</div>
+<p>::启用official build
+::修改src\build\config\BUILDCONFIG.gn，将is_official_build的值改为true</p>
+
+<p>::去掉显示头文件的包含树
+::修改src\build\toolchain\win\BUILD.gn，将/showIncludes删除掉</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+2. 生成ninja编译脚本 [gn配置](
+https://sites.google.com/a/chromium.org/dev/developers/gn-build-configuration)
+</code></pre>
+</div>
+<p>cd src
+gn gen out/Default</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+3. 修改ninja编译参数，如target_os="win"，target_cpu="x64"等  [参考链接](https://chromium.googlesource.com/chromium/src/+/master/tools/gn/docs/quick_start.md)
+
+</code></pre>
+</div>
+<p>gn args out/Default</p>
+
+<p>is_debug = false
+symbol_level = 0
+enable_nacl = false
+target_cpu = “x64”
+target_os = “win”
+google_api_key = “AIzaSyBPsfyKutEqu_7liVtbYqrY7QKlYsd8xoU”
+google_default_client_id = “1000406808719-ghvvdlf749dvc6cvvqpb9uqi9l66tg9d.apps.googleusercontent.com”
+google_default_client_secret = “XWhKLxZGu1Q70PSB5ikSycTb”</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+### 五.开始编译
+
+</code></pre>
+</div>
+<p>ninja -C out/Default chrome
+```</p>
+
+<p>经过10小时左右的编译，终于成功编译出第一个chromium浏览器</p>
+
+<h2 id="参考文档">参考文档</h2>
+<p><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md">Checking out and Building Chromium for Windows</a>
+<a href="http://blog.csdn.net/baihacker/article/details/68948978?locationNum=9&amp;fps=1">docs</a>
+<a href="https://cs.chromium.org/chromium/src/chrome/browser/extensions/api/preference/preference_api.cc?type=cs&amp;sq=package:chromium">代码搜索</a></p>
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">小浪Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              小浪Blog
+            
+            </li>
+            
+            <li><a href="mailto:474647150@qq.com">474647150@qq.com</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/cjjmem"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">cjjmem</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>其實很簡單</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
