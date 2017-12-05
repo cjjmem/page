@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://cjjmem.github.io/page/page/feed.xml" rel="self" type="application/atom+xml" /><link href="https://cjjmem.github.io/page/page/" rel="alternate" type="text/html" /><updated>2017-12-05T15:20:17+08:00</updated><id>https://cjjmem.github.io/page/page/</id><title type="html">小浪Blog</title><subtitle>其實很簡單</subtitle><entry><title type="html">chromium从编译到入门开发</title><link href="https://cjjmem.github.io/page/page/jekyll/update/2017/12/05/chromium-01-developer.html" rel="alternate" type="text/html" title="chromium从编译到入门开发" /><published>2017-12-05T10:56:00+08:00</published><updated>2017-12-05T10:56:00+08:00</updated><id>https://cjjmem.github.io/page/page/jekyll/update/2017/12/05/chromium-01-developer</id><content type="html" xml:base="https://cjjmem.github.io/page/page/jekyll/update/2017/12/05/chromium-01-developer.html">&lt;h1 id=&quot;chromium从编译到入门开发&quot;&gt;chromium从编译到入门开发&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://localhost:4000/page/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/page/" rel="alternate" type="text/html" /><updated>2017-12-05T18:01:09+08:00</updated><id>http://localhost:4000/page/</id><title type="html">小浪Blog</title><subtitle>其實很簡單</subtitle><entry><title type="html">chromium从编译到入门开发</title><link href="http://localhost:4000/page/jekyll/update/2017/12/05/chromium-01-developer.html" rel="alternate" type="text/html" title="chromium从编译到入门开发" /><published>2017-12-05T10:56:00+08:00</published><updated>2017-12-05T10:56:00+08:00</updated><id>http://localhost:4000/page/jekyll/update/2017/12/05/chromium-01-developer</id><content type="html" xml:base="http://localhost:4000/page/jekyll/update/2017/12/05/chromium-01-developer.html">&lt;h1 id=&quot;chromium从编译到入门开发&quot;&gt;chromium从编译到入门开发&lt;/h1&gt;
 
 &lt;p&gt;chromium因为环境问题编译一直出现报错，断断续续的等待终于编译出第一个chromium浏览器,然而这才是开始，接下来让我们认识一下chromium….&lt;/p&gt;
 
@@ -64,12 +64,12 @@
 &lt;h3 id=&quot;2修改浏览器名字logo文案等&quot;&gt;2.修改浏览器名字,LOGO,文案等&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;浏览器名称
-```
-..\src\chrome\app\theme\chromium\BRANDING&lt;/li&gt;
+  &lt;li&gt;浏览器名称&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;COMPANY_FULLNAME=The Chromium Authors
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;..\src\chrome\app\theme\chromium\BRANDING
+
+COMPANY_FULLNAME=The Chromium Authors
 COMPANY_SHORTNAME=The Chromium Authors
 PRODUCT_FULLNAME=Chromium
 PRODUCT_SHORTNAME=Chromium
@@ -77,43 +77,48 @@ PRODUCT_INSTALLER_FULLNAME=Chromium Installer
 PRODUCT_INSTALLER_SHORTNAME=Chromium Installer
 COPYRIGHT=Copyright 2017 The Chromium Authors. All rights reserved.
 MAC_BUNDLE_ID=org.chromium.Chromium
-MAC_CREATOR_CODE=Cr24&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-* LOGO图标
-
+MAC_CREATOR_CODE=Cr24
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;..\src\chrome\app\theme\chromium
+
+&lt;ul&gt;
+  &lt;li&gt;LOGO图标&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;..\src\chrome\app\theme\chromium
 ..\src\chrome\app\theme\chromium\win\chromium.ico
 ..\src\chrome\app\theme\chromium\win\tiles\Logo.png
 ..\src\chrome\app\theme\chromium\win\tiles\SmallLogo.png
 ..\src\chrome\app\theme\default_100_percent
-..\src\chrome\app\theme\default_200_percent&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-* 所有各种语言的文案 **.xtb**语言包
+..\src\chrome\app\theme\default_200_percent
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;..\src\chrome\app\resources
-..\src\components\strings&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-## 增加默认插件
 
-由于对Chromium源码不熟悉，看到网上各种关于添加默认插件Blog比较旧，采用以下方法进行尝试：
+&lt;ul&gt;
+  &lt;li&gt;所有各种语言的文案 &lt;strong&gt;.xtb&lt;/strong&gt;语言包&lt;/li&gt;
+&lt;/ul&gt;
 
-```c++
-// ..src\chromiums\chromium\src\chrome\browser\extensions\component_loader.cc
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;..\src\chrome\app\resources
+..\src\components\strings
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-// 注释默认安装
+&lt;h2 id=&quot;增加默认插件&quot;&gt;增加默认插件&lt;/h2&gt;
 
-void ComponentLoader::AddHotwordAudioVerificationApp() {
-// #if defined(ENABLE_HOTWORDING)
+&lt;p&gt;由于对Chromium源码不熟悉，看到网上各种关于添加默认插件Blog比较旧，采用以下方法进行尝试：&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// ..src\chromiums\chromium\src\chrome\browser\extensions\component_loader.cc
+&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 注释默认安装
+&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ComponentLoader&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AddHotwordAudioVerificationApp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// #if defined(ENABLE_HOTWORDING)
 //  if (HotwordServiceFactory::IsAlwaysOnAvailable()) {
-    Add(IDR_HOTWORD_AUDIO_VERIFICATION_MANIFEST,
-        base::FilePath(FILE_PATH_LITERAL(&quot;hotword_audio_verification&quot;)));
-//  }
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IDR_HOTWORD_AUDIO_VERIFICATION_MANIFEST&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FilePath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FILE_PATH_LITERAL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hotword_audio_verification&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)));&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//  }
 // #endif
-}
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -125,7 +130,7 @@ void ComponentLoader::AddHotwordAudioVerificationApp() {
   &lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/jianglong0156/article/details/45646271&quot;&gt;chromium定制启动首页&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://chromium.googlesource.com/chromium/src/+/master/docs/&quot;&gt;文档&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://ahangchen.gitbooks.io/chromium_doc_zh/content/en/General_Architecture/&quot;&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">chromium从编译到入门开发</summary></entry><entry><title type="html">windows10环境下构建chromium开源浏览器</title><link href="https://cjjmem.github.io/page/page/jekyll/update/2017/12/05/chromium-developer.html" rel="alternate" type="text/html" title="windows10环境下构建chromium开源浏览器" /><published>2017-12-05T09:56:00+08:00</published><updated>2017-12-05T09:56:00+08:00</updated><id>https://cjjmem.github.io/page/page/jekyll/update/2017/12/05/chromium-developer</id><content type="html" xml:base="https://cjjmem.github.io/page/page/jekyll/update/2017/12/05/chromium-developer.html">&lt;h1 id=&quot;构建chromium&quot;&gt;构建chromium&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">chromium从编译到入门开发</summary></entry><entry><title type="html">windows10环境下构建chromium开源浏览器</title><link href="http://localhost:4000/page/jekyll/update/2017/12/05/chromium-developer.html" rel="alternate" type="text/html" title="windows10环境下构建chromium开源浏览器" /><published>2017-12-05T09:56:00+08:00</published><updated>2017-12-05T09:56:00+08:00</updated><id>http://localhost:4000/page/jekyll/update/2017/12/05/chromium-developer</id><content type="html" xml:base="http://localhost:4000/page/jekyll/update/2017/12/05/chromium-developer.html">&lt;h1 id=&quot;构建chromium&quot;&gt;构建chromium&lt;/h1&gt;
 
 &lt;h2 id=&quot;编译环境&quot;&gt;编译环境&lt;/h2&gt;
 &lt;ul&gt;
@@ -154,7 +159,10 @@ void ComponentLoader::AddHotwordAudioVerificationApp() {
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;depot_tools 工具
-&lt;a href=&quot;https://storage.googleapis.com/chrome-infra/depot_tools.zip&quot;&gt;下载地址&lt;/a&gt;&lt;/li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;https://storage.googleapis.com/chrome-infra/depot_tools.zip&quot;&gt;下载地址&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;设置系统环境变量&quot;&gt;设置系统环境变量&lt;/h2&gt;
@@ -213,114 +221,134 @@ void ComponentLoader::AddHotwordAudioVerificationApp() {
 &lt;h3 id=&quot;二通过depot_tools工具获取代码&quot;&gt;二.通过depot_tools工具获取代码&lt;/h3&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;执行gclient命令，安装python + msysgit
-```
-gclient&lt;/li&gt;
+  &lt;li&gt;执行gclient命令，安装python + msysgit&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;// 执行成功提示版本信息
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gclient
+
+// 执行成功提示版本信息
 python -v
-git&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2. 设置git配置信息
+git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ol&gt;
+  &lt;li&gt;设置git配置信息&lt;/li&gt;
+&lt;/ol&gt;
 
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git config --global user.name &quot;My Name&quot;
+git config --global user.email &quot;my-name@chromium.org&quot;
+git config --global core.autocrlf false
+git config --global core.filemode false
+git config --global branch.autosetuprebase always
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;git config –global user.name “My Name”
-git config –global user.email “my-name@chromium.org”
-git config –global core.autocrlf false
-git config –global core.filemode false
-git config –global branch.autosetuprebase always&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;3. 创建chromium为目录
 
+&lt;ol&gt;
+  &lt;li&gt;创建chromium为目录&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkdir chromium &amp;amp;&amp;amp; cd chromium
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;mkdir chromium &amp;amp;&amp;amp; cd chromium&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-4. 运行该fetch工具depot_tools检查代码及其依赖关系，下载代码（大约18G左右）
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;// 建议不要使用 fetch –no-history chromium 命令
+
+&lt;ol&gt;
+  &lt;li&gt;运行该fetch工具depot_tools检查代码及其依赖关系，下载代码（大约18G左右）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 建议不要使用 fetch --no-history chromium 命令
 // 获取全部代码包括git记录
-fetch chromium&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-### 三.根据需要切换分支tag版本
-
-1. 获取tags
-
+fetch chromium
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;git fetch -t
-git checkout -b &lt;local-branch-name&gt; tags/&lt;tag name=&quot;&quot;&gt;&lt;/tag&gt;&lt;/local-branch-name&gt;&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-示例：
 
+&lt;h3 id=&quot;三根据需要切换分支tag版本&quot;&gt;三.根据需要切换分支tag版本&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;获取tags&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git fetch -t
+git checkout -b &amp;lt;local-branch-name&amp;gt; tags/&amp;lt;tag name&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;https://chromium.googlesource.com/chromium/src.git/+refs
-git checkout -b &lt;local-branch-name&gt; tag的sha1值&lt;/local-branch-name&gt;&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-2. 同步子projects,根据src\DEPS内的配置将依赖的库checkout到需要的revision [Uri](https://chromium.googlesource.com/chromium/src.git/+log/57.0.2987.133/DEPS)
 
+&lt;p&gt;示例：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://chromium.googlesource.com/chromium/src.git/+refs
+git checkout -b &amp;lt;local-branch-name&amp;gt; tag的sha1值
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;gclient sync&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-在编译时遇到fatal: reference is not a tree: webrtc
 
+&lt;ol&gt;
+  &lt;li&gt;同步子projects,根据src\DEPS内的配置将依赖的库checkout到需要的revision &lt;a href=&quot;https://chromium.googlesource.com/chromium/src.git/+log/57.0.2987.133/DEPS&quot;&gt;Uri&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gclient sync
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;// 用这个版本替换了DEPS文件中的版本
+
+&lt;p&gt;在编译时遇到fatal: reference is not a tree: webrtc&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 用这个版本替换了DEPS文件中的版本
 git checkout d68fcc42256f0f6483d562aa69531091560ff9f2
-gclient sync&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-### 四.使用Gn构建工具生成编译方案
-
-1. 修改编译方案
-
+gclient sync
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;::启用official build
-::修改src\build\config\BUILDCONFIG.gn，将is_official_build的值改为true&lt;/p&gt;
 
-&lt;p&gt;::去掉显示头文件的包含树
-::修改src\build\toolchain\win\BUILD.gn，将/showIncludes删除掉&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-2. 生成ninja编译脚本 [gn配置](
-https://sites.google.com/a/chromium.org/dev/developers/gn-build-configuration)
+&lt;h3 id=&quot;四使用gn构建工具生成编译方案&quot;&gt;四.使用Gn构建工具生成编译方案&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;修改编译方案&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;::启用official build
+::修改src\build\config\BUILDCONFIG.gn，将is_official_build的值改为true
+
+::去掉显示头文件的包含树
+::修改src\build\toolchain\win\BUILD.gn，将/showIncludes删除掉
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;cd src
-gn gen out/Default&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-3. 修改ninja编译参数，如target_os=&quot;win&quot;，target_cpu=&quot;x64&quot;等  [参考链接](https://chromium.googlesource.com/chromium/src/+/master/tools/gn/docs/quick_start.md)
 
+&lt;ol&gt;
+  &lt;li&gt;生成ninja编译脚本 &lt;a href=&quot;https://sites.google.com/a/chromium.org/dev/developers/gn-build-configuration&quot;&gt;gn配置&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd src
+gn gen out/Default
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;gn args out/Default&lt;/p&gt;
 
-&lt;p&gt;is_debug = false
+&lt;ol&gt;
+  &lt;li&gt;修改ninja编译参数，如target_os=”win”，target_cpu=”x64”等  &lt;a href=&quot;https://chromium.googlesource.com/chromium/src/+/master/tools/gn/docs/quick_start.md&quot;&gt;参考链接&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gn args out/Default
+
+
+is_debug = false
 symbol_level = 0
 enable_nacl = false
-target_cpu = “x64”
-target_os = “win”
-google_api_key = “AIzaSyBPsfyKutEqu_7liVtbYqrY7QKlYsd8xoU”
-google_default_client_id = “1000406808719-ghvvdlf749dvc6cvvqpb9uqi9l66tg9d.apps.googleusercontent.com”
-google_default_client_secret = “XWhKLxZGu1Q70PSB5ikSycTb”&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-### 五.开始编译
+target_cpu = &quot;x64&quot;
+target_os = &quot;win&quot;
+google_api_key = &quot;AIzaSyBPsfyKutEqu_7liVtbYqrY7QKlYsd8xoU&quot;
+google_default_client_id = &quot;1000406808719-ghvvdlf749dvc6cvvqpb9uqi9l66tg9d.apps.googleusercontent.com&quot;
+google_default_client_secret = &quot;XWhKLxZGu1Q70PSB5ikSycTb&quot;
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;ninja -C out/Default chrome
-```&lt;/p&gt;
+
+&lt;h3 id=&quot;五开始编译&quot;&gt;五.开始编译&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ninja -C out/Default chrome
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;经过10小时左右的编译，终于成功编译出第一个chromium浏览器&lt;/p&gt;
 
 &lt;h2 id=&quot;参考文档&quot;&gt;参考文档&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://chromium.googlesource.com/chromium/src/+/master/docs/windows_build_instructions.md&quot;&gt;Checking out and Building Chromium for Windows&lt;/a&gt;
 &lt;a href=&quot;http://blog.csdn.net/baihacker/article/details/68948978?locationNum=9&amp;amp;fps=1&quot;&gt;docs&lt;/a&gt;
-&lt;a href=&quot;https://cs.chromium.org/chromium/src/chrome/browser/extensions/api/preference/preference_api.cc?type=cs&amp;amp;sq=package:chromium&quot;&gt;代码搜索&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">构建chromium</summary></entry><entry><title type="html">shopnc开发手册</title><link href="https://cjjmem.github.io/page/page/jekyll/update/2017/09/15/shopnc-developer.html" rel="alternate" type="text/html" title="shopnc开发手册" /><published>2017-09-15T19:56:00+08:00</published><updated>2017-09-15T19:56:00+08:00</updated><id>https://cjjmem.github.io/page/page/jekyll/update/2017/09/15/shopnc-developer</id><content type="html" xml:base="https://cjjmem.github.io/page/page/jekyll/update/2017/09/15/shopnc-developer.html">&lt;h1 id=&quot;shopnc-b2b2c&quot;&gt;shopNC B2B2C&lt;/h1&gt;
+&lt;a href=&quot;https://cs.chromium.org/chromium/src/chrome/browser/extensions/api/preference/preference_api.cc?type=cs&amp;amp;sq=package:chromium&quot;&gt;代码搜索&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">构建chromium</summary></entry><entry><title type="html">shopnc开发手册</title><link href="http://localhost:4000/page/jekyll/update/2017/09/15/shopnc-developer.html" rel="alternate" type="text/html" title="shopnc开发手册" /><published>2017-09-15T19:56:00+08:00</published><updated>2017-09-15T19:56:00+08:00</updated><id>http://localhost:4000/page/jekyll/update/2017/09/15/shopnc-developer</id><content type="html" xml:base="http://localhost:4000/page/jekyll/update/2017/09/15/shopnc-developer.html">&lt;h1 id=&quot;shopnc-b2b2c&quot;&gt;shopNC B2B2C&lt;/h1&gt;
 
 &lt;h2 id=&quot;环境配置&quot;&gt;环境&amp;amp;配置&lt;/h2&gt;
 
@@ -836,7 +864,7 @@ import('function.datehelper');
 
 &lt;p&gt;```&lt;/p&gt;
 
-&lt;p&gt;[开发规范参考网上]&lt;/p&gt;</content><author><name></name></author><summary type="html">shopNC B2B2C</summary></entry><entry><title type="html">小小压力测试</title><link href="https://cjjmem.github.io/page/page/jekyll/update/2017/08/31/apache-benchmark.html" rel="alternate" type="text/html" title="小小压力测试" /><published>2017-08-31T19:56:00+08:00</published><updated>2017-08-31T19:56:00+08:00</updated><id>https://cjjmem.github.io/page/page/jekyll/update/2017/08/31/apache-benchmark</id><content type="html" xml:base="https://cjjmem.github.io/page/page/jekyll/update/2017/08/31/apache-benchmark.html">&lt;h1 id=&quot;apache-benchmark&quot;&gt;Apache benchmark&lt;/h1&gt;
+&lt;p&gt;[开发规范参考网上]&lt;/p&gt;</content><author><name></name></author><summary type="html">shopNC B2B2C</summary></entry><entry><title type="html">小小压力测试</title><link href="http://localhost:4000/page/jekyll/update/2017/08/31/apache-benchmark.html" rel="alternate" type="text/html" title="小小压力测试" /><published>2017-08-31T19:56:00+08:00</published><updated>2017-08-31T19:56:00+08:00</updated><id>http://localhost:4000/page/jekyll/update/2017/08/31/apache-benchmark</id><content type="html" xml:base="http://localhost:4000/page/jekyll/update/2017/08/31/apache-benchmark.html">&lt;h1 id=&quot;apache-benchmark&quot;&gt;Apache benchmark&lt;/h1&gt;
 &lt;p&gt;简称ab ，是非常有名又小巧的压力测试工具。非常简单好用。&lt;/p&gt;
 
 &lt;h2 id=&quot;安装&quot;&gt;安装&lt;/h2&gt;
@@ -920,7 +948,7 @@ Waiting:       从发送 HTTP 要求完后，到 HTTP 回应(Response)第一个 
 Total:           等于 Connect + Processing 的时间（因为 Waiting 包含在 Processing 时间内了）换
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;a href=&quot;http://httpd.apache.org/docs/2.0/programs/ab.html&quot;&gt;官方文档&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Apache benchmark 简称ab ，是非常有名又小巧的压力测试工具。非常简单好用。</summary></entry><entry><title type="html">学习redis</title><link href="https://cjjmem.github.io/page/page/jekyll/update/2017/07/06/redis.html" rel="alternate" type="text/html" title="学习redis" /><published>2017-07-06T17:56:00+08:00</published><updated>2017-07-06T17:56:00+08:00</updated><id>https://cjjmem.github.io/page/page/jekyll/update/2017/07/06/redis</id><content type="html" xml:base="https://cjjmem.github.io/page/page/jekyll/update/2017/07/06/redis.html">&lt;h1 id=&quot;redis&quot;&gt;Redis&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;http://httpd.apache.org/docs/2.0/programs/ab.html&quot;&gt;官方文档&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Apache benchmark 简称ab ，是非常有名又小巧的压力测试工具。非常简单好用。</summary></entry><entry><title type="html">学习redis</title><link href="http://localhost:4000/page/jekyll/update/2017/07/06/redis.html" rel="alternate" type="text/html" title="学习redis" /><published>2017-07-06T17:56:00+08:00</published><updated>2017-07-06T17:56:00+08:00</updated><id>http://localhost:4000/page/jekyll/update/2017/07/06/redis</id><content type="html" xml:base="http://localhost:4000/page/jekyll/update/2017/07/06/redis.html">&lt;h1 id=&quot;redis&quot;&gt;Redis&lt;/h1&gt;
 
 &lt;p&gt;redis是一个开源的、使用C语言编写的、支持网络交互的、可基于内存也可持久化的Key-Value数据库。&lt;/p&gt;
 
@@ -1398,7 +1426,7 @@ class UserController extends Controller {
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name></name></author><summary type="html">Redis</summary></entry><entry><title type="html">windows下搭建Laravel Homestead</title><link href="https://cjjmem.github.io/page/page/jekyll/update/2017/06/13/laravel-homestead.html" rel="alternate" type="text/html" title="windows下搭建Laravel Homestead" /><published>2017-06-13T20:29:03+08:00</published><updated>2017-06-13T20:29:03+08:00</updated><id>https://cjjmem.github.io/page/page/jekyll/update/2017/06/13/laravel-homestead</id><content type="html" xml:base="https://cjjmem.github.io/page/page/jekyll/update/2017/06/13/laravel-homestead.html">&lt;h1 id=&quot;laravel-homestead&quot;&gt;Laravel Homestead&lt;/h1&gt;
+&lt;/div&gt;</content><author><name></name></author><summary type="html">Redis</summary></entry><entry><title type="html">windows下搭建Laravel Homestead</title><link href="http://localhost:4000/page/jekyll/update/2017/06/13/laravel-homestead.html" rel="alternate" type="text/html" title="windows下搭建Laravel Homestead" /><published>2017-06-13T20:29:03+08:00</published><updated>2017-06-13T20:29:03+08:00</updated><id>http://localhost:4000/page/jekyll/update/2017/06/13/laravel-homestead</id><content type="html" xml:base="http://localhost:4000/page/jekyll/update/2017/06/13/laravel-homestead.html">&lt;h1 id=&quot;laravel-homestead&quot;&gt;Laravel Homestead&lt;/h1&gt;
 
 &lt;p&gt;Laravel Homestead是一个官方的、预封装的Vagrant“箱子”，Homestead能运行在所有的Windows、Mac或Linux系统上，它包含了Nginx、PHP 5.6、MySQL、Postgres、Redis、Memcached和你开发神奇的Laravel应用程序需要的所有其它软件。让初学者不用为环境问题而烦恼，減少浪费时间在架设 Laravel。
 由于网络、操作系统等不同安装过程可能出现各种各样的问题，这里主要不是介绍如何解决这些问题。本经验通过Windows 7下成功的安装过程向大家介绍如何安装Homestead2.0。&lt;/p&gt;
@@ -1416,7 +1444,7 @@ class UserController extends Controller {
 &lt;p&gt;如果网络正常就慢慢等待下载然后添加，这里由于网络的原因我试了很多次都失败了，最后直接复制下载链接
  https://atlas.hashicorp.com/laravel/boxes/homestead/versions/2.1.0/providers/virtualbox.box下载保存到F:\virtualbox.box，然后通过&lt;/p&gt;
 
-&lt;p&gt;vagrant box add laravel/homestead F:\virtualbox.box&lt;/p&gt;</content><author><name></name></author><summary type="html">Laravel Homestead</summary></entry><entry><title type="html">如何在windows下搭建git服务器</title><link href="https://cjjmem.github.io/page/page/jekyll/update/2017/06/11/gitlab-for-windows.html" rel="alternate" type="text/html" title="如何在windows下搭建git服务器" /><published>2017-06-11T18:00:03+08:00</published><updated>2017-06-11T18:00:03+08:00</updated><id>https://cjjmem.github.io/page/page/jekyll/update/2017/06/11/gitlab-for-windows</id><content type="html" xml:base="https://cjjmem.github.io/page/page/jekyll/update/2017/06/11/gitlab-for-windows.html">&lt;h1 id=&quot;gitblit&quot;&gt;gitblit&lt;/h1&gt;
+&lt;p&gt;vagrant box add laravel/homestead F:\virtualbox.box&lt;/p&gt;</content><author><name></name></author><summary type="html">Laravel Homestead</summary></entry><entry><title type="html">如何在windows下搭建git服务器</title><link href="http://localhost:4000/page/jekyll/update/2017/06/11/gitlab-for-windows.html" rel="alternate" type="text/html" title="如何在windows下搭建git服务器" /><published>2017-06-11T18:00:03+08:00</published><updated>2017-06-11T18:00:03+08:00</updated><id>http://localhost:4000/page/jekyll/update/2017/06/11/gitlab-for-windows</id><content type="html" xml:base="http://localhost:4000/page/jekyll/update/2017/06/11/gitlab-for-windows.html">&lt;h1 id=&quot;gitblit&quot;&gt;gitblit&lt;/h1&gt;
 
 &lt;p&gt;Gitblit 是一个纯 Java 库用来管理、查看和处理 Git 资料库。相当于 Git 的 Java 管理工具。&lt;/p&gt;
 
@@ -1457,7 +1485,7 @@ gitblit中有个管理员账号，用户名与密码都为admin，登录后进�
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/xtayfjpk/article/details/45669335&quot;&gt;博客&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://about.gitlab.com/gitlab-com/&quot;&gt;gitlab&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">gitblit</summary></entry><entry><title type="html">vue1.x vue2.0中如何使用nprogress组件</title><link href="https://cjjmem.github.io/page/page/jekyll/update/2017/05/27/vue-nprogress.html" rel="alternate" type="text/html" title="vue1.x vue2.0中如何使用nprogress组件" /><published>2017-05-27T18:00:03+08:00</published><updated>2017-05-27T18:00:03+08:00</updated><id>https://cjjmem.github.io/page/page/jekyll/update/2017/05/27/vue-nprogress</id><content type="html" xml:base="https://cjjmem.github.io/page/page/jekyll/update/2017/05/27/vue-nprogress.html">&lt;h1 id=&quot;nprogress-前端页面加载进度条神奇&quot;&gt;nprogress 前端页面加载进度条神奇&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">gitblit</summary></entry><entry><title type="html">vue1.x vue2.0中如何使用nprogress组件</title><link href="http://localhost:4000/page/jekyll/update/2017/05/27/vue-nprogress.html" rel="alternate" type="text/html" title="vue1.x vue2.0中如何使用nprogress组件" /><published>2017-05-27T18:00:03+08:00</published><updated>2017-05-27T18:00:03+08:00</updated><id>http://localhost:4000/page/jekyll/update/2017/05/27/vue-nprogress</id><content type="html" xml:base="http://localhost:4000/page/jekyll/update/2017/05/27/vue-nprogress.html">&lt;h1 id=&quot;nprogress-前端页面加载进度条神奇&quot;&gt;nprogress 前端页面加载进度条神奇&lt;/h1&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://ricostacruz.com/nprogress/&quot;&gt;nprogress演示&lt;/a&gt;&lt;/p&gt;
 
@@ -1534,7 +1562,7 @@ new Vue({
 })
 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name></name></author><summary type="html">nprogress 前端页面加载进度条神奇</summary></entry><entry><title type="html">laravel记录Sql日志的方法</title><link href="https://cjjmem.github.io/page/page/jekyll/update/2017/05/25/laravel-event-listener.html" rel="alternate" type="text/html" title="laravel记录Sql日志的方法" /><published>2017-05-25T12:39:03+08:00</published><updated>2017-05-25T12:39:03+08:00</updated><id>https://cjjmem.github.io/page/page/jekyll/update/2017/05/25/laravel-event-listener</id><content type="html" xml:base="https://cjjmem.github.io/page/page/jekyll/update/2017/05/25/laravel-event-listener.html">&lt;h1 id=&quot;laravel记录sql日志的方法&quot;&gt;laravel记录Sql日志的方法&lt;/h1&gt;
+&lt;/div&gt;</content><author><name></name></author><summary type="html">nprogress 前端页面加载进度条神奇</summary></entry><entry><title type="html">laravel记录Sql日志的方法</title><link href="http://localhost:4000/page/jekyll/update/2017/05/25/laravel-event-listener.html" rel="alternate" type="text/html" title="laravel记录Sql日志的方法" /><published>2017-05-25T12:39:03+08:00</published><updated>2017-05-25T12:39:03+08:00</updated><id>http://localhost:4000/page/jekyll/update/2017/05/25/laravel-event-listener</id><content type="html" xml:base="http://localhost:4000/page/jekyll/update/2017/05/25/laravel-event-listener.html">&lt;h1 id=&quot;laravel记录sql日志的方法&quot;&gt;laravel记录Sql日志的方法&lt;/h1&gt;
 
 &lt;p&gt;在项目开发过程中或者是性能优化中，经常会有要查看执行sql的情况，然而Laravel日志默认不记录执行sql。然而并不担心，强大Laravel的提供者帮助我们解决这个问题。下面是我总结的几种方式：&lt;/p&gt;
 
@@ -1638,7 +1666,7 @@ public function handle(QueryExecuted $event)
 
 &lt;h3 id=&quot;方法二laravel中的服务提供者&quot;&gt;方法二:Laravel中的服务提供者&lt;/h3&gt;
 
-&lt;h3 id=&quot;方法三第三方组件的调试工具&quot;&gt;方法三:第三方组件的调试工具&lt;/h3&gt;</content><author><name></name></author><summary type="html">laravel记录Sql日志的方法</summary></entry><entry><title type="html">Browsersync实时代码监控工具</title><link href="https://cjjmem.github.io/page/page/jekyll/update/2017/05/19/browsersync.html" rel="alternate" type="text/html" title="Browsersync实时代码监控工具" /><published>2017-05-19T18:09:03+08:00</published><updated>2017-05-19T18:09:03+08:00</updated><id>https://cjjmem.github.io/page/page/jekyll/update/2017/05/19/browsersync</id><content type="html" xml:base="https://cjjmem.github.io/page/page/jekyll/update/2017/05/19/browsersync.html">&lt;h1 id=&quot;browsersync&quot;&gt;BrowserSync&lt;/h1&gt;
+&lt;h3 id=&quot;方法三第三方组件的调试工具&quot;&gt;方法三:第三方组件的调试工具&lt;/h3&gt;</content><author><name></name></author><summary type="html">laravel记录Sql日志的方法</summary></entry><entry><title type="html">Browsersync实时代码监控工具</title><link href="http://localhost:4000/page/jekyll/update/2017/05/19/browsersync.html" rel="alternate" type="text/html" title="Browsersync实时代码监控工具" /><published>2017-05-19T18:09:03+08:00</published><updated>2017-05-19T18:09:03+08:00</updated><id>http://localhost:4000/page/jekyll/update/2017/05/19/browsersync</id><content type="html" xml:base="http://localhost:4000/page/jekyll/update/2017/05/19/browsersync.html">&lt;h1 id=&quot;browsersync&quot;&gt;BrowserSync&lt;/h1&gt;
 
 &lt;p&gt;Browsersync能让浏览器实时、快速响应您的文件更改（html、js、css、sass、less等）并自动刷新页面&lt;/p&gt;
 

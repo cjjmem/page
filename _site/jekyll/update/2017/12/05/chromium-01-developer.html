@@ -10,7 +10,7 @@
   <meta name="description" content="chromium从编译到入门开发">
 
   <link rel="stylesheet" href="/page/assets/main.css">
-  <link rel="canonical" href="https://cjjmem.github.io/page/page/jekyll/update/2017/12/05/chromium-01-developer.html">
+  <link rel="canonical" href="http://localhost:4000/page/jekyll/update/2017/12/05/chromium-01-developer.html">
   <link rel="alternate" type="application/rss+xml" title="小浪Blog" href="/page/feed.xml">
   
   
@@ -148,12 +148,12 @@
 <h3 id="2修改浏览器名字logo文案等">2.修改浏览器名字,LOGO,文案等</h3>
 
 <ul>
-  <li>浏览器名称
-```
-..\src\chrome\app\theme\chromium\BRANDING</li>
+  <li>浏览器名称</li>
 </ul>
 
-<p>COMPANY_FULLNAME=The Chromium Authors
+<div class="highlighter-rouge"><pre class="highlight"><code>..\src\chrome\app\theme\chromium\BRANDING
+
+COMPANY_FULLNAME=The Chromium Authors
 COMPANY_SHORTNAME=The Chromium Authors
 PRODUCT_FULLNAME=Chromium
 PRODUCT_SHORTNAME=Chromium
@@ -161,43 +161,48 @@ PRODUCT_INSTALLER_FULLNAME=Chromium Installer
 PRODUCT_INSTALLER_SHORTNAME=Chromium Installer
 COPYRIGHT=Copyright 2017 The Chromium Authors. All rights reserved.
 MAC_BUNDLE_ID=org.chromium.Chromium
-MAC_CREATOR_CODE=Cr24</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>
-* LOGO图标
-
+MAC_CREATOR_CODE=Cr24
 </code></pre>
 </div>
-<p>..\src\chrome\app\theme\chromium
+
+<ul>
+  <li>LOGO图标</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>..\src\chrome\app\theme\chromium
 ..\src\chrome\app\theme\chromium\win\chromium.ico
 ..\src\chrome\app\theme\chromium\win\tiles\Logo.png
 ..\src\chrome\app\theme\chromium\win\tiles\SmallLogo.png
 ..\src\chrome\app\theme\default_100_percent
-..\src\chrome\app\theme\default_200_percent</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>
-* 所有各种语言的文案 **.xtb**语言包
+..\src\chrome\app\theme\default_200_percent
 </code></pre>
 </div>
-<p>..\src\chrome\app\resources
-..\src\components\strings</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>
-## 增加默认插件
 
-由于对Chromium源码不熟悉，看到网上各种关于添加默认插件Blog比较旧，采用以下方法进行尝试：
+<ul>
+  <li>所有各种语言的文案 <strong>.xtb</strong>语言包</li>
+</ul>
 
-```c++
-// ..src\chromiums\chromium\src\chrome\browser\extensions\component_loader.cc
+<div class="highlighter-rouge"><pre class="highlight"><code>..\src\chrome\app\resources
+..\src\components\strings
+</code></pre>
+</div>
 
-// 注释默认安装
+<h2 id="增加默认插件">增加默认插件</h2>
 
-void ComponentLoader::AddHotwordAudioVerificationApp() {
-// #if defined(ENABLE_HOTWORDING)
+<p>由于对Chromium源码不熟悉，看到网上各种关于添加默认插件Blog比较旧，采用以下方法进行尝试：</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="c1">// ..src\chromiums\chromium\src\chrome\browser\extensions\component_loader.cc
+</span>
+<span class="c1">// 注释默认安装
+</span>
+<span class="kt">void</span> <span class="n">ComponentLoader</span><span class="o">::</span><span class="n">AddHotwordAudioVerificationApp</span><span class="p">()</span> <span class="p">{</span>
+<span class="c1">// #if defined(ENABLE_HOTWORDING)
 //  if (HotwordServiceFactory::IsAlwaysOnAvailable()) {
-    Add(IDR_HOTWORD_AUDIO_VERIFICATION_MANIFEST,
-        base::FilePath(FILE_PATH_LITERAL("hotword_audio_verification")));
-//  }
+</span>    <span class="n">Add</span><span class="p">(</span><span class="n">IDR_HOTWORD_AUDIO_VERIFICATION_MANIFEST</span><span class="p">,</span>
+        <span class="n">base</span><span class="o">::</span><span class="n">FilePath</span><span class="p">(</span><span class="n">FILE_PATH_LITERAL</span><span class="p">(</span><span class="s">"hotword_audio_verification"</span><span class="p">)));</span>
+<span class="c1">//  }
 // #endif
-}
+</span><span class="p">}</span>
 
 </code></pre>
 </div>

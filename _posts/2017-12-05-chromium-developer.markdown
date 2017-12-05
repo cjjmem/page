@@ -23,7 +23,7 @@ categories: jekyll update
 * Windows Driver Kit for Windows 10  驱动程序工具包 (1709)
   * [下载地址](https://developer.microsoft.com/zh-cn/windows/hardware/windows-driver-kit)
 * depot_tools 工具
-  [下载地址](https://storage.googleapis.com/chrome-infra/depot_tools.zip)
+  * [下载地址](https://storage.googleapis.com/chrome-infra/depot_tools.zip)
 
 
 ## 设置系统环境变量
@@ -53,6 +53,7 @@ GYP_DEFINES | Chromium buildtype=Dev component=shared_library disable_nacl=1 | �
 ### 二.通过depot_tools工具获取代码
 
 1. 执行gclient命令，安装python + msysgit
+
 ```
 gclient
 
@@ -69,6 +70,7 @@ git config --global core.autocrlf false
 git config --global core.filemode false
 git config --global branch.autosetuprebase always
 ```
+
 3. 创建chromium为目录
 
 ```
@@ -76,6 +78,7 @@ mkdir chromium && cd chromium
 ```
 
 4. 运行该fetch工具depot_tools检查代码及其依赖关系，下载代码（大约18G左右）
+
 ```
 // 建议不要使用 fetch --no-history chromium 命令
 // 获取全部代码包括git记录
@@ -124,8 +127,8 @@ gclient sync
 ::修改src\build\toolchain\win\BUILD.gn，将/showIncludes删除掉
 ```
 
-2. 生成ninja编译脚本 [gn配置](
-https://sites.google.com/a/chromium.org/dev/developers/gn-build-configuration)
+2. 生成ninja编译脚本 [gn配置](https://sites.google.com/a/chromium.org/dev/developers/gn-build-configuration)
+
 ```
 cd src
 gn gen out/Default

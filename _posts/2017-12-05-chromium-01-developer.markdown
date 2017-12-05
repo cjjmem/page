@@ -68,6 +68,7 @@ const PrepopulatedEngine* engines_CN[] =
 ### 2.修改浏览器名字,LOGO,文案等
 
 * 浏览器名称
+
 ```
 ..\src\chrome\app\theme\chromium\BRANDING
 
@@ -80,8 +81,6 @@ PRODUCT_INSTALLER_SHORTNAME=Chromium Installer
 COPYRIGHT=Copyright 2017 The Chromium Authors. All rights reserved.
 MAC_BUNDLE_ID=org.chromium.Chromium
 MAC_CREATOR_CODE=Cr24
-
-
 ```
 
 * LOGO图标
@@ -96,6 +95,7 @@ MAC_CREATOR_CODE=Cr24
 ```
 
 * 所有各种语言的文案 **.xtb**语言包
+
 ```
 ..\src\chrome\app\resources
 ..\src\components\strings
@@ -120,8 +120,6 @@ void ComponentLoader::AddHotwordAudioVerificationApp() {
 }
 
 ```
-
-
 
 ## 参考文档
 

@@ -10,7 +10,7 @@
   <meta name="description" content="构建chromium">
 
   <link rel="stylesheet" href="/page/assets/main.css">
-  <link rel="canonical" href="https://cjjmem.github.io/page/page/jekyll/update/2017/12/05/chromium-developer.html">
+  <link rel="canonical" href="http://localhost:4000/page/jekyll/update/2017/12/05/chromium-developer.html">
   <link rel="alternate" type="application/rss+xml" title="小浪Blog" href="/page/feed.xml">
   
   
@@ -111,7 +111,10 @@
     </ul>
   </li>
   <li>depot_tools 工具
-<a href="https://storage.googleapis.com/chrome-infra/depot_tools.zip">下载地址</a></li>
+    <ul>
+      <li><a href="https://storage.googleapis.com/chrome-infra/depot_tools.zip">下载地址</a></li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="设置系统环境变量">设置系统环境变量</h2>
@@ -170,107 +173,127 @@
 <h3 id="二通过depot_tools工具获取代码">二.通过depot_tools工具获取代码</h3>
 
 <ol>
-  <li>执行gclient命令，安装python + msysgit
-```
-gclient</li>
+  <li>执行gclient命令，安装python + msysgit</li>
 </ol>
 
-<p>// 执行成功提示版本信息
+<div class="highlighter-rouge"><pre class="highlight"><code>gclient
+
+// 执行成功提示版本信息
 python -v
-git</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>2. 设置git配置信息
+git
+</code></pre>
+</div>
+<ol>
+  <li>设置git配置信息</li>
+</ol>
 
+<div class="highlighter-rouge"><pre class="highlight"><code>git config --global user.name "My Name"
+git config --global user.email "my-name@chromium.org"
+git config --global core.autocrlf false
+git config --global core.filemode false
+git config --global branch.autosetuprebase always
 </code></pre>
 </div>
-<p>git config –global user.name “My Name”
-git config –global user.email “my-name@chromium.org”
-git config –global core.autocrlf false
-git config –global core.filemode false
-git config –global branch.autosetuprebase always</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>3. 创建chromium为目录
 
+<ol>
+  <li>创建chromium为目录</li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mkdir chromium &amp;&amp; cd chromium
 </code></pre>
 </div>
-<p>mkdir chromium &amp;&amp; cd chromium</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>
-4. 运行该fetch工具depot_tools检查代码及其依赖关系，下载代码（大约18G左右）
-</code></pre>
-</div>
-<p>// 建议不要使用 fetch –no-history chromium 命令
+
+<ol>
+  <li>运行该fetch工具depot_tools检查代码及其依赖关系，下载代码（大约18G左右）</li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>// 建议不要使用 fetch --no-history chromium 命令
 // 获取全部代码包括git记录
-fetch chromium</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>
-### 三.根据需要切换分支tag版本
-
-1. 获取tags
-
+fetch chromium
 </code></pre>
 </div>
-<p>git fetch -t
-git checkout -b <local-branch-name> tags/<tag name=""></tag></local-branch-name></p>
-<div class="highlighter-rouge"><pre class="highlight"><code>
-示例：
 
+<h3 id="三根据需要切换分支tag版本">三.根据需要切换分支tag版本</h3>
+
+<ol>
+  <li>获取tags</li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>git fetch -t
+git checkout -b &lt;local-branch-name&gt; tags/&lt;tag name&gt;
 </code></pre>
 </div>
-<p>https://chromium.googlesource.com/chromium/src.git/+refs
-git checkout -b <local-branch-name> tag的sha1值</local-branch-name></p>
-<div class="highlighter-rouge"><pre class="highlight"><code>
-2. 同步子projects,根据src\DEPS内的配置将依赖的库checkout到需要的revision [Uri](https://chromium.googlesource.com/chromium/src.git/+log/57.0.2987.133/DEPS)
 
+<p>示例：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>https://chromium.googlesource.com/chromium/src.git/+refs
+git checkout -b &lt;local-branch-name&gt; tag的sha1值
 </code></pre>
 </div>
-<p>gclient sync</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>
-在编译时遇到fatal: reference is not a tree: webrtc
 
+<ol>
+  <li>同步子projects,根据src\DEPS内的配置将依赖的库checkout到需要的revision <a href="https://chromium.googlesource.com/chromium/src.git/+log/57.0.2987.133/DEPS">Uri</a></li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gclient sync
 </code></pre>
 </div>
-<p>// 用这个版本替换了DEPS文件中的版本
+
+<p>在编译时遇到fatal: reference is not a tree: webrtc</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>// 用这个版本替换了DEPS文件中的版本
 git checkout d68fcc42256f0f6483d562aa69531091560ff9f2
-gclient sync</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>
-### 四.使用Gn构建工具生成编译方案
-
-1. 修改编译方案
-
+gclient sync
 </code></pre>
 </div>
-<p>::启用official build
-::修改src\build\config\BUILDCONFIG.gn，将is_official_build的值改为true</p>
 
-<p>::去掉显示头文件的包含树
-::修改src\build\toolchain\win\BUILD.gn，将/showIncludes删除掉</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>
-2. 生成ninja编译脚本 [gn配置](
-https://sites.google.com/a/chromium.org/dev/developers/gn-build-configuration)
+<h3 id="四使用gn构建工具生成编译方案">四.使用Gn构建工具生成编译方案</h3>
+
+<ol>
+  <li>修改编译方案</li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>::启用official build
+::修改src\build\config\BUILDCONFIG.gn，将is_official_build的值改为true
+
+::去掉显示头文件的包含树
+::修改src\build\toolchain\win\BUILD.gn，将/showIncludes删除掉
 </code></pre>
 </div>
-<p>cd src
-gn gen out/Default</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>
-3. 修改ninja编译参数，如target_os="win"，target_cpu="x64"等  [参考链接](https://chromium.googlesource.com/chromium/src/+/master/tools/gn/docs/quick_start.md)
 
+<ol>
+  <li>生成ninja编译脚本 <a href="https://sites.google.com/a/chromium.org/dev/developers/gn-build-configuration">gn配置</a></li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cd src
+gn gen out/Default
 </code></pre>
 </div>
-<p>gn args out/Default</p>
 
-<p>is_debug = false
+<ol>
+  <li>修改ninja编译参数，如target_os=”win”，target_cpu=”x64”等  <a href="https://chromium.googlesource.com/chromium/src/+/master/tools/gn/docs/quick_start.md">参考链接</a></li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gn args out/Default
+
+
+is_debug = false
 symbol_level = 0
 enable_nacl = false
-target_cpu = “x64”
-target_os = “win”
-google_api_key = “AIzaSyBPsfyKutEqu_7liVtbYqrY7QKlYsd8xoU”
-google_default_client_id = “1000406808719-ghvvdlf749dvc6cvvqpb9uqi9l66tg9d.apps.googleusercontent.com”
-google_default_client_secret = “XWhKLxZGu1Q70PSB5ikSycTb”</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>
-### 五.开始编译
+target_cpu = "x64"
+target_os = "win"
+google_api_key = "AIzaSyBPsfyKutEqu_7liVtbYqrY7QKlYsd8xoU"
+google_default_client_id = "1000406808719-ghvvdlf749dvc6cvvqpb9uqi9l66tg9d.apps.googleusercontent.com"
+google_default_client_secret = "XWhKLxZGu1Q70PSB5ikSycTb"
 
 </code></pre>
 </div>
-<p>ninja -C out/Default chrome
-```</p>
+
+<h3 id="五开始编译">五.开始编译</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>ninja -C out/Default chrome
+</code></pre>
+</div>
 
 <p>经过10小时左右的编译，终于成功编译出第一个chromium浏览器</p>
 
