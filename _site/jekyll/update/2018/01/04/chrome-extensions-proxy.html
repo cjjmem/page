@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Chrome浏览器插件-代理插件开发</title>
+  <meta name="description" content="Chrome浏览器插件-代理插件开发">
+
+  <link rel="stylesheet" href="/page/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/page/jekyll/update/2018/01/04/chrome-extensions-proxy.html">
+  <link rel="alternate" type="application/rss+xml" title="小浪Blog" href="/page/feed.xml">
+  
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/page/">小浪Blog</a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+            <a class="page-link" href="/page/about/">关于我</a>
+            
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/page/resume/">我的简历</a>
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Chrome浏览器插件-代理插件开发</h1>
+    <p class="post-meta">
+      <time datetime="2018-01-04T09:56:00+08:00" itemprop="datePublished">
+        
+        Jan 4, 2018
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h1 id="chrome浏览器插件-代理插件开发">Chrome浏览器插件-代理插件开发</h1>
+
+<p>现在流行的谷歌浏览器代理插件有很多，大部分插件已具备自定义添加代理服务器功能，比如：自定义黑名单，白名单，全局代理等。而这一部分都需要用户主动配置，过于繁琐。如果你公司有墙的业务需求，而且不需要用户过多的配置，只需要安装插件到浏览器即可，以下插件很适合你解决用户主动配置的需求。</p>
+
+<p><strong>解决方案：</strong></p>
+<ol>
+  <li>部署代理服务器，且配置白名单。</li>
+  <li>Chrome浏览器插件增加默认域名配置。</li>
+  <li>每隔一段时间，自动更新服务器上的域名配置。</li>
+</ol>
+
+<h2 id="知识储备">知识储备</h2>
+<ul>
+  <li>chrome插件开发</li>
+  <li>一门服务端语言 [PHP\PYTHON\JAVA..],用于接口调用</li>
+  <li>部署代理服务器 [squid]</li>
+</ul>
+
+<p><a href=""><strong>下载</strong></a></p>
+
+<h2 id="开发">开发</h2>
+
+<ul>
+  <li>谷歌浏览器扩展页面截图</li>
+</ul>
+
+<p><img src="./../../../../../docs/images/chrome-porxy-example-01.png" alt="" /></p>
+
+<ul>
+  <li>插件冒泡页面(popup.html)截图</li>
+</ul>
+
+<p><img src="./../../../../../docs/images/chrome-porxy-example-02.png" alt="" /></p>
+
+<ul>
+  <li>插件管理页面(options.html)截图</li>
+</ul>
+
+<p><img src="./../../../../../docs/images/chrome-porxy-example-03.png" alt="" /></p>
+
+<p><img src="./../../../../../docs/images/chrome-porxy-example-04.png" alt="" /></p>
+
+<p><img src="./../../../../../docs/images/chrome-porxy-example-05.png" alt="" /></p>
+
+<p><img src="./../../../../../docs/images/chrome-porxy-example-06.png" alt="" /></p>
+
+<h3 id="项目目录结构">项目目录结构</h3>
+
+<div class="language-config highlighter-rouge"><pre class="highlight"><code>├─<span class="n">manifest</span>.<span class="n">json</span>……………………………………………………………………入口文件
+├─<span class="n">README</span>.<span class="n">md</span>……………………………………………………………………说明文档
+├─<span class="n">pages</span>……………………………………………………………………页面
+│  ├─<span class="n">options</span>.<span class="n">html</span>……………………………………………………………………操作页面
+│  └─<span class="n">popup</span>.<span class="n">html</span>……………………………………………………………………启动页面
+├─<span class="n">css</span>…………………………………………………………………… <span class="n">css</span>样式文件
+├─<span class="n">icons</span>…………………………………………………………………… 图标文件
+├─<span class="n">js</span>…………………………………………………………………… <span class="n">js</span>文件
+│  ├─<span class="n">background</span>.<span class="n">js</span>……………………………………………………………………背景页<span class="n">js</span>
+│  ├─<span class="n">config</span>.<span class="n">js</span>……………………………………………………………………配置文件
+│  ├─<span class="n">option</span>.<span class="n">js</span>……………………………………………………………………操作处理
+│  ├─<span class="n">model</span>.<span class="n">js</span>……………………………………………………………………模块
+│  ├─<span class="n">pop</span>.<span class="n">js</span>……………………………………………………………………操作处理
+│  └─<span class="n">script</span>.<span class="n">js</span>……………………………………………………………………响应<span class="n">js</span>
+└─<span class="n">libs</span>…………………………………………………………………… 库文件
+</code></pre>
+</div>
+
+<h3 id="主要代码">主要代码</h3>
+
+<h4 id="manifestjson">manifest.json</h4>
+
+<p>每一个扩展、可安装的WebApp、皮肤，都有一个JSON格式的manifest文件，叫manifest.json，里面提供了重要的信息 。</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"manifest_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">2012年底强制只支持版本2</span><span class="w">
+
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"谷歌代理插件"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">用来标识扩展的简短纯文本</span><span class="w">
+
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"谷歌代理插件"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">描述</span><span class="w">
+
+  </span><span class="nt">"minimum_chrome_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">扩展，app或皮肤需要的chrome的最小版本</span><span class="w">
+  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">版本号</span><span class="w">
+
+  </span><span class="err">//</span><span class="w"> </span><span class="err">一个或者多个图标来表示扩展</span><span class="w">
+  </span><span class="nt">"icons"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"16"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"icons/icon_16.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"128"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"icons/icon_128.png"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+
+  </span><span class="err">//</span><span class="w"> </span><span class="err">注册背景页</span><span class="w">
+  </span><span class="nt">"background"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"js/config.js"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"js/background.js"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+
+  </span><span class="nt">"options_page"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pages/option.html"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">选项页</span><span class="w">
+
+   </span><span class="err">//</span><span class="w"> </span><span class="err">Content</span><span class="w"> </span><span class="err">scripts是在Web页面内运行的javascript脚本</span><span class="w">
+  </span><span class="nt">"content_scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="nt">"exclude_globs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"include_globs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"*"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"js"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"/libs/jquery.min.js"</span><span class="p">,</span><span class="w"> </span><span class="s2">"/js/script.js"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"matches"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"http://*/*"</span><span class="p">,</span><span class="w"> </span><span class="s2">"https://*/*"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"run_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"document_start"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"all_frames"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+
+  </span><span class="err">//</span><span class="w"> </span><span class="err">为缓解潜在的大规模的跨站点脚本攻击问题</span><span class="w">
+  </span><span class="nt">"content_security_policy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"script-src 'self' 'unsafe-eval'; object-src 'self'"</span><span class="p">,</span><span class="w">
+
+   </span><span class="err">//</span><span class="w"> </span><span class="err">用</span><span class="w"> </span><span class="err">browser</span><span class="w"> </span><span class="err">actions</span><span class="w"> </span><span class="err">可以在chrome主工具条的地址栏右侧增加一个图标。</span><span class="w">
+  </span><span class="nt">"browser_action"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"default_icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"icons/icon_16.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"default_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"谷歌代理插件"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"default_popup"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pages/popup.html"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+
+  </span><span class="err">//</span><span class="w"> </span><span class="err">扩展或app将使用的一组权限</span><span class="w">
+  </span><span class="nt">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"proxy"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tabs"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"webRequest"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"webRequestBlocking"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"storage"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tabs"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"http://*/*"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"https://*/*"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"&lt;all_urls&gt;"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h4 id="背景页">背景页</h4>
+
+<p>扩展常常用一个单独的长时间运行的脚本来管理一些任务或者状态</p>
+
+<p><strong>manifest.json 中的配置</strong></p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="w">  </span><span class="err">...</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+  </span><span class="s2">"background"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"js/config.js"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"js/background.js"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="err">,</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><strong>config.js</strong></p>
+
+<p>插件默认的配置文件，同时也可以通过接口更新。</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">config_porxy</span> <span class="o">=</span> <span class="p">[{</span>
+	<span class="s1">'id'</span><span class="p">:</span> <span class="nb">Number</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+	<span class="s1">'ip'</span><span class="p">:</span> <span class="s2">"192.168.0.8:8090"</span><span class="p">,</span>
+	<span class="s1">'domain'</span><span class="p">:</span> <span class="s2">"www.google.com"</span><span class="p">,</span>
+	<span class="s1">'note'</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+	<span class="s1">'tags'</span><span class="p">:</span> <span class="p">[</span><span class="s2">"翻墙"</span><span class="p">],</span>
+	<span class="s1">'status'</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+	<span class="s1">'order'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+	<span class="s1">'uptime'</span><span class="p">:</span> <span class="s2">""</span>
+<span class="p">}]</span>
+</code></pre>
+</div>
+
+<p><strong>background.js</strong></p>
+
+<p>background.js 主要功能，首次读取配置文件，每隔时间段调用API获取最新配置信息。根据配置信息调用Google代理接口，</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">enableHosts</span> <span class="o">=</span> <span class="p">[];</span>
+
+<span class="nx">chrome</span><span class="p">.</span><span class="nx">webRequest</span><span class="p">.</span><span class="nx">onCompleted</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">details</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">details</span><span class="p">.</span><span class="nx">req</span> <span class="o">=</span> <span class="s1">'showip'</span><span class="p">;</span>
+        <span class="nx">details</span><span class="p">.</span><span class="nx">hosts</span> <span class="o">=</span> <span class="nx">enableHosts</span><span class="p">;</span>
+        <span class="nx">chrome</span><span class="p">.</span><span class="nx">tabs</span><span class="p">.</span><span class="nx">sendRequest</span><span class="p">(</span><span class="nx">details</span><span class="p">.</span><span class="nx">tabId</span><span class="p">,</span> <span class="nx">details</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+             <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'res:'</span><span class="p">,</span> <span class="nx">response</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">},</span><span class="mi">1000</span><span class="p">);</span>
+<span class="p">},</span> <span class="p">{</span>
+    <span class="na">urls</span><span class="p">:</span> <span class="p">[</span> <span class="s1">'http://*/*'</span><span class="p">,</span> <span class="s1">'https://*/*'</span> <span class="p">],</span>
+    <span class="na">types</span><span class="p">:</span> <span class="p">[</span> <span class="s1">'main_frame'</span> <span class="p">]</span>
+<span class="p">});</span>
+
+<span class="nx">chrome</span><span class="p">.</span><span class="nx">extension</span><span class="p">.</span><span class="nx">onRequest</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">sender</span><span class="p">,</span> <span class="nx">sendResponse</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">enableHosts</span> <span class="o">=</span> <span class="nx">request</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="cm">/**
+ * 标签更新
+ */</span>
+<span class="nx">chrome</span><span class="p">.</span><span class="nx">tabs</span><span class="p">.</span><span class="nx">onUpdated</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">tabId</span><span class="p">,</span><span class="nx">changeInfo</span><span class="p">,</span><span class="nx">tab</span><span class="p">){</span>
+<span class="p">});</span>
+
+<span class="c1">// 设置配置</span>
+<span class="nx">init</span><span class="p">()</span>
+
+<span class="nx">clearInterval</span><span class="p">();</span>
+
+<span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+	<span class="nx">init</span><span class="p">()</span>
+<span class="p">},</span><span class="mi">300000</span><span class="p">)</span>
+
+<span class="kd">function</span> <span class="nx">init</span><span class="p">(){</span>
+	<span class="kd">var</span> <span class="nx">version</span> <span class="o">=</span> <span class="nx">loadData</span><span class="p">(</span><span class="s1">'version'</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">hosts</span> <span class="o">=</span> <span class="nx">getHosts</span><span class="p">();</span>
+	<span class="k">if</span><span class="p">(</span><span class="nx">hosts</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="nx">hosts</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+		<span class="nx">config_porxy</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">s</span><span class="p">,</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">addHost</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span><span class="kc">true</span><span class="p">);</span>
+		<span class="p">})</span>
+	<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+		<span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://cjjmem.github.io/page/json/google.json?version="</span><span class="o">+</span> <span class="nx">version</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+		<span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">responseData</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="s1">'('</span><span class="o">+</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">response</span> <span class="o">+</span> <span class="s1">')'</span><span class="p">);</span>
+				<span class="nx">saveData</span><span class="p">(</span><span class="s1">'version'</span><span class="p">,</span><span class="nx">responseData</span><span class="p">.</span><span class="nx">version</span><span class="o">+</span><span class="s2">"chi"</span><span class="p">)</span>
+				<span class="k">if</span><span class="p">(</span><span class="nx">responseData</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+					<span class="k">return</span>
+				<span class="p">}</span>
+				<span class="kd">var</span> <span class="nx">hostsData</span> <span class="o">=</span> <span class="p">[];</span>
+				<span class="nx">hosts</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">t</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">hostsData</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">domain</span><span class="p">)</span>
+				<span class="p">})</span>
+
+				<span class="nx">responseData</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">t</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">hostsData</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">domain</span><span class="p">)</span>
+					<span class="c1">// 判断是否新增</span>
+					<span class="k">if</span><span class="p">(</span><span class="nx">index</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+						<span class="nx">addHost</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="kc">true</span><span class="p">);</span>
+					<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+						<span class="c1">// 判断域名是否相同,不相同则修改</span>
+						<span class="k">if</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">ip</span> <span class="o">!=</span> <span class="nx">hosts</span><span class="p">[</span><span class="nx">index</span><span class="p">].</span><span class="nx">ip</span><span class="p">){</span>
+							<span class="nx">updateHost</span><span class="p">(</span><span class="nx">hosts</span><span class="p">[</span><span class="nx">index</span><span class="p">],</span><span class="nx">t</span><span class="p">);</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
+				<span class="p">})</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/**
+ * 原生js请求
+ * @param url
+ * @param callback
+ */</span>
+<span class="kd">function</span> <span class="nx">getJSONP</span><span class="p">(</span> <span class="nx">url</span><span class="p">,</span> <span class="nx">callback</span> <span class="p">){</span>
+	<span class="kd">var</span> <span class="nx">cbnum</span> <span class="o">=</span> <span class="s2">"cb"</span> <span class="o">+</span> <span class="nx">getJSONP</span><span class="p">.</span><span class="nx">counter</span><span class="o">++</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">cbname</span> <span class="o">=</span> <span class="s2">"getJSONP."</span> <span class="o">+</span> <span class="nx">cbnum</span><span class="p">;</span>
+	<span class="k">if</span><span class="p">(</span> <span class="nx">url</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span> <span class="s2">"?"</span> <span class="p">)</span> <span class="o">===</span> <span class="o">-</span><span class="mi">1</span> <span class="p">){</span>
+		<span class="nx">url</span> <span class="o">+=</span> <span class="s2">"?jsonp="</span> <span class="o">+</span> <span class="nx">cbname</span><span class="p">;</span>
+	<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+		<span class="nx">url</span> <span class="o">+=</span> <span class="s2">"&amp;jsonp"</span> <span class="o">+</span> <span class="nx">cbname</span>
+	<span class="p">}</span>
+	<span class="kd">var</span> <span class="nx">script</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span> <span class="s2">"script"</span> <span class="p">);</span>
+	<span class="c1">// 回调函数</span>
+	<span class="nx">getJSONP</span><span class="p">[</span><span class="nx">cbnum</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">response</span> <span class="p">){</span>
+		<span class="k">try</span><span class="p">{</span>
+			<span class="nx">callback</span><span class="p">(</span> <span class="nx">response</span> <span class="p">);</span>
+		<span class="p">}</span><span class="k">finally</span><span class="p">{</span>
+			<span class="k">delete</span> <span class="nx">getJSONP</span><span class="p">[</span><span class="nx">num</span><span class="p">];</span>
+			<span class="nx">script</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span> <span class="nx">script</span> <span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">};</span>
+	<span class="nx">script</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">url</span><span class="p">;</span>
+	<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">script</span> <span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">getJSONP</span><span class="p">.</span><span class="nx">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+
+<span class="kd">function</span> <span class="nx">saveData</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">localStorage</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+	<span class="nx">refreshDataForBk</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">loadData</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">localStorage</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
+	<span class="k">if</span> <span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">try</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span>
+		<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//添加主机</span>
+<span class="kd">function</span> <span class="nx">addHost</span><span class="p">(</span><span class="nx">info</span><span class="p">,</span> <span class="nx">enable</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">hosts</span> <span class="o">=</span> <span class="nx">loadData</span><span class="p">(</span><span class="s1">'hosts'</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">loadData</span><span class="p">(</span><span class="s1">'hosts-count'</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">hosts</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">hosts</span> <span class="o">=</span> <span class="p">{};</span>
+	<span class="p">}</span>
+	<span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="nx">c</span><span class="p">;</span>
+	<span class="nx">info</span><span class="p">.</span><span class="nx">status</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="nx">info</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">id</span><span class="p">;</span>
+	<span class="nx">saveData</span><span class="p">(</span><span class="s1">'hosts-count'</span><span class="p">,</span> <span class="nx">id</span><span class="p">);</span>
+
+	<span class="nx">hosts</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">info</span><span class="p">;</span>
+
+	<span class="nx">saveData</span><span class="p">(</span><span class="s1">'hosts'</span><span class="p">,</span> <span class="nx">hosts</span><span class="p">);</span>
+
+	<span class="c1">//自动启动</span>
+	<span class="k">if</span><span class="p">(</span> <span class="nx">enable</span> <span class="p">)</span> <span class="nx">enableHostsBg</span><span class="p">([</span><span class="nx">id</span><span class="p">]);</span>
+	<span class="nx">reload</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">enableHostsBg</span><span class="p">(</span><span class="nx">ids</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">hosts</span> <span class="o">=</span> <span class="nx">loadData</span><span class="p">(</span><span class="s1">'hosts'</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">ids</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nx">hosts</span><span class="p">[</span><span class="nx">ids</span><span class="p">[</span><span class="nx">i</span><span class="p">]])</span> <span class="p">{</span>
+			<span class="nx">hosts</span><span class="p">[</span><span class="nx">ids</span><span class="p">[</span><span class="nx">i</span><span class="p">]].</span><span class="nx">status</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="nx">saveData</span><span class="p">(</span><span class="s1">'hosts'</span><span class="p">,</span> <span class="nx">hosts</span><span class="p">);</span>
+	<span class="nx">reload</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">last_callback_ip</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">last_callback_domain</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">uniq_arr</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span><span class="nx">key</span><span class="p">){</span>
+	<span class="kd">var</span> <span class="nx">dic</span><span class="o">=</span><span class="p">{}</span>
+	<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="kd">var</span> <span class="nx">t</span><span class="o">=</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+		<span class="nx">dic</span><span class="p">[</span><span class="nx">t</span><span class="p">[</span><span class="nx">key</span><span class="p">]]</span><span class="o">=</span><span class="nx">t</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="kd">var</span> <span class="nx">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+	<span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="k">in</span> <span class="nx">dic</span><span class="p">){</span>
+		<span class="k">if</span><span class="p">(</span><span class="nx">dic</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">k</span><span class="p">)){</span>
+			<span class="nx">arr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">dic</span><span class="p">[</span><span class="nx">k</span><span class="p">]);</span>
+			<span class="nx">j</span><span class="o">++</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">arr</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">ips</span><span class="o">=</span><span class="p">[];</span>
+<span class="kd">var</span> <span class="nx">domains</span><span class="o">=</span><span class="p">[];</span>
+
+<span class="kd">function</span> <span class="nx">loadsIp</span><span class="p">(){</span>
+	<span class="kd">var</span> <span class="nx">hosts</span><span class="o">=</span> <span class="nx">loadData</span><span class="p">(</span><span class="s1">'hosts'</span><span class="p">);</span>
+	<span class="nx">ips</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nx">ips</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">hosts</span><span class="p">){</span>
+		<span class="nx">ips</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="na">ip</span><span class="p">:</span> <span class="nx">hosts</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">ip</span> <span class="p">});</span>
+		<span class="nx">domains</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="na">domain</span><span class="p">:</span><span class="nx">hosts</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">domain</span><span class="p">});</span>
+	<span class="p">}</span>
+
+	<span class="nx">uniq_arr</span><span class="p">(</span><span class="nx">ips</span><span class="p">,</span><span class="s1">'ip'</span><span class="p">);</span>
+	<span class="nx">uniq_arr</span><span class="p">(</span><span class="nx">domains</span><span class="p">,</span><span class="s1">'domain'</span><span class="p">);</span>
+
+	<span class="k">if</span><span class="p">(</span><span class="nx">last_callback_ip</span><span class="p">){</span>
+		<span class="nx">last_callback_ip</span><span class="p">(</span><span class="nx">ips</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">if</span><span class="p">(</span><span class="nx">last_callback_domain</span><span class="p">){</span>
+		<span class="nx">last_callback_domain</span><span class="p">(</span><span class="nx">domains</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="cm">/**
+ * 设置自动IP
+ * @param callback
+ */</span>
+<span class="kd">function</span> <span class="nx">setAutoIp</span><span class="p">(</span><span class="nx">callback</span><span class="p">){</span>
+	<span class="nx">callback</span><span class="p">(</span><span class="nx">ips</span><span class="p">);</span>
+	<span class="nx">last_callback_ip</span><span class="o">=</span><span class="nx">callback</span>
+<span class="p">}</span>
+
+<span class="cm">/**
+ * 设置自动Domain
+ * @param callback
+ */</span>
+<span class="kd">function</span> <span class="nx">setAutoDomain</span><span class="p">(</span><span class="nx">callback</span><span class="p">){</span>
+	<span class="nx">callback</span><span class="p">(</span><span class="nx">domains</span><span class="p">);</span>
+	<span class="nx">last_callback_domain</span><span class="o">=</span><span class="nx">callback</span>
+<span class="p">}</span>
+
+
+<span class="cm">/**
+ * 设置浏览器本地缓存
+ * @param name
+ * @param value
+ */</span>
+<span class="kd">function</span> <span class="nx">saveData</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">localStorage</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+	<span class="nx">refreshDataForBk</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="cm">/**
+ * 刷新
+ * @param do_off
+ */</span>
+<span class="kd">function</span> <span class="nx">refreshDataForBk</span><span class="p">(</span><span class="nx">do_off</span><span class="p">){</span>
+	<span class="nx">chrome</span><span class="p">.</span><span class="nx">extension</span><span class="p">.</span><span class="nx">sendRequest</span><span class="p">(</span><span class="nx">do_off</span> <span class="p">?</span> <span class="p">[]</span> <span class="p">:</span> <span class="nx">getEnabledHosts</span><span class="p">(),</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+		<span class="c1">// do Something;</span>
+	<span class="p">});</span>
+<span class="p">}</span>
+
+<span class="c1">//重新加载</span>
+<span class="kd">function</span> <span class="nx">reload</span><span class="p">(){</span>
+	<span class="nx">setStatus</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">getDefaultMode</span><span class="p">(){</span>
+	<span class="k">return</span> <span class="nx">loadData</span><span class="p">(</span><span class="s1">'default_mode'</span><span class="p">)</span> <span class="p">?</span> <span class="nx">loadData</span><span class="p">(</span><span class="s1">'default_mode'</span><span class="p">)</span> <span class="p">:</span> <span class="s1">'DIRECT'</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**
+ * 获取主机
+ */</span>
+<span class="kd">function</span> <span class="nx">getHosts</span> <span class="p">()</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
+	<span class="kd">var</span> <span class="nx">hosts</span> <span class="o">=</span> <span class="nx">loadData</span><span class="p">(</span><span class="s1">'hosts'</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">id</span> <span class="k">in</span> <span class="nx">hosts</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nx">hosts</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span> <span class="p">{</span>
+			<span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">hosts</span><span class="p">[</span><span class="nx">id</span><span class="p">]);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">sortHostsResult</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/**
+ * 获取主机格式化
+ * @param result
+ * @returns {Array.&lt;T&gt;|*}
+ */</span>
+<span class="kd">function</span> <span class="nx">sortHostsResult</span> <span class="p">(</span><span class="nx">result</span><span class="p">){</span>
+	<span class="k">return</span> <span class="nx">result</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">){</span>
+		<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">x</span><span class="p">.</span><span class="nx">order</span><span class="p">),</span>
+			<span class="nx">b</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">y</span><span class="p">.</span><span class="nx">order</span><span class="p">);</span>
+		<span class="k">return</span> <span class="p">(</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="nx">a</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="nx">b</span><span class="p">);</span>
+	<span class="p">});</span>
+<span class="p">}</span>
+
+<span class="cm">/**
+ * 获取开启主机列表
+ */</span>
+<span class="kd">function</span> <span class="nx">getEnabledHosts</span><span class="p">(){</span>
+	<span class="kd">var</span> <span class="nx">results</span><span class="o">=</span><span class="p">[];</span>
+	<span class="kd">var</span> <span class="nx">hosts</span><span class="o">=</span><span class="nx">getHosts</span><span class="p">();</span>
+	<span class="c1">//别名问题</span>
+	<span class="kd">var</span> <span class="nx">map</span><span class="o">=</span><span class="p">{};</span>
+	<span class="kd">var</span> <span class="nx">is_ip</span><span class="o">=</span><span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s1">'([0-9]+\.)+[0-9]+'</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">is_hostname</span><span class="o">=</span><span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s1">'([^\. ]+)'</span><span class="p">);</span><span class="c1">//比如web1 web2 web-3 非域名</span>
+	<span class="c1">//别名记录</span>
+	<span class="kd">var</span> <span class="nx">host_alisa</span><span class="o">=</span><span class="p">{};</span>
+	<span class="kd">var</span> <span class="nx">result_map</span><span class="o">=</span><span class="p">{};</span>
+
+	<span class="nx">hosts</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span><span class="nx">i</span><span class="p">){</span>
+		<span class="k">if</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">status</span><span class="o">==</span><span class="mi">1</span><span class="p">){</span>
+			<span class="k">if</span><span class="p">(</span><span class="nx">is_ip</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">ip</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">is_hostname</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">domain</span><span class="p">)){</span>
+				<span class="nx">host_alisa</span><span class="p">[</span><span class="nx">v</span><span class="p">.</span><span class="nx">domain</span><span class="p">]</span><span class="o">=</span> <span class="nx">v</span><span class="p">.</span><span class="nx">ip</span> <span class="o">+</span> <span class="s1">'[@]'</span> <span class="o">+</span> <span class="nx">v</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+				<span class="nx">result_map</span><span class="p">[</span><span class="nx">v</span><span class="p">.</span><span class="nx">domain</span><span class="p">]</span><span class="o">=</span> <span class="nx">v</span><span class="p">.</span><span class="nx">ip</span> <span class="o">+</span> <span class="s1">'[@]'</span> <span class="o">+</span> <span class="nx">v</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">});</span>
+	<span class="nx">hosts</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span><span class="nx">i</span><span class="p">){</span>
+		<span class="k">if</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">status</span><span class="o">==</span><span class="mi">1</span><span class="p">){</span>
+			<span class="c1">//使用了别名</span>
+			<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">is_ip</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">ip</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">is_hostname</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">ip</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">host_alisa</span><span class="p">[</span><span class="nx">v</span><span class="p">.</span><span class="nx">ip</span><span class="p">]){</span>
+				<span class="nx">result_map</span><span class="p">[</span><span class="nx">v</span><span class="p">.</span><span class="nx">domain</span><span class="p">]</span><span class="o">=</span><span class="nx">host_alisa</span><span class="p">[</span><span class="nx">v</span><span class="p">.</span><span class="nx">ip</span><span class="p">];</span>
+			<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="nx">is_ip</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">ip</span><span class="p">)){</span>
+				<span class="nx">result_map</span><span class="p">[</span><span class="nx">v</span><span class="p">.</span><span class="nx">domain</span><span class="p">]</span><span class="o">=</span> <span class="nx">v</span><span class="p">.</span><span class="nx">ip</span> <span class="o">+</span> <span class="s1">'[@]'</span> <span class="o">+</span> <span class="nx">v</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+			<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+				<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'err:'</span><span class="p">,</span><span class="nx">i</span><span class="p">,</span><span class="nx">v</span><span class="p">)</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">})</span>
+	<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">d</span> <span class="k">in</span> <span class="nx">result_map</span><span class="p">){</span>
+		<span class="k">if</span><span class="p">(</span><span class="nx">result_map</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">d</span><span class="p">)){</span>
+			<span class="kd">var</span> <span class="nx">ip_id</span> <span class="o">=</span> <span class="nx">result_map</span><span class="p">[</span><span class="nx">d</span><span class="p">].</span><span class="nx">split</span><span class="p">(</span><span class="s1">'[@]'</span><span class="p">);</span>
+			<span class="nx">results</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="na">domain</span><span class="p">:</span><span class="nx">d</span><span class="p">,</span> <span class="na">ip</span><span class="p">:</span><span class="nx">ip_id</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="na">id</span><span class="p">:</span> <span class="nx">ip_id</span><span class="p">[</span><span class="mi">1</span><span class="p">]});</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">sortHostsResult</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/**
+ * 更新主机
+ * @param info
+ */</span>
+<span class="kd">function</span> <span class="nx">updateHost</span><span class="p">(</span><span class="nx">oldinfo</span><span class="p">,</span><span class="nx">newinfo</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">hosts</span> <span class="o">=</span> <span class="nx">loadData</span><span class="p">(</span><span class="s1">'hosts'</span><span class="p">);</span>
+	<span class="nx">oldinfo</span><span class="p">.</span><span class="nx">status</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">origin_status</span> <span class="o">=</span> <span class="nx">newinfo</span><span class="p">.</span><span class="nx">status</span><span class="p">;</span>
+	<span class="nx">hosts</span><span class="p">[</span><span class="nx">oldinfo</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">newinfo</span><span class="p">;</span>
+	<span class="nx">saveData</span><span class="p">(</span><span class="s1">'hosts'</span><span class="p">,</span> <span class="nx">hosts</span><span class="p">);</span>
+	<span class="k">if</span><span class="p">(</span> <span class="nx">origin_status</span> <span class="p">){</span>
+		<span class="nx">enableHostsBg</span><span class="p">([</span><span class="nx">oldinfo</span><span class="p">.</span><span class="nx">id</span><span class="p">]);</span>
+	<span class="p">}</span>
+	<span class="nx">reload</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="cm">/**
+ * 移除主机
+ * @param id
+ */</span>
+<span class="kd">function</span> <span class="nx">removeHost</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">hosts</span> <span class="o">=</span> <span class="nx">loadData</span><span class="p">(</span><span class="s1">'hosts'</span><span class="p">);</span>
+	<span class="nx">disableHosts</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+	<span class="k">delete</span> <span class="nx">hosts</span><span class="p">[</span><span class="nx">id</span><span class="p">];</span>
+	<span class="nx">saveData</span><span class="p">(</span><span class="s1">'hosts'</span><span class="p">,</span> <span class="nx">hosts</span><span class="p">);</span>
+	<span class="nx">reload</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="cm">/**
+ * 禁用域名
+ * @param ids
+ */</span>
+<span class="kd">function</span> <span class="nx">disableHosts</span><span class="p">(</span><span class="nx">ids</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">hosts</span> <span class="o">=</span> <span class="nx">loadData</span><span class="p">(</span><span class="s1">'hosts'</span><span class="p">);</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">ids</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nx">hosts</span><span class="p">[</span><span class="nx">ids</span><span class="p">[</span><span class="nx">i</span><span class="p">]])</span> <span class="p">{</span>
+			<span class="nx">hosts</span><span class="p">[</span><span class="nx">ids</span><span class="p">[</span><span class="nx">i</span><span class="p">]].</span><span class="nx">status</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="nx">saveData</span><span class="p">(</span><span class="s1">'hosts'</span><span class="p">,</span> <span class="nx">hosts</span><span class="p">);</span>
+	<span class="nx">reload</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="cm">/**
+ * 开关,启用暂停
+ * @param checked
+ * @param default_mode
+ */</span>
+<span class="kd">function</span> <span class="nx">setStatus</span><span class="p">(</span><span class="nx">checked</span><span class="p">,</span> <span class="nx">default_mode</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">saveData</span><span class="p">(</span><span class="s1">'status'</span><span class="p">,</span><span class="nx">checked</span><span class="p">);</span>
+	<span class="nx">default_mode</span> <span class="o">=</span> <span class="nx">default_mode</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">getDefaultMode</span><span class="p">();</span>
+	<span class="nx">saveData</span><span class="p">(</span><span class="s1">'default_mode'</span><span class="p">,</span> <span class="nx">default_mode</span><span class="p">);</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">checked</span> <span class="o">=</span> <span class="nx">checked</span><span class="p">;</span>
+
+	<span class="kd">var</span> <span class="nx">script</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">checked</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">results</span><span class="o">=</span><span class="nx">getEnabledHosts</span><span class="p">();</span>
+		<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">results</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="kd">var</span> <span class="nx">info</span><span class="o">=</span><span class="nx">results</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+			<span class="kd">var</span> <span class="nx">ip</span> <span class="o">=</span> <span class="nx">info</span><span class="p">.</span><span class="nx">ip</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">port</span> <span class="o">=</span> <span class="mi">80</span><span class="p">;</span>
+
+			<span class="k">if</span><span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">domain</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">'*'</span><span class="p">)</span><span class="o">!=-</span><span class="mi">1</span><span class="p">){</span>
+				<span class="nx">script</span> <span class="o">+=</span> <span class="s1">'}else if(shExpMatch(host,"'</span> <span class="o">+</span> <span class="nx">info</span><span class="p">.</span><span class="nx">domain</span> <span class="o">+</span> <span class="s1">'")){'</span><span class="p">;</span>
+			<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">domain</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">':'</span><span class="p">)</span><span class="o">!=-</span><span class="mi">1</span><span class="p">){</span>
+				<span class="kd">var</span> <span class="nx">t</span><span class="o">=</span><span class="nx">info</span><span class="p">.</span><span class="nx">domain</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">':'</span><span class="p">);</span>
+				<span class="nx">port</span> <span class="o">=</span> <span class="nx">t</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+				<span class="nx">script</span> <span class="o">+=</span> <span class="s1">'}else if(shExpMatch(url,"http://'</span> <span class="o">+</span> <span class="nx">info</span><span class="p">.</span><span class="nx">domain</span> <span class="o">+</span> <span class="s1">'/*") || shExpMatch(url,"https://'</span> <span class="o">+</span> <span class="nx">info</span><span class="p">.</span><span class="nx">domain</span> <span class="o">+</span> <span class="s1">'/*")){'</span><span class="p">;</span>
+			<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+				<span class="nx">script</span> <span class="o">+=</span> <span class="s1">'}else if(host == "'</span> <span class="o">+</span> <span class="nx">info</span><span class="p">.</span><span class="nx">domain</span> <span class="o">+</span> <span class="s1">'"){'</span><span class="p">;</span>
+			<span class="p">}</span>
+
+			<span class="k">if</span><span class="p">(</span> <span class="nx">info</span><span class="p">.</span><span class="nx">ip</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">':'</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span> <span class="p">){</span>
+				<span class="kd">var</span> <span class="nx">ip_port</span> <span class="o">=</span> <span class="nx">info</span><span class="p">.</span><span class="nx">ip</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">':'</span><span class="p">);</span>
+				<span class="nx">ip</span> <span class="o">=</span> <span class="nx">ip_port</span><span class="p">[</span><span class="nx">ip_port</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">2</span><span class="p">];</span>
+				<span class="nx">port</span> <span class="o">=</span> <span class="nx">ip_port</span><span class="p">[</span><span class="nx">ip_port</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+			<span class="p">}</span>
+			<span class="nx">script</span> <span class="o">+=</span> <span class="s1">'return "PROXY '</span> <span class="o">+</span> <span class="nx">ip</span> <span class="o">+</span> <span class="s1">':'</span><span class="o">+</span> <span class="nx">port</span> <span class="o">+</span><span class="s1">'; DIRECT";'</span><span class="p">;</span>
+
+			<span class="nx">script</span><span class="o">+=</span><span class="s2">"\n"</span><span class="p">;</span>
+		<span class="p">}</span>
+
+		<span class="kd">var</span> <span class="nx">data</span><span class="o">=</span><span class="s1">'function FindProxyForURL(url,host){ \n if(shExpMatch(url,"http:*") || shExpMatch(url,"https:*")){if(isPlainHostName(host)){return "DIRECT";'</span> <span class="o">+</span>
+			<span class="nx">script</span> <span class="o">+</span> <span class="s1">'}else{return "'</span><span class="o">+</span> <span class="nx">default_mode</span> <span class="o">+</span><span class="s1">'";}}else{return "SYSTEM";}}'</span><span class="p">;</span>
+
+		<span class="nx">chrome</span><span class="p">.</span><span class="nx">proxy</span><span class="p">.</span><span class="nx">settings</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span>
+			<span class="na">value</span><span class="p">:</span> <span class="p">{</span>
+				<span class="na">mode</span><span class="p">:</span> <span class="s1">'pac_script'</span><span class="p">,</span>
+				<span class="na">pacScript</span><span class="p">:</span> <span class="p">{</span>
+					<span class="na">data</span><span class="p">:</span><span class="nx">data</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+			<span class="na">scope</span><span class="p">:</span> <span class="s1">'regular'</span>
+		<span class="p">},</span> <span class="kd">function</span><span class="p">(){</span>
+			<span class="c1">// console.log('set pac scripts result:',arguments);</span>
+		<span class="p">});</span>
+		<span class="c1">// $('#msg').html('set :' + script);</span>
+		<span class="nx">refreshDataForBk</span><span class="p">();</span>
+	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+		<span class="nx">chrome</span><span class="p">.</span><span class="nx">proxy</span><span class="p">.</span><span class="nx">settings</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span>
+			<span class="na">value</span><span class="p">:</span> <span class="p">{</span>
+				<span class="c1">//mode: 'system'</span>
+				<span class="c1">// mode: 'direct'</span>
+				<span class="na">mode</span><span class="p">:</span> <span class="nx">default_mode</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span>
+			<span class="p">},</span>
+			<span class="na">scope</span><span class="p">:</span> <span class="s1">'regular'</span>
+		<span class="p">},</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+		<span class="p">});</span>
+		<span class="nx">refreshDataForBk</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="参考">参考</h3>
+<ul>
+  <li><a href="http://open.chrome.360.cn/extension_dev/overview.html">chrome插件开发中文文档-360译</a></li>
+</ul>
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">小浪Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              小浪Blog
+            
+            </li>
+            
+            <li><a href="mailto:474647150@qq.com">474647150@qq.com</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/cjjmem"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">cjjmem</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>其實很簡單</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
