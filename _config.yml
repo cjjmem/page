@@ -20,7 +20,11 @@ description: 其實很簡單
 baseurl: "/page"
 url: "https://cjjmem.github.io/page"
 github_username:  cjjmem
-
+comment:
+  used: disqus
+  # disqus config
+  disqus_shortname: "http-cjjmem-github-io-page" # Your disqus
+  disqus_button: true # disqus load button
 # Build settings
 markdown: kramdown
 theme: minima

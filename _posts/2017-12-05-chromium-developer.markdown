@@ -3,6 +3,7 @@ layout: post
 title:  "windows10环境下构建chromium开源浏览器"
 date:   2017-12-05 09:56:00 +0800
 categories: jekyll update
+comments: true
 ---
 
 
