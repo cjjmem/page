@@ -12,6 +12,9 @@ categories: jekyll update
 *安装成功后，可以设置淘宝源，以防国内访问/安装失败。*
 
 {% highlight shell %}
+$ gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
+$ gem sources -l
+https://gems.ruby-china.com
 gem sources -a http://gems.ruby-china.org/
 {% endhighlight %}
 
@@ -31,7 +34,7 @@ SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificat
 #### 安装jekyll 3.0的版本
 
 {% highlight shell %}
-gem install jekyll -v '3.0'
+gem install jekyll -v '4.0'
 {% endhighlight %}
 
 #### 安装minima、bundle

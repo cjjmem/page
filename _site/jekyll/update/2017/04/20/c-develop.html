@@ -1,166 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
+<html lang="en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>c#开发笔记 | 小浪Blog</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="c#开发笔记" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="计时器" />
+<meta property="og:description" content="计时器" />
+<link rel="canonical" href="https://cjjmem.github.io/page/page/jekyll/update/2017/04/20/c-develop.html" />
+<meta property="og:url" content="https://cjjmem.github.io/page/page/jekyll/update/2017/04/20/c-develop.html" />
+<meta property="og:site_name" content="小浪Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-04-20T18:09:03+08:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","headline":"c#开发笔记","mainEntityOfPage":{"@type":"WebPage","@id":"https://cjjmem.github.io/page/page/jekyll/update/2017/04/20/c-develop.html"},"datePublished":"2017-04-20T18:09:03+08:00","url":"https://cjjmem.github.io/page/page/jekyll/update/2017/04/20/c-develop.html","description":"计时器","dateModified":"2017-04-20T18:09:03+08:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/page/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://cjjmem.github.io/page/page/feed.xml" title="小浪Blog" /></head>
+<body><header class="site-header" role="banner">
 
-  <title> c#开发笔记</title>
-  <meta name="description" content="计时器">
-
-  <link rel="stylesheet" href="/page/assets/main.css">
-  <link rel="canonical" href="https://cjjmem.github.io/page/page/jekyll/update/2017/04/20/c-develop.html">
-  <link rel="alternate" type="application/rss+xml" title="小浪Blog" href="/page/feed.xml">
-  
-  
-</head>
-
-
-  <body>
-
-    <header class="site-header" role="banner">
-
-  <div class="wrapper">
-    
-    
-    <a class="site-title" href="/page/">小浪Blog</a>
-  
-    
-      <nav class="site-nav">
+  <div class="wrapper"><a class="site-title" rel="author" href="/page/">小浪Blog</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
         <label for="nav-trigger">
           <span class="menu-icon">
             <svg viewBox="0 0 18 15" width="18px" height="15px">
-              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
-              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
-              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
             </svg>
           </span>
         </label>
 
-        <div class="trigger">
-          
-            
-            
-            <a class="page-link" href="/page/about/">关于我</a>
-            
-          
-            
-            
-          
-            
-            
-            <a class="page-link" href="/page/resume/">我的简历</a>
-            
-          
-            
-            
-          
-            
-            
-          
-        </div>
-      </nav>
-    
-  </div>
+        <div class="trigger"><a class="page-link" href="/page/about/">关于我</a></div>
+      </nav></div>
 </header>
-
-
-    <main class="page-content" aria-label="Content">
+<main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline"> c#开发笔记</h1>
+    <h1 class="post-title p-name" itemprop="name headline"> c#开发笔记</h1>
     <p class="post-meta">
-      <time datetime="2017-04-20T18:09:03+08:00" itemprop="datePublished">
-        
-        Apr 20, 2017
-      </time>
-      </p>
+      <time class="dt-published" datetime="2017-04-20T18:09:03+08:00" itemprop="datePublished">Apr 20, 2017
+      </time></p>
   </header>
 
-  <div class="post-content" itemprop="articleBody">
+  <div class="post-content e-content" itemprop="articleBody">
     <h1 id="计时器">计时器</h1>
 
-<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System.Timers</span><span class="p">;</span>
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System.Timers</span><span class="p">;</span>
 
 
-<span class="n">System</span><span class="p">.</span><span class="n">Timers</span><span class="p">.</span><span class="n">Timer</span> <span class="n">pTimer</span> <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Timers</span><span class="p">.</span><span class="nf">Timer</span><span class="p">(</span><span class="m">1000</span><span class="p">);</span><span class="c1">//每隔5秒执行一次，没用winfrom自带的
-</span><span class="n">pTimer</span><span class="p">.</span><span class="n">Elapsed</span> <span class="p">+=</span> <span class="n">pTimer_Elapsed</span><span class="p">;</span><span class="c1">//委托，要执行的方法
-</span><span class="n">pTimer</span><span class="p">.</span><span class="n">AutoReset</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span><span class="c1">//获取该定时器自动执行
-</span><span class="n">pTimer</span><span class="p">.</span><span class="n">Enabled</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span><span class="c1">//这个一定要写，要不然定时器不会执行的
-</span><span class="n">Control</span><span class="p">.</span><span class="n">CheckForIllegalCrossThreadCalls</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span><span class="c1">//这个不太懂，有待研究
-</span></code></pre>
-</div>
+<span class="n">System</span><span class="p">.</span><span class="n">Timers</span><span class="p">.</span><span class="n">Timer</span> <span class="n">pTimer</span> <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Timers</span><span class="p">.</span><span class="nf">Timer</span><span class="p">(</span><span class="m">1000</span><span class="p">);</span><span class="c1">//每隔5秒执行一次，没用winfrom自带的</span>
+<span class="n">pTimer</span><span class="p">.</span><span class="n">Elapsed</span> <span class="p">+=</span> <span class="n">pTimer_Elapsed</span><span class="p">;</span><span class="c1">//委托，要执行的方法</span>
+<span class="n">pTimer</span><span class="p">.</span><span class="n">AutoReset</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span><span class="c1">//获取该定时器自动执行</span>
+<span class="n">pTimer</span><span class="p">.</span><span class="n">Enabled</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span><span class="c1">//这个一定要写，要不然定时器不会执行的</span>
+<span class="n">Control</span><span class="p">.</span><span class="n">CheckForIllegalCrossThreadCalls</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span><span class="c1">//这个不太懂，有待研究</span>
+</code></pre></div></div>
 
 <h1 id="pj">pj</h1>
 
 <h1 id="线程-委托-事件">线程 委托 事件</h1>
 
-<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">TestClass</span>
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">TestClass</span>
 <span class="p">{</span>
-        <span class="c1">//声明一个delegate（委托）类型：testDelegate，该类型可以搭载返回值为空，参数只有一个(long型)的方法。
-</span>        <span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> <span class="nf">testDelegate</span><span class="p">(</span><span class="kt">long</span> <span class="n">i</span><span class="p">);</span>
+        <span class="c1">//声明一个delegate（委托）类型：testDelegate，该类型可以搭载返回值为空，参数只有一个(long型)的方法。</span>
+        <span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> <span class="nf">testDelegate</span><span class="p">(</span><span class="kt">long</span> <span class="n">i</span><span class="p">);</span>
 
-        <span class="c1">//声明一个testDelegate类型的对象。该对象代表了返回值为空，参数只有一个(long型)的方法。它可以搭载N个方法。
-</span>        <span class="k">public</span> <span class="n">testDelegate</span> <span class="n">mainThread</span><span class="p">;</span>
+        <span class="c1">//声明一个testDelegate类型的对象。该对象代表了返回值为空，参数只有一个(long型)的方法。它可以搭载N个方法。</span>
+        <span class="k">public</span> <span class="n">testDelegate</span> <span class="n">mainThread</span><span class="p">;</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 测试方法
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="k">public</span> <span class="k">void</span> <span class="nf">testFunction</span><span class="p">()</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 测试方法</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">testFunction</span><span class="p">()</span>
         <span class="p">{</span>
             <span class="kt">long</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
             <span class="k">while</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>
             <span class="p">{</span>
                 <span class="n">i</span><span class="p">++;</span>
-                <span class="nf">mainThread</span><span class="p">(</span><span class="n">i</span><span class="p">);</span> <span class="c1">//调用委托对象
-</span>                <span class="n">Thread</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="m">1000</span><span class="p">);</span>  <span class="c1">//线程等待1000毫秒
-</span>            <span class="p">}</span>
+                <span class="nf">mainThread</span><span class="p">(</span><span class="n">i</span><span class="p">);</span> <span class="c1">//调用委托对象</span>
+                <span class="n">Thread</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="m">1000</span><span class="p">);</span>  <span class="c1">//线程等待1000毫秒</span>
+            <span class="p">}</span>
         <span class="p">}</span>
 <span class="p">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="na">[csharp]</span> <span class="n">view</span> <span class="n">plain</span> <span class="n">copy</span> <span class="n">print</span><span class="p">?</span>
-<span class="c1">/// &lt;summary&gt;
-/// 按钮单击事件
-/// &lt;/summary&gt;
-/// &lt;param name="sender"&gt;&lt;/param&gt;
-/// &lt;param name="e"&gt;&lt;/param&gt;
-</span><span class="k">private</span> <span class="k">void</span> <span class="nf">button1_Click</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="n">e</span><span class="p">)</span>
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">csharp</span><span class="p">]</span> <span class="n">view</span> <span class="n">plain</span> <span class="n">copy</span> <span class="n">print</span><span class="p">?</span>
+<span class="c1">/// &lt;summary&gt;</span>
+<span class="c1">/// 按钮单击事件</span>
+<span class="c1">/// &lt;/summary&gt;</span>
+<span class="c1">/// &lt;param name="sender"&gt;&lt;/param&gt;</span>
+<span class="c1">/// &lt;param name="e"&gt;&lt;/param&gt;</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">button1_Click</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="n">e</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="c1">//创建TestClass类的对象
-</span>    <span class="n">TestClass</span> <span class="n">testclass</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">TestClass</span><span class="p">();</span>
+    <span class="c1">//创建TestClass类的对象</span>
+    <span class="n">TestClass</span> <span class="n">testclass</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">TestClass</span><span class="p">();</span>
 
-    <span class="c1">//在testclass对象的mainThread(委托)对象上搭载两个方法，在线程中调用mainThread对象时相当于调用了这两个方法。
-</span>    <span class="n">testclass</span><span class="p">.</span><span class="n">mainThread</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TestClass</span><span class="p">.</span><span class="nf">testDelegate</span><span class="p">(</span><span class="n">refreshLabMessage1</span><span class="p">);</span>
+    <span class="c1">//在testclass对象的mainThread(委托)对象上搭载两个方法，在线程中调用mainThread对象时相当于调用了这两个方法。</span>
+    <span class="n">testclass</span><span class="p">.</span><span class="n">mainThread</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TestClass</span><span class="p">.</span><span class="nf">testDelegate</span><span class="p">(</span><span class="n">refreshLabMessage1</span><span class="p">);</span>
     <span class="n">testclass</span><span class="p">.</span><span class="n">mainThread</span> <span class="p">+=</span> <span class="k">new</span> <span class="n">TestClass</span><span class="p">.</span><span class="nf">testDelegate</span><span class="p">(</span><span class="n">refreshLabMessage2</span><span class="p">);</span>
 
-    <span class="c1">//创建一个无参数的线程,这个线程执行TestClass类中的testFunction方法。
-</span>    <span class="n">Thread</span> <span class="n">testclassThread</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Thread</span><span class="p">(</span><span class="k">new</span> <span class="nf">ThreadStart</span><span class="p">(</span><span class="n">testclass</span><span class="p">.</span><span class="n">testFunction</span><span class="p">));</span>
-    <span class="c1">//启动线程，启动之后线程才开始执行
-</span>    <span class="n">testclassThread</span><span class="p">.</span><span class="nf">Start</span><span class="p">();</span>
+    <span class="c1">//创建一个无参数的线程,这个线程执行TestClass类中的testFunction方法。</span>
+    <span class="n">Thread</span> <span class="n">testclassThread</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Thread</span><span class="p">(</span><span class="k">new</span> <span class="nf">ThreadStart</span><span class="p">(</span><span class="n">testclass</span><span class="p">.</span><span class="n">testFunction</span><span class="p">));</span>
+    <span class="c1">//启动线程，启动之后线程才开始执行</span>
+    <span class="n">testclassThread</span><span class="p">.</span><span class="nf">Start</span><span class="p">();</span>
 <span class="p">}</span>
 
-<span class="c1">/// &lt;summary&gt;
-/// 在界面上更新线程执行次数
-/// &lt;/summary&gt;
-/// &lt;param name="i"&gt;&lt;/param&gt;
-</span><span class="k">private</span> <span class="k">void</span> <span class="nf">refreshLabMessage1</span><span class="p">(</span><span class="kt">long</span> <span class="n">i</span><span class="p">)</span>
+<span class="c1">/// &lt;summary&gt;</span>
+<span class="c1">/// 在界面上更新线程执行次数</span>
+<span class="c1">/// &lt;/summary&gt;</span>
+<span class="c1">/// &lt;param name="i"&gt;&lt;/param&gt;</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">refreshLabMessage1</span><span class="p">(</span><span class="kt">long</span> <span class="n">i</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="c1">//判断该方法是否被主线程调用，也就是创建labMessage1控件的线程，当控件的InvokeRequired属性为ture时，说明是被主线程以外的线程调用。如果不加判断，会造成异常
-</span>    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">labMessage1</span><span class="p">.</span><span class="n">InvokeRequired</span><span class="p">)</span>
+    <span class="c1">//判断该方法是否被主线程调用，也就是创建labMessage1控件的线程，当控件的InvokeRequired属性为ture时，说明是被主线程以外的线程调用。如果不加判断，会造成异常</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">labMessage1</span><span class="p">.</span><span class="n">InvokeRequired</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="c1">//再次创建一个TestClass类的对象
-</span>        <span class="n">TestClass</span> <span class="n">testclass</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">TestClass</span><span class="p">();</span>
-        <span class="c1">//为新对象的mainThread对象搭载方法
-</span>        <span class="n">testclass</span><span class="p">.</span><span class="n">mainThread</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TestClass</span><span class="p">.</span><span class="nf">testDelegate</span><span class="p">(</span><span class="n">refreshLabMessage1</span><span class="p">);</span>
-        <span class="c1">//this指窗体，在这调用窗体的Invoke方法，也就是用窗体的创建线程来执行mainThread对象委托的方法，再加上需要的参数(i)
-</span>        <span class="k">this</span><span class="p">.</span><span class="nf">Invoke</span><span class="p">(</span><span class="n">testclass</span><span class="p">.</span><span class="n">mainThread</span><span class="p">,</span><span class="k">new</span> <span class="kt">object</span><span class="p">[]</span> <span class="p">{</span><span class="n">i</span><span class="p">});</span>
+        <span class="c1">//再次创建一个TestClass类的对象</span>
+        <span class="n">TestClass</span> <span class="n">testclass</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">TestClass</span><span class="p">();</span>
+        <span class="c1">//为新对象的mainThread对象搭载方法</span>
+        <span class="n">testclass</span><span class="p">.</span><span class="n">mainThread</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TestClass</span><span class="p">.</span><span class="nf">testDelegate</span><span class="p">(</span><span class="n">refreshLabMessage1</span><span class="p">);</span>
+        <span class="c1">//this指窗体，在这调用窗体的Invoke方法，也就是用窗体的创建线程来执行mainThread对象委托的方法，再加上需要的参数(i)</span>
+        <span class="k">this</span><span class="p">.</span><span class="nf">Invoke</span><span class="p">(</span><span class="n">testclass</span><span class="p">.</span><span class="n">mainThread</span><span class="p">,</span><span class="k">new</span> <span class="kt">object</span><span class="p">[]</span> <span class="p">{</span><span class="n">i</span><span class="p">});</span>
     <span class="p">}</span>
     <span class="k">else</span>
     <span class="p">{</span>
@@ -168,21 +129,21 @@
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="c1">/// &lt;summary&gt;
-/// 在界面上更新线程执行次数
-/// &lt;/summary&gt;
-/// &lt;param name="i"&gt;&lt;/param&gt;
-</span><span class="k">private</span> <span class="k">void</span> <span class="nf">refreshLabMessage2</span><span class="p">(</span><span class="kt">long</span> <span class="n">i</span><span class="p">)</span>
+<span class="c1">/// &lt;summary&gt;</span>
+<span class="c1">/// 在界面上更新线程执行次数</span>
+<span class="c1">/// &lt;/summary&gt;</span>
+<span class="c1">/// &lt;param name="i"&gt;&lt;/param&gt;</span>
+<span class="k">private</span> <span class="k">void</span> <span class="nf">refreshLabMessage2</span><span class="p">(</span><span class="kt">long</span> <span class="n">i</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="c1">//同上
-</span>    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">labMessage2</span><span class="p">.</span><span class="n">InvokeRequired</span><span class="p">)</span>
+    <span class="c1">//同上</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">labMessage2</span><span class="p">.</span><span class="n">InvokeRequired</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="c1">//再次创建一个TestClass类的对象
-</span>        <span class="n">TestClass</span> <span class="n">testclass</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">TestClass</span><span class="p">();</span>
-        <span class="c1">//为新对象的mainThread对象搭载方法
-</span>        <span class="n">testclass</span><span class="p">.</span><span class="n">mainThread</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TestClass</span><span class="p">.</span><span class="nf">testDelegate</span><span class="p">(</span><span class="n">refreshLabMessage2</span><span class="p">);</span>
-        <span class="c1">//this指窗体，在这调用窗体的Invoke方法，也就是用窗体的创建线程来执行mainThread对象委托的方法，再加上需要的参数(i)
-</span>        <span class="k">this</span><span class="p">.</span><span class="nf">Invoke</span><span class="p">(</span><span class="n">testclass</span><span class="p">.</span><span class="n">mainThread</span><span class="p">,</span> <span class="k">new</span> <span class="kt">object</span><span class="p">[]</span> <span class="p">{</span> <span class="n">i</span> <span class="p">});</span>
+        <span class="c1">//再次创建一个TestClass类的对象</span>
+        <span class="n">TestClass</span> <span class="n">testclass</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">TestClass</span><span class="p">();</span>
+        <span class="c1">//为新对象的mainThread对象搭载方法</span>
+        <span class="n">testclass</span><span class="p">.</span><span class="n">mainThread</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TestClass</span><span class="p">.</span><span class="nf">testDelegate</span><span class="p">(</span><span class="n">refreshLabMessage2</span><span class="p">);</span>
+        <span class="c1">//this指窗体，在这调用窗体的Invoke方法，也就是用窗体的创建线程来执行mainThread对象委托的方法，再加上需要的参数(i)</span>
+        <span class="k">this</span><span class="p">.</span><span class="nf">Invoke</span><span class="p">(</span><span class="n">testclass</span><span class="p">.</span><span class="n">mainThread</span><span class="p">,</span> <span class="k">new</span> <span class="kt">object</span><span class="p">[]</span> <span class="p">{</span> <span class="n">i</span> <span class="p">});</span>
     <span class="p">}</span>
     <span class="k">else</span>
     <span class="p">{</span>
@@ -190,8 +151,7 @@
     <span class="p">}</span>
 <span class="p">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="控制声音">控制声音</h1>
 <pre><code class="language-C#">//使用示例
@@ -222,7 +182,7 @@ bool b = config.GetConfigValueBool("bool");
 
 </code></pre>
 
-<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Runtime.InteropServices</span><span class="p">;</span>
 
 <span class="k">namespace</span> <span class="nn">OnePhone</span>
@@ -249,37 +209,37 @@ bool b = config.GetConfigValueBool("bool");
         <span class="p">[</span><span class="nf">DllImport</span><span class="p">(</span><span class="s">"winmm.dll"</span><span class="p">)]</span>
         <span class="k">public</span> <span class="k">static</span> <span class="k">extern</span> <span class="kt">long</span> <span class="nf">waveOutGetVolume</span><span class="p">(</span><span class="n">UInt32</span> <span class="n">deviceID</span><span class="p">,</span> <span class="k">out</span> <span class="n">UInt32</span> <span class="n">Volume</span><span class="p">);</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 系统振铃器音量 [+]
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">VolumeUp</span><span class="p">()</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 系统振铃器音量 [+]</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">VolumeUp</span><span class="p">()</span>
         <span class="p">{</span>
             <span class="nf">keybd_event</span><span class="p">(</span><span class="n">VK_VOLUME_UP</span><span class="p">,</span> <span class="nf">MapVirtualKey</span><span class="p">(</span><span class="n">VK_VOLUME_UP</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="n">KEYEVENTF_EXTENDEDKEY</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
             <span class="nf">keybd_event</span><span class="p">(</span><span class="n">VK_VOLUME_UP</span><span class="p">,</span> <span class="nf">MapVirtualKey</span><span class="p">(</span><span class="n">VK_VOLUME_UP</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="n">KEYEVENTF_EXTENDEDKEY</span> <span class="p">|</span> <span class="n">KEYEVENTF_KEYUP</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 系统振铃器音量 [-]
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">VolumeDown</span><span class="p">()</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 系统振铃器音量 [-]</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">VolumeDown</span><span class="p">()</span>
         <span class="p">{</span>
             <span class="nf">keybd_event</span><span class="p">(</span><span class="n">VK_VOLUME_DOWN</span><span class="p">,</span> <span class="nf">MapVirtualKey</span><span class="p">(</span><span class="n">VK_VOLUME_DOWN</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="n">KEYEVENTF_EXTENDEDKEY</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
             <span class="nf">keybd_event</span><span class="p">(</span><span class="n">VK_VOLUME_DOWN</span><span class="p">,</span> <span class="nf">MapVirtualKey</span><span class="p">(</span><span class="n">VK_VOLUME_DOWN</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="n">KEYEVENTF_EXTENDEDKEY</span> <span class="p">|</span> <span class="n">KEYEVENTF_KEYUP</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 系统振铃器静音
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Mute</span><span class="p">()</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 系统振铃器静音</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Mute</span><span class="p">()</span>
         <span class="p">{</span>
             <span class="nf">keybd_event</span><span class="p">(</span><span class="n">VK_VOLUME_MUTE</span><span class="p">,</span> <span class="nf">MapVirtualKey</span><span class="p">(</span><span class="n">VK_VOLUME_MUTE</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="n">KEYEVENTF_EXTENDEDKEY</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
             <span class="nf">keybd_event</span><span class="p">(</span><span class="n">VK_VOLUME_MUTE</span><span class="p">,</span> <span class="nf">MapVirtualKey</span><span class="p">(</span><span class="n">VK_VOLUME_MUTE</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="n">KEYEVENTF_EXTENDEDKEY</span> <span class="p">|</span> <span class="n">KEYEVENTF_KEYUP</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 当前音量值 0为静音状态
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="k">public</span> <span class="k">static</span> <span class="kt">int</span> <span class="nf">GetVolume</span><span class="p">()</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 当前音量值 0为静音状态</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="kt">int</span> <span class="nf">GetVolume</span><span class="p">()</span>
         <span class="p">{</span>
             <span class="n">UInt32</span> <span class="n">d</span><span class="p">,</span> <span class="n">v</span><span class="p">;</span>
             <span class="n">d</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
@@ -290,27 +250,26 @@ bool b = config.GetConfigValueBool("bool");
             <span class="k">return</span> <span class="n">currentVolume</span><span class="p">;</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 设置音量
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">SetVolume</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 设置音量</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">SetVolume</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="n">UInt32</span> <span class="n">Value</span> <span class="p">=</span> <span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">UInt32</span><span class="p">)((</span><span class="kt">double</span><span class="p">)</span><span class="m">0xffff</span> <span class="p">*</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">val</span> <span class="p">/</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="m">100</span><span class="p">);</span><span class="c1">//先把trackbar的value值映射到0x0000～0xFFFF范围
-</span>            <span class="c1">//限制value的取值范围
-</span>            <span class="k">if</span> <span class="p">(</span><span class="n">Value</span> <span class="p">&lt;</span> <span class="m">0</span><span class="p">)</span> <span class="n">Value</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+            <span class="n">UInt32</span> <span class="n">Value</span> <span class="p">=</span> <span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">UInt32</span><span class="p">)((</span><span class="kt">double</span><span class="p">)</span><span class="m">0xffff</span> <span class="p">*</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">val</span> <span class="p">/</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="m">100</span><span class="p">);</span><span class="c1">//先把trackbar的value值映射到0x0000～0xFFFF范围</span>
+            <span class="c1">//限制value的取值范围</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Value</span> <span class="p">&lt;</span> <span class="m">0</span><span class="p">)</span> <span class="n">Value</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">Value</span> <span class="p">&gt;</span> <span class="m">0xffff</span><span class="p">)</span> <span class="n">Value</span> <span class="p">=</span> <span class="m">0xffff</span><span class="p">;</span>
-            <span class="n">UInt32</span> <span class="n">left</span> <span class="p">=</span> <span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">UInt32</span><span class="p">)</span><span class="n">Value</span><span class="p">;</span><span class="c1">//左声道音量
-</span>            <span class="n">UInt32</span> <span class="n">right</span> <span class="p">=</span> <span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">UInt32</span><span class="p">)</span><span class="n">Value</span><span class="p">;</span><span class="c1">//右
-</span>            <span class="nf">waveOutSetVolume</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">left</span> <span class="p">&lt;&lt;</span> <span class="m">16</span> <span class="p">|</span> <span class="n">right</span><span class="p">);</span> <span class="c1">//"&lt;&lt;"左移，“|”逻辑或运算
-</span>        <span class="p">}</span>
+            <span class="n">UInt32</span> <span class="n">left</span> <span class="p">=</span> <span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">UInt32</span><span class="p">)</span><span class="n">Value</span><span class="p">;</span><span class="c1">//左声道音量</span>
+            <span class="n">UInt32</span> <span class="n">right</span> <span class="p">=</span> <span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">UInt32</span><span class="p">)</span><span class="n">Value</span><span class="p">;</span><span class="c1">//右</span>
+            <span class="nf">waveOutSetVolume</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">left</span> <span class="p">&lt;&lt;</span> <span class="m">16</span> <span class="p">|</span> <span class="n">right</span><span class="p">);</span> <span class="c1">//"&lt;&lt;"左移，“|”逻辑或运算</span>
+        <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="xml-配置">XML 配置</h1>
-<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Xml</span><span class="p">;</span>
 
@@ -321,17 +280,17 @@ bool b = config.GetConfigValueBool("bool");
 
         <span class="k">protected</span> <span class="k">readonly</span> <span class="kt">string</span> <span class="n">configBasePath</span> <span class="p">=</span> <span class="s">"Root/Config"</span><span class="p">;</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 当前配置文件的完整路径
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="k">public</span> <span class="kt">string</span> <span class="n">FileName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 当前配置文件的完整路径</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">FileName</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">private</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 获取或设置配置
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="key"&gt;键名&lt;/param&gt;
-</span>        <span class="c1">/// &lt;returns&gt;键名对应的值&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="kt">string</span> <span class="k">this</span><span class="p">[</span><span class="kt">string</span> <span class="n">key</span><span class="p">]</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 获取或设置配置</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="key"&gt;键名&lt;/param&gt;</span>
+        <span class="c1">/// &lt;returns&gt;键名对应的值&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="k">this</span><span class="p">[</span><span class="kt">string</span> <span class="n">key</span><span class="p">]</span>
         <span class="p">{</span>
             <span class="k">get</span>
             <span class="p">{</span>
@@ -343,30 +302,30 @@ bool b = config.GetConfigValueBool("bool");
             <span class="p">}</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 构造函数
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="k">protected</span> <span class="nf">ConfigFile</span><span class="p">()</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 构造函数</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="k">protected</span> <span class="nf">ConfigFile</span><span class="p">()</span>
         <span class="p">{</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 读取配置文件
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="filename"&gt;配置文件名&lt;/param&gt;
-</span>        <span class="c1">/// &lt;returns&gt;ConfigFile对象&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="k">static</span> <span class="n">ConfigFile</span> <span class="nf">LoadFile</span><span class="p">(</span><span class="kt">string</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 读取配置文件</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="filename"&gt;配置文件名&lt;/param&gt;</span>
+        <span class="c1">/// &lt;returns&gt;ConfigFile对象&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="n">ConfigFile</span> <span class="nf">LoadFile</span><span class="p">(</span><span class="kt">string</span> <span class="n">filename</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="k">if</span> <span class="p">(!</span><span class="n">File</span><span class="p">.</span><span class="nf">Exists</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span> <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
             <span class="k">return</span> <span class="k">new</span> <span class="n">ConfigFile</span> <span class="p">{</span> <span class="n">FileName</span> <span class="p">=</span> <span class="n">filename</span> <span class="p">};</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 读取或创建配置文件
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="filename"&gt;配置文件名&lt;/param&gt;
-</span>        <span class="c1">/// &lt;returns&gt;ConfigFile对象&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="k">static</span> <span class="n">ConfigFile</span> <span class="nf">LoadOrCreateFile</span><span class="p">(</span><span class="kt">string</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 读取或创建配置文件</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="filename"&gt;配置文件名&lt;/param&gt;</span>
+        <span class="c1">/// &lt;returns&gt;ConfigFile对象&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="n">ConfigFile</span> <span class="nf">LoadOrCreateFile</span><span class="p">(</span><span class="kt">string</span> <span class="n">filename</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="k">if</span> <span class="p">(!</span><span class="n">File</span><span class="p">.</span><span class="nf">Exists</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
             <span class="p">{</span>
@@ -377,10 +336,10 @@ bool b = config.GetConfigValueBool("bool");
             <span class="k">return</span> <span class="nf">LoadFile</span><span class="p">(</span><span class="n">filename</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 创建配置文件，可在子类中重写此方法
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="k">protected</span> <span class="k">virtual</span> <span class="k">void</span> <span class="nf">CreateFile</span><span class="p">()</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 创建配置文件，可在子类中重写此方法</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="k">protected</span> <span class="k">virtual</span> <span class="k">void</span> <span class="nf">CreateFile</span><span class="p">()</span>
         <span class="p">{</span>
             <span class="n">XmlDocument</span> <span class="n">doc</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">XmlDocument</span><span class="p">();</span>
             <span class="n">XmlDeclaration</span> <span class="n">dec</span> <span class="p">=</span> <span class="n">doc</span><span class="p">.</span><span class="nf">CreateXmlDeclaration</span><span class="p">(</span><span class="s">"1.0"</span><span class="p">,</span> <span class="s">"UTF-8"</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
@@ -391,186 +350,186 @@ bool b = config.GetConfigValueBool("bool");
             <span class="n">doc</span><span class="p">.</span><span class="nf">Save</span><span class="p">(</span><span class="n">FileName</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 根据Key从配置文件中获取值
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="key"&gt;键名&lt;/param&gt;
-</span>        <span class="c1">/// &lt;returns&gt;获取的值，找不到返回""&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="kt">string</span> <span class="nf">GetConfigValue</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 根据Key从配置文件中获取值</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="key"&gt;键名&lt;/param&gt;</span>
+        <span class="c1">/// &lt;returns&gt;获取的值，找不到返回""&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="nf">GetConfigValue</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="k">return</span> <span class="nf">GetKeyValue</span><span class="p">(</span><span class="err">$</span><span class="s">"{configBasePath}/{key}"</span><span class="p">);</span>
+            <span class="k">return</span> <span class="nf">GetKeyValue</span><span class="p">(</span><span class="s">$"</span><span class="p">{</span><span class="n">configBasePath</span><span class="p">}</span><span class="s">/</span><span class="p">{</span><span class="n">key</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 从配置文件中根据key获取值并转化为相应数据类型
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="key"&gt;键名&lt;/param&gt;
-</span>        <span class="c1">/// &lt;param name="result"&gt;转化后的值&lt;/param&gt;
-</span>        <span class="c1">/// &lt;returns&gt;转化是否成功&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="kt">bool</span> <span class="nf">TryParseConfigValue</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">,</span> <span class="k">out</span> <span class="kt">int</span> <span class="n">result</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 从配置文件中根据key获取值并转化为相应数据类型</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="key"&gt;键名&lt;/param&gt;</span>
+        <span class="c1">/// &lt;param name="result"&gt;转化后的值&lt;/param&gt;</span>
+        <span class="c1">/// &lt;returns&gt;转化是否成功&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="kt">bool</span> <span class="nf">TryParseConfigValue</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">,</span> <span class="k">out</span> <span class="kt">int</span> <span class="n">result</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="kt">var</span> <span class="n">v</span> <span class="p">=</span> <span class="nf">GetConfigValue</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
             <span class="k">return</span> <span class="kt">int</span><span class="p">.</span><span class="nf">TryParse</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="k">out</span> <span class="n">result</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 从配置文件中根据key获取值并转化为相应数据类型
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="key"&gt;键名&lt;/param&gt;
-</span>        <span class="c1">/// &lt;param name="result"&gt;转化后的值&lt;/param&gt;
-</span>        <span class="c1">/// &lt;returns&gt;转化是否成功&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="kt">bool</span> <span class="nf">TryParseConfigValue</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">,</span> <span class="k">out</span> <span class="kt">bool</span> <span class="n">result</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 从配置文件中根据key获取值并转化为相应数据类型</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="key"&gt;键名&lt;/param&gt;</span>
+        <span class="c1">/// &lt;param name="result"&gt;转化后的值&lt;/param&gt;</span>
+        <span class="c1">/// &lt;returns&gt;转化是否成功&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="kt">bool</span> <span class="nf">TryParseConfigValue</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">,</span> <span class="k">out</span> <span class="kt">bool</span> <span class="n">result</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="kt">var</span> <span class="n">v</span> <span class="p">=</span> <span class="nf">GetConfigValue</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
             <span class="k">return</span> <span class="kt">bool</span><span class="p">.</span><span class="nf">TryParse</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="k">out</span> <span class="n">result</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 从配置文件中根据key获取值并转化为相应数据类型
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="key"&gt;键名&lt;/param&gt;
-</span>        <span class="c1">/// &lt;param name="result"&gt;转化后的值&lt;/param&gt;
-</span>        <span class="c1">/// &lt;returns&gt;转化是否成功&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="kt">bool</span> <span class="nf">TryParseConfigValue</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">,</span> <span class="k">out</span> <span class="n">DateTime</span> <span class="n">result</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 从配置文件中根据key获取值并转化为相应数据类型</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="key"&gt;键名&lt;/param&gt;</span>
+        <span class="c1">/// &lt;param name="result"&gt;转化后的值&lt;/param&gt;</span>
+        <span class="c1">/// &lt;returns&gt;转化是否成功&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="kt">bool</span> <span class="nf">TryParseConfigValue</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">,</span> <span class="k">out</span> <span class="n">DateTime</span> <span class="n">result</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="kt">var</span> <span class="n">v</span> <span class="p">=</span> <span class="nf">GetConfigValue</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
             <span class="k">return</span> <span class="n">DateTime</span><span class="p">.</span><span class="nf">TryParse</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="k">out</span> <span class="n">result</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 从配置文件中根据key获取值并转化为相应数据类型
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="key"&gt;键名&lt;/param&gt;
-</span>        <span class="c1">/// &lt;param name="result"&gt;转化后的值&lt;/param&gt;
-</span>        <span class="c1">/// &lt;returns&gt;转化是否成功&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="kt">bool</span> <span class="nf">TryParseConfigValue</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">,</span> <span class="k">out</span> <span class="kt">float</span> <span class="n">result</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 从配置文件中根据key获取值并转化为相应数据类型</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="key"&gt;键名&lt;/param&gt;</span>
+        <span class="c1">/// &lt;param name="result"&gt;转化后的值&lt;/param&gt;</span>
+        <span class="c1">/// &lt;returns&gt;转化是否成功&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="kt">bool</span> <span class="nf">TryParseConfigValue</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">,</span> <span class="k">out</span> <span class="kt">float</span> <span class="n">result</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="kt">var</span> <span class="n">v</span> <span class="p">=</span> <span class="nf">GetConfigValue</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
             <span class="k">return</span> <span class="kt">float</span><span class="p">.</span><span class="nf">TryParse</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="k">out</span> <span class="n">result</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 从配置文件中根据key获取值并转化为相应数据类型
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="key"&gt;键名&lt;/param&gt;
-</span>        <span class="c1">/// &lt;param name="result"&gt;转化后的值&lt;/param&gt;
-</span>        <span class="c1">/// &lt;returns&gt;转化是否成功&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="kt">bool</span> <span class="nf">TryParseConfigValue</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">,</span> <span class="k">out</span> <span class="kt">double</span> <span class="n">result</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 从配置文件中根据key获取值并转化为相应数据类型</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="key"&gt;键名&lt;/param&gt;</span>
+        <span class="c1">/// &lt;param name="result"&gt;转化后的值&lt;/param&gt;</span>
+        <span class="c1">/// &lt;returns&gt;转化是否成功&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="kt">bool</span> <span class="nf">TryParseConfigValue</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">,</span> <span class="k">out</span> <span class="kt">double</span> <span class="n">result</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="kt">var</span> <span class="n">v</span> <span class="p">=</span> <span class="nf">GetConfigValue</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
             <span class="k">return</span> <span class="kt">double</span><span class="p">.</span><span class="nf">TryParse</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="k">out</span> <span class="n">result</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 从配置文件中根据key获取值并转化为相应数据类型
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="key"&gt;键名&lt;/param&gt;
-</span>        <span class="c1">/// &lt;param name="result"&gt;转化后的值&lt;/param&gt;
-</span>        <span class="c1">/// &lt;returns&gt;转化是否成功&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="kt">bool</span> <span class="nf">TryParseConfigValue</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">,</span> <span class="k">out</span> <span class="kt">decimal</span> <span class="n">result</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 从配置文件中根据key获取值并转化为相应数据类型</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="key"&gt;键名&lt;/param&gt;</span>
+        <span class="c1">/// &lt;param name="result"&gt;转化后的值&lt;/param&gt;</span>
+        <span class="c1">/// &lt;returns&gt;转化是否成功&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="kt">bool</span> <span class="nf">TryParseConfigValue</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">,</span> <span class="k">out</span> <span class="kt">decimal</span> <span class="n">result</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="kt">var</span> <span class="n">v</span> <span class="p">=</span> <span class="nf">GetConfigValue</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
             <span class="k">return</span> <span class="kt">decimal</span><span class="p">.</span><span class="nf">TryParse</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="k">out</span> <span class="n">result</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 在配置文件中根据key取出值并转化为int类型
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="key"&gt;&lt;/param&gt;
-</span>        <span class="c1">/// &lt;returns&gt;返回的值&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="kt">int</span> <span class="nf">GetConfigValueInt</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 在配置文件中根据key取出值并转化为int类型</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="key"&gt;&lt;/param&gt;</span>
+        <span class="c1">/// &lt;returns&gt;返回的值&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="kt">int</span> <span class="nf">GetConfigValueInt</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="kt">var</span> <span class="n">v</span> <span class="p">=</span> <span class="nf">GetConfigValue</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
             <span class="k">return</span> <span class="kt">int</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 在配置文件中根据key取出值并转化为bool类型
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="key"&gt;&lt;/param&gt;
-</span>        <span class="c1">/// &lt;returns&gt;返回的值&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="kt">bool</span> <span class="nf">GetConfigValueBool</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 在配置文件中根据key取出值并转化为bool类型</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="key"&gt;&lt;/param&gt;</span>
+        <span class="c1">/// &lt;returns&gt;返回的值&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="kt">bool</span> <span class="nf">GetConfigValueBool</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="kt">var</span> <span class="n">v</span> <span class="p">=</span> <span class="nf">GetConfigValue</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
             <span class="k">return</span> <span class="kt">bool</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 在配置文件中根据key取出值并转化为float类型
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="key"&gt;&lt;/param&gt;
-</span>        <span class="c1">/// &lt;returns&gt;返回的值&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="kt">float</span> <span class="nf">GetConfigValueFloat</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 在配置文件中根据key取出值并转化为float类型</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="key"&gt;&lt;/param&gt;</span>
+        <span class="c1">/// &lt;returns&gt;返回的值&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="kt">float</span> <span class="nf">GetConfigValueFloat</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="kt">var</span> <span class="n">v</span> <span class="p">=</span> <span class="nf">GetConfigValue</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
             <span class="k">return</span> <span class="kt">float</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 在配置文件中根据key取出值并转化为double类型
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="key"&gt;&lt;/param&gt;
-</span>        <span class="c1">/// &lt;returns&gt;返回的值&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="kt">double</span> <span class="nf">GetConfigValueDouble</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 在配置文件中根据key取出值并转化为double类型</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="key"&gt;&lt;/param&gt;</span>
+        <span class="c1">/// &lt;returns&gt;返回的值&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="kt">double</span> <span class="nf">GetConfigValueDouble</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="kt">var</span> <span class="n">v</span> <span class="p">=</span> <span class="nf">GetConfigValue</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
             <span class="k">return</span> <span class="kt">double</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 在配置文件中根据key取出值并转化为DateTime类型
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="key"&gt;&lt;/param&gt;
-</span>        <span class="c1">/// &lt;returns&gt;返回的值&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="n">DateTime</span> <span class="nf">GetConfigValueDateTime</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 在配置文件中根据key取出值并转化为DateTime类型</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="key"&gt;&lt;/param&gt;</span>
+        <span class="c1">/// &lt;returns&gt;返回的值&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="n">DateTime</span> <span class="nf">GetConfigValueDateTime</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="kt">var</span> <span class="n">v</span> <span class="p">=</span> <span class="nf">GetConfigValue</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
             <span class="k">return</span> <span class="n">DateTime</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 在配置文件中根据key取出值并转化为decimal类型
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="key"&gt;&lt;/param&gt;
-</span>        <span class="c1">/// &lt;returns&gt;返回的值&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="kt">decimal</span> <span class="nf">GetConfigValueDecimal</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 在配置文件中根据key取出值并转化为decimal类型</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="key"&gt;&lt;/param&gt;</span>
+        <span class="c1">/// &lt;returns&gt;返回的值&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="kt">decimal</span> <span class="nf">GetConfigValueDecimal</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="kt">var</span> <span class="n">v</span> <span class="p">=</span> <span class="nf">GetConfigValue</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
             <span class="k">return</span> <span class="kt">decimal</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 修改Key对应的值，如果Key不存在则添加后存入值
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="key"&gt;Key&lt;/param&gt;
-</span>        <span class="c1">/// &lt;param name="value"&gt;要存入的值&lt;/param&gt;
-</span>        <span class="k">public</span> <span class="k">void</span> <span class="nf">AddOrSetConfigValue</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">,</span> <span class="kt">string</span> <span class="k">value</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 修改Key对应的值，如果Key不存在则添加后存入值</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="key"&gt;Key&lt;/param&gt;</span>
+        <span class="c1">/// &lt;param name="value"&gt;要存入的值&lt;/param&gt;</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">AddOrSetConfigValue</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">,</span> <span class="kt">string</span> <span class="k">value</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="nf">AddOrSetKeyValue</span><span class="p">(</span><span class="n">configBasePath</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="k">value</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 保存key/value键值对，对于非string类型会调用ToString()方法
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;typeparam name="T"&gt;要保存的值的类型&lt;/typeparam&gt;
-</span>        <span class="c1">/// &lt;param name="key"&gt;要保存的键名&lt;/param&gt;
-</span>        <span class="c1">/// &lt;param name="value"&gt;要保存的值&lt;/param&gt;
-</span>        <span class="k">public</span> <span class="k">void</span> <span class="n">AddOrSetConfigValue</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kt">string</span> <span class="n">key</span><span class="p">,</span> <span class="n">T</span> <span class="k">value</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 保存key/value键值对，对于非string类型会调用ToString()方法</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;typeparam name="T"&gt;要保存的值的类型&lt;/typeparam&gt;</span>
+        <span class="c1">/// &lt;param name="key"&gt;要保存的键名&lt;/param&gt;</span>
+        <span class="c1">/// &lt;param name="value"&gt;要保存的值&lt;/param&gt;</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="n">AddOrSetConfigValue</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kt">string</span> <span class="n">key</span><span class="p">,</span> <span class="n">T</span> <span class="k">value</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="kt">var</span> <span class="n">v</span> <span class="p">=</span> <span class="k">value</span><span class="p">.</span><span class="nf">ToString</span><span class="p">();</span>
             <span class="nf">AddOrSetConfigValue</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 保存key/value键值对
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="basePath"&gt;要保存的根节点路径&lt;/param&gt;
-</span>        <span class="c1">/// &lt;param name="key"&gt;要保存的键名&lt;/param&gt;
-</span>        <span class="c1">/// &lt;param name="value"&gt;要保存的值&lt;/param&gt;
-</span>        <span class="k">public</span> <span class="k">void</span> <span class="nf">AddOrSetKeyValue</span><span class="p">(</span><span class="kt">string</span> <span class="n">basePath</span><span class="p">,</span> <span class="kt">string</span> <span class="n">key</span><span class="p">,</span> <span class="kt">string</span> <span class="k">value</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 保存key/value键值对</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="basePath"&gt;要保存的根节点路径&lt;/param&gt;</span>
+        <span class="c1">/// &lt;param name="key"&gt;要保存的键名&lt;/param&gt;</span>
+        <span class="c1">/// &lt;param name="value"&gt;要保存的值&lt;/param&gt;</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">AddOrSetKeyValue</span><span class="p">(</span><span class="kt">string</span> <span class="n">basePath</span><span class="p">,</span> <span class="kt">string</span> <span class="n">key</span><span class="p">,</span> <span class="kt">string</span> <span class="k">value</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="kt">var</span> <span class="n">doc</span> <span class="p">=</span> <span class="nf">GetXmlDocument</span><span class="p">();</span>
-            <span class="kt">var</span> <span class="n">node</span> <span class="p">=</span> <span class="n">doc</span><span class="p">.</span><span class="nf">SelectSingleNode</span><span class="p">(</span><span class="err">$</span><span class="s">"{basePath}/{key}"</span><span class="p">);</span>
+            <span class="kt">var</span> <span class="n">node</span> <span class="p">=</span> <span class="n">doc</span><span class="p">.</span><span class="nf">SelectSingleNode</span><span class="p">(</span><span class="s">$"</span><span class="p">{</span><span class="n">basePath</span><span class="p">}</span><span class="s">/</span><span class="p">{</span><span class="n">key</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
             <span class="p">{</span>
                 <span class="n">node</span> <span class="p">=</span> <span class="n">doc</span><span class="p">.</span><span class="nf">CreateElement</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
@@ -580,36 +539,36 @@ bool b = config.GetConfigValueBool("bool");
             <span class="n">doc</span><span class="p">.</span><span class="nf">Save</span><span class="p">(</span><span class="n">FileName</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 根据xpath获取值
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="xpath"&gt;要获取的路径&lt;/param&gt;
-</span>        <span class="c1">/// &lt;returns&gt;获取的值&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="kt">string</span> <span class="nf">GetKeyValue</span><span class="p">(</span><span class="kt">string</span> <span class="n">xpath</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 根据xpath获取值</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="xpath"&gt;要获取的路径&lt;/param&gt;</span>
+        <span class="c1">/// &lt;returns&gt;获取的值&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="nf">GetKeyValue</span><span class="p">(</span><span class="kt">string</span> <span class="n">xpath</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="kt">var</span> <span class="n">doc</span> <span class="p">=</span> <span class="nf">GetXmlDocument</span><span class="p">();</span>
             <span class="kt">var</span> <span class="n">node</span> <span class="p">=</span> <span class="n">doc</span><span class="p">.</span><span class="nf">SelectSingleNode</span><span class="p">(</span><span class="n">xpath</span><span class="p">);</span>
             <span class="k">return</span> <span class="n">node</span><span class="p">?.</span><span class="n">InnerText</span> <span class="p">??</span> <span class="s">""</span><span class="p">;</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 删除Key以及对应的值
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="key"&gt;Key&lt;/param&gt;
-</span>        <span class="k">public</span> <span class="k">void</span> <span class="nf">DeleteConfigKey</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 删除Key以及对应的值</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="key"&gt;Key&lt;/param&gt;</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">DeleteConfigKey</span><span class="p">(</span><span class="kt">string</span> <span class="n">key</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="kt">var</span> <span class="n">doc</span> <span class="p">=</span> <span class="nf">GetXmlDocument</span><span class="p">();</span>
-            <span class="kt">var</span> <span class="n">node</span> <span class="p">=</span> <span class="n">doc</span><span class="p">.</span><span class="nf">SelectSingleNode</span><span class="p">(</span><span class="err">$</span><span class="s">"{configBasePath}/{key}"</span><span class="p">);</span>
+            <span class="kt">var</span> <span class="n">node</span> <span class="p">=</span> <span class="n">doc</span><span class="p">.</span><span class="nf">SelectSingleNode</span><span class="p">(</span><span class="s">$"</span><span class="p">{</span><span class="n">configBasePath</span><span class="p">}</span><span class="s">/</span><span class="p">{</span><span class="n">key</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
             <span class="n">doc</span><span class="p">.</span><span class="nf">SelectSingleNode</span><span class="p">(</span><span class="s">"Root/Config"</span><span class="p">)?.</span><span class="nf">RemoveChild</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
             <span class="n">doc</span><span class="p">.</span><span class="nf">Save</span><span class="p">(</span><span class="n">FileName</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 读取XML文档
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
-</span>        <span class="k">private</span> <span class="n">XmlDocument</span> <span class="nf">GetXmlDocument</span><span class="p">()</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 读取XML文档</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;</span>
+        <span class="k">private</span> <span class="n">XmlDocument</span> <span class="nf">GetXmlDocument</span><span class="p">()</span>
         <span class="p">{</span>
             <span class="kt">var</span> <span class="n">doc</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">XmlDocument</span><span class="p">();</span>
             <span class="n">doc</span><span class="p">.</span><span class="nf">Load</span><span class="p">(</span><span class="n">FileName</span><span class="p">);</span>
@@ -619,11 +578,10 @@ bool b = config.GetConfigValueBool("bool");
     <span class="p">}</span>
 <span class="p">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h1 id="签名类">签名类</h1>
-<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Security.Cryptography</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
@@ -631,21 +589,21 @@ bool b = config.GetConfigValueBool("bool");
 
 <span class="k">namespace</span> <span class="nn">OnePhone</span>
 <span class="p">{</span>
-    <span class="c1">//密码加密解密方法
-</span>    <span class="k">class</span> <span class="nc">MyEncrypt</span>
+    <span class="c1">//密码加密解密方法</span>
+    <span class="k">class</span> <span class="nc">MyEncrypt</span>
     <span class="p">{</span>
 
         <span class="k">private</span> <span class="k">static</span> <span class="kt">byte</span><span class="p">[]</span> <span class="n">Keys</span> <span class="p">=</span> <span class="p">{</span> <span class="m">0x12</span><span class="p">,</span> <span class="m">0x34</span><span class="p">,</span> <span class="m">0x56</span><span class="p">,</span> <span class="m">0x78</span><span class="p">,</span> <span class="m">0x90</span><span class="p">,</span> <span class="m">0xAB</span><span class="p">,</span> <span class="m">0xCD</span><span class="p">,</span> <span class="m">0xEF</span> <span class="p">};</span>
 
         <span class="k">private</span> <span class="k">static</span> <span class="kt">string</span> <span class="n">encryptKey</span> <span class="p">=</span> <span class="s">"liushuixingyun"</span><span class="p">;</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// DES加密字符串
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="encryptString"&gt;待加密的字符串&lt;/param&gt;
-</span>        <span class="c1">/// &lt;param name="encryptKey"&gt;加密密钥,要求为8位&lt;/param&gt;
-</span>        <span class="c1">/// &lt;returns&gt;加密成功返回加密后的字符串，失败返回源串&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="nf">EncryptDES</span><span class="p">(</span><span class="kt">string</span> <span class="n">encryptString</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// DES加密字符串</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="encryptString"&gt;待加密的字符串&lt;/param&gt;</span>
+        <span class="c1">/// &lt;param name="encryptKey"&gt;加密密钥,要求为8位&lt;/param&gt;</span>
+        <span class="c1">/// &lt;returns&gt;加密成功返回加密后的字符串，失败返回源串&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="nf">EncryptDES</span><span class="p">(</span><span class="kt">string</span> <span class="n">encryptString</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="k">try</span>
             <span class="p">{</span>
@@ -665,13 +623,13 @@ bool b = config.GetConfigValueBool("bool");
             <span class="p">}</span>
         <span class="p">}</span>
 
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// DES解密字符串
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="decryptString"&gt;待解密的字符串&lt;/param&gt;
-</span>        <span class="c1">/// &lt;param name="decryptKey"&gt;解密密钥,要求为8位,和加密密钥相同&lt;/param&gt;
-</span>        <span class="c1">/// &lt;returns&gt;解密成功返回解密后的字符串，失败返源串&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="nf">DecryptDES</span><span class="p">(</span><span class="kt">string</span> <span class="n">decryptString</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// DES解密字符串</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="decryptString"&gt;待解密的字符串&lt;/param&gt;</span>
+        <span class="c1">/// &lt;param name="decryptKey"&gt;解密密钥,要求为8位,和加密密钥相同&lt;/param&gt;</span>
+        <span class="c1">/// &lt;returns&gt;解密成功返回解密后的字符串，失败返源串&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="nf">DecryptDES</span><span class="p">(</span><span class="kt">string</span> <span class="n">decryptString</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="k">try</span>
             <span class="p">{</span>
@@ -694,29 +652,28 @@ bool b = config.GetConfigValueBool("bool");
     <span class="p">}</span>
 <span class="p">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>#检查网络是否异常</p>
-<div class="language-c# highlighter-rouge"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
-<span class="c1">//方法一
-</span><span class="k">using</span> <span class="nn">System.Runtime</span><span class="p">;</span>
+<span class="c1">//方法一</span>
+<span class="k">using</span> <span class="nn">System.Runtime</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Runtime.InteropServices</span><span class="p">;</span>
-<span class="c1">//方法二 Net2.0新增类库
-</span><span class="k">using</span> <span class="nn">System.Net.NetworkInformation</span><span class="p">;</span>
+<span class="c1">//方法二 Net2.0新增类库</span>
+<span class="k">using</span> <span class="nn">System.Net.NetworkInformation</span><span class="p">;</span>
 
 <span class="k">namespace</span> <span class="nn">OnePhone</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">class</span> <span class="nc">Internet</span>
     <span class="p">{</span>
-       <span class="c1">/// &lt;summary&gt;
-</span>       <span class="c1">/// 方法三
-</span>       <span class="c1">/// &lt;/summary&gt;
-</span>       <span class="c1">/// &lt;param name="ip"&gt;&lt;/param&gt;
-</span>       <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="k">static</span> <span class="kt">bool</span> <span class="nf">DoPing</span><span class="p">(</span><span class="kt">string</span> <span class="n">ip</span><span class="p">)</span>
+       <span class="c1">/// &lt;summary&gt;</span>
+       <span class="c1">/// 方法三</span>
+       <span class="c1">/// &lt;/summary&gt;</span>
+       <span class="c1">/// &lt;param name="ip"&gt;&lt;/param&gt;</span>
+       <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="kt">bool</span> <span class="nf">DoPing</span><span class="p">(</span><span class="kt">string</span> <span class="n">ip</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="n">Ping</span> <span class="n">pingSender</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Ping</span><span class="p">();</span>
             <span class="n">PingOptions</span> <span class="n">options</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">PingOptions</span><span class="p">();</span>
@@ -734,11 +691,11 @@ bool b = config.GetConfigValueBool("bool");
         <span class="k">private</span> <span class="k">extern</span> <span class="k">static</span> <span class="kt">bool</span> <span class="nf">InternetGetConnectedState</span><span class="p">(</span><span class="kt">int</span> <span class="n">Description</span><span class="p">,</span> <span class="kt">int</span> <span class="n">ReservedValue</span><span class="p">);</span>
 
         <span class="err">#</span><span class="n">region</span> <span class="err">方法一</span>
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 用于检查网络是否可以连接互联网,true表示连接成功,false表示连接失败
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="k">static</span> <span class="kt">bool</span> <span class="nf">IsConnectInternet</span><span class="p">()</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 用于检查网络是否可以连接互联网,true表示连接成功,false表示连接失败</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="kt">bool</span> <span class="nf">IsConnectInternet</span><span class="p">()</span>
         <span class="p">{</span>
             <span class="kt">int</span> <span class="n">Description</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
             <span class="k">return</span> <span class="nf">InternetGetConnectedState</span><span class="p">(</span><span class="n">Description</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
@@ -746,12 +703,12 @@ bool b = config.GetConfigValueBool("bool");
         <span class="err">#</span><span class="n">endregion</span>
 
         <span class="err">#</span><span class="n">region</span> <span class="err">方法二</span>
-        <span class="c1">/// &lt;summary&gt;
-</span>        <span class="c1">/// 用于检查IP地址或域名是否可以使用TCP/IP协议访问(使用Ping命令),true表示Ping成功,false表示Ping失败
-</span>        <span class="c1">/// &lt;/summary&gt;
-</span>        <span class="c1">/// &lt;param name="strIpOrDName"&gt;输入参数,表示IP地址或域名&lt;/param&gt;
-</span>        <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
-</span>        <span class="k">public</span> <span class="k">static</span> <span class="kt">bool</span> <span class="nf">PingIpOrDomainName</span><span class="p">(</span><span class="kt">string</span> <span class="n">strIpOrDName</span><span class="p">)</span>
+        <span class="c1">/// &lt;summary&gt;</span>
+        <span class="c1">/// 用于检查IP地址或域名是否可以使用TCP/IP协议访问(使用Ping命令),true表示Ping成功,false表示Ping失败</span>
+        <span class="c1">/// &lt;/summary&gt;</span>
+        <span class="c1">/// &lt;param name="strIpOrDName"&gt;输入参数,表示IP地址或域名&lt;/param&gt;</span>
+        <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="kt">bool</span> <span class="nf">PingIpOrDomainName</span><span class="p">(</span><span class="kt">string</span> <span class="n">strIpOrDName</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="k">try</span>
             <span class="p">{</span>
@@ -781,18 +738,14 @@ bool b = config.GetConfigValueBool("bool");
     <span class="p">}</span>
 <span class="p">}</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
-  </div>
-
-  
+  </div><a class="u-url" href="/page/jekyll/update/2017/04/20/c-develop.html" hidden></a>
 </article>
 
       </div>
-    </main>
-
-    <footer class="site-footer">
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/page/"></data>
 
   <div class="wrapper">
 
@@ -801,30 +754,11 @@ bool b = config.GetConfigValueBool("bool");
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
-          <li>
-            
-              小浪Blog
-            
-            </li>
-            
-            <li><a href="mailto:474647150@qq.com">474647150@qq.com</a></li>
-            
-        </ul>
+          <li class="p-name">小浪Blog</li><li><a class="u-email" href="mailto:475647150@qq.com">475647150@qq.com</a></li></ul>
       </div>
 
-      <div class="footer-col footer-col-2">
-        <ul class="social-media-list">
-          
-          <li>
-            <a href="https://github.com/cjjmem"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
-</span><span class="username">cjjmem</span></a>
-
-          </li>
-          
-
-          
-        </ul>
-      </div>
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/cjjmem"><svg class="svg-icon"><use xlink:href="/page/assets/minima-social-icons.svg#github"></use></svg> <span class="username">cjjmem</span></a></li><li><a href="https://www.twitter.com/cjjmem"><svg class="svg-icon"><use xlink:href="/page/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">cjjmem</span></a></li></ul>
+</div>
 
       <div class="footer-col footer-col-3">
         <p>其實很簡單</p>
@@ -834,8 +768,6 @@ bool b = config.GetConfigValueBool("bool");
   </div>
 
 </footer>
-
-
-  </body>
+</body>
 
 </html>
